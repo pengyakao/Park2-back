@@ -37,6 +37,7 @@ class App extends Component {
             <Route path="/stationed_market/:applyId" component={Stationed_market_each} />
             <Route path="/user" component={User} exact/>
             <Route path="/user/:userId" component={User_each} />
+            {/* login */}
             <Route path="/ally" component={Ally} />
           </Switch>
         </BrowserRouter>
