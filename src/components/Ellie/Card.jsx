@@ -53,7 +53,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
 
 export default function BasicSwitches() {
     return (
-        <Card sx={{ maxWidth: 252 }}>
+        <Card sx={{ maxWidth: 252, minHeight: 223 }}>
             <CardMedia component="img" alt="store-img" height="140" image="/img/store/MOLINO.jpeg" />
             <Typography gutterBottom fontSize="14" margin="5px" component="div">
                 活動名稱
