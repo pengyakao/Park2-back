@@ -1,0 +1,17 @@
+.css-i4bv87-MuiSvgIcon-root {
+    /* width: 83px;
+    height: 83px; */
+    font-size: 83px;
+    color: #f4f4f4;
+}
+
+.css-iqsien-MuiPaper-root-MuiCard-root {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#uploadIcon {
+    border: none;
+    background-color: white ;
+}
