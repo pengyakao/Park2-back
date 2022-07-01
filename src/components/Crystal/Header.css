@@ -1,0 +1,61 @@
+/* header */
+.bs_navbar {
+    width: 100%;
+    height: 50px;
+    margin: 0;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Noto Sans TC', sans-serif;
+    position: fixed;
+    top: 0;
+    z-index: 9999;
+}
+.bs_navbar img {
+    display: inline;
+    float: left;
+    height: 30px;
+    margin: 10px;
+}
+.bs_navbar ul {
+    display: inline;
+    float: center;
+    align-items: center;
+}
+.bs_navbar ul li {
+    display: inline-block;
+    margin: 0 10px;
+    line-height: 50px;
+}
+.bs_navbar ul li a {
+    list-style-type: none;
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 16px;
+    text-align: center;
+    transition-duration: .5s;
+}
+.bs_navbar ul li a:hover {
+    color: #B3E24D;
+    transition-duration: .5s;
+}
+.bs_navbar button {
+    display: inline;
+    float: right;
+    border: none;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+    font-size: 16px;
+    text-align: center;
+    margin: 0 10px;
+    line-height: 45px;
+}
+.bs_navbar button img {
+    height: 25px;
+    align-items: center;
+}
