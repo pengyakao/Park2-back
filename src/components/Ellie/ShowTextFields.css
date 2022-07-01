@@ -1,0 +1,23 @@
+#ShowTextFields {
+    position: relative;
+    height: 80px;
+    display:flex;
+    align-items: center;
+}
+
+#ShowTextFields div {
+    margin: 10px;
+}
+
+#ShowTextFields .content{
+    border-radius: 50px;
+    border: black solid 3px;
+    height: 40px;
+    min-width: 300px;
+}
+
+#ShowTextFields .content {
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
