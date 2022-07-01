@@ -6,6 +6,9 @@ import UploadButtons from '../components/Ally/UploadButtons';
 import FAQlist from '../components/Ally/FAQlist';
 import UploadMore from '../components/Ally/UploadMore';
 import UploadFile from '../components/Ally/UploadFile';
+import BasicModal from '../components/Ellie/BasicModal';
+
+
 
 const Ally = () => {
   const [num, setNum] = useState(100)
@@ -29,19 +32,8 @@ const Ally = () => {
       <h3>合約文件上傳(限.pdf檔)</h3>
       <UploadFile/>
 
-
-      {/* <hr />
-      <h3>測試</h3>
-      <h3>FloatingActionButtons</h3>
-      <FloatingActionButtons />
-      <h3>ListDividers</h3>
-      <ListDividers />
-      <h3>Switch</h3>
-      <Switch />
-      <h3>BasicButtons</h3>
-      <BasicButtons />
-      <h3>SwitchListSecondary</h3>
-      <SwitchListSecondary /> */}
+      <h3>彈跳窗</h3>
+      <BasicModal/>
 
     </React.Fragment>
   );

@@ -8,16 +8,12 @@ import FAQlist from './home_FAQlist';
 
 export default function Home_faq() {
 
-    const FAQadd = () => {
-        alert("新增頁面彈跳窗");
-    }
-
     return (
         <div>
             <div>
                 <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                    <Fab size="small" color="primary" aria-label="add">
-                        <AddIcon onClick={FAQadd} />
+                    <Fab size="small" color="black" aria-label="add" href="/home/home_faq_edit/:faqId">
+                        <AddIcon />
                     </Fab>
                 </Box>
             </div>
