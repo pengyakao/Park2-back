@@ -2,15 +2,10 @@ import * as React from 'react';
 import ReactDOM from 'react-dom/client';
 import Button from '@mui/material/Button';
 import { useState } from 'react';
-// import FloatingActionButtons from './components/FloatingActionButtons';
-// import ListDividers from './components/ListDividers';
-// import Switch from './components/SwitchLabels';
-// import BasicButtons from './components/BasicButton';
-// import SwitchListSecondary from './components/SwitchListSecondary';
-import UploadButtons from '../components/UploadButtons';
-import FAQlist from '../components/FAQlist';
-import UploadMore from '../components/UploadMore';
-import UploadFile from '../components/UploadFile';
+import UploadButtons from '../components/Ally/UploadButtons';
+import FAQlist from '../components/Ally/FAQlist';
+import UploadMore from '../components/Ally/UploadMore';
+import UploadFile from '../components/Ally/UploadFile';
 
 const Ally = () => {
   const [num, setNum] = useState(100)

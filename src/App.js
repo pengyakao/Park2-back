@@ -6,8 +6,10 @@ import Activity from './page/activity/activity';
 import Activity_each from './page/activity/activity_each';
 import Store from './page/store/store';
 import Store_each from './page/store/store_each';
-import Stationed from './page/stationed/stationed';
-import Stationed_each from './page/stationed/stationed_each';
+import Stationed_store from './page/stationed/stationed_store';
+import Stationed_store_each from './page/stationed/stationed_store_each';
+import Stationed_market from './page/stationed/stationed_market';
+import Stationed_market_each from './page/stationed/stationed_market_each';
 import User from './page/user/user';
 import User_each from './page/user/user_each';
 import Login from './page/login/logon';
@@ -29,8 +31,10 @@ class App extends Component {
             <Route path="/activity/:activityId" component={Activity_each} />
             <Route path="/store" component={Store} exact/>
             <Route path="/store/:storeId" component={Store_each} />
-            <Route path="/stationed" component={Stationed} exact/>
-            <Route path="/stationed/:stationedId" component={Stationed_each} />
+            <Route path="/stationed_store" component={Stationed_store} exact/>
+            <Route path="/stationed_store/:applyId" component={Stationed_store_each} />
+            <Route path="/stationed_market" component={Stationed_market} exact/>
+            <Route path="/stationed_market/:applyId" component={Stationed_market_each} />
             <Route path="/user" component={User} exact/>
             <Route path="/user/:userId" component={User_each} />
             <Route path="/ally" component={Ally} />
