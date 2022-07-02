@@ -19,7 +19,7 @@
   border: 1px solid gray;
   border-radius: 3px;
 }
-img {
+.imgContainer img {
   display: block;
   height: auto;
   max-height: 100px;

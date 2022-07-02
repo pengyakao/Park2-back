@@ -5,6 +5,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import LayOut from '../../../components/Crystal/LayOut';
 
 
 
@@ -28,36 +29,41 @@ export default function Home_mar() {
     ]);
 
     return (
-        <div style={{ width: "80%" }}>
-            <h1>跑馬燈管理</h1>
-            <Box
-                component="form"
-                sx={{
-                    '& > :not(style)': { m: 1, width: '100%' },
-                }}
-                noValidate
-                autoComplete="off"
-            >
-                <TextField id="outlined-basic"
-                    label="跑馬燈內容"
-                    variant="outlined"
-                    required="true"
-                    multiline
-                    rows={10}
-                    value={isMar[0].text}
-                />
-            </Box>
-            <ThemeProvider theme={theme}>
-                <Stack spacing={2} direction="row" style={{ display: 'flex', 'justify-content': 'flex-end' }}>
-                    <Button color="neutral" variant="outlined">取消</Button>
-                    <Button color="neutral" variant="contained" 
-                        onClick={() => {
-                            alert('送出')
+        <div>
+            <LayOut />
+            <div className='bs_article'>
+                <div style={{ width: "80%" }}>
+                    <h1>跑馬燈管理</h1>
+                    <Box
+                        component="form"
+                        sx={{
+                            '& > :not(style)': { m: 1, width: '100%' },
                         }}
-                    >送出</Button>
-                </Stack>
-            </ThemeProvider>
+                        noValidate
+                        autoComplete="off"
+                    >
+                        <TextField id="outlined-basic"
+                            label="跑馬燈內容"
+                            variant="outlined"
+                            required="true"
+                            multiline
+                            rows={10}
+                            value={isMar[0].text}
+                        />
+                    </Box>
+                    <ThemeProvider theme={theme}>
+                        <Stack spacing={2} direction="row" style={{ display: 'flex', 'justify-content': 'flex-end' }}>
+                            {/* <Button color="neutral" variant="outlined">取消</Button> */}
+                            <Button color="neutral" variant="contained"
+                                onClick={() => {
+                                    window.confirm("是否確定修改");
+                                }}
+                            >送出</Button>
+                        </Stack>
+                    </ThemeProvider>
 
+                </div>
+            </div>
         </div>
     );
 }

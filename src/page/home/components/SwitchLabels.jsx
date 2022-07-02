@@ -87,7 +87,7 @@ export default function SwitchLabels() {
       <ThemeProvider theme={theme}>
         <Stack spacing={2} direction="row">
           <Button color="neutral" size="small" variant="outlined" onClick={FAQedit} >編輯</Button>
-          <Button size="small" variant="outlined" color="error" startIcon={<DeleteIcon />} onClick={FAQdelete}>刪除</Button>
+          <Button size="small" variant="outlined" color="error" onClick={FAQdelete}>刪除</Button>
           <FormGroup>
             <Stack onClick={isHidden} direction="row" spacing={1} alignItems="center">
               <Typography>Off</Typography>

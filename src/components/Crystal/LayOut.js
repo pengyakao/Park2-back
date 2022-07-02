@@ -3,24 +3,26 @@ import './LayOut.css'
 const LayOut = () => {
     return <div>
         <div className="bs_navbar">
-            <img src="img/Park2B3E24D.svg" alt="Park2_logo" />
+            <img src="/img/Park2B3E24D.svg" alt="Park2_logo" />
+            
             <ul>
-                <li><a href="#">首頁管理</a></li>
-                <li><a href="#">活動管理</a></li>
-                <li><a href="#">店家管理</a></li>
-                <li><a href="#">店家進駐</a></li>
-                <li><a href="#">攤位進駐</a></li>
-                <li><a href="#">帳號管理</a></li>
+                <li><a href="/home/act">首頁管理</a></li>
+                <li><a href="/activity">活動管理</a></li>
+                <li><a href="/store">店家管理</a></li>
+                <li><a href="/stationed_store">店家進駐</a></li>
+                <li><a href="/stationed_market">攤位進駐</a></li>
+                <li><a href="/user">帳號管理</a></li>
             </ul>
             <button className="btn_logout" onclick="">
-                <img src="img/LogOut.svg" alt="log_out" />登出
+                <img src="/img/LogOut.svg" alt="log_out" />登出
             </button>
         </div>
         <div className="bs_aside">
             <ul>
-                <li><a href="#">活動輪播</a></li>
-                <li><a href="#">官方公告</a></li>
-                <li><a href="#">FAQ</a></li>
+                <li><a href="/home/act">活動輪播</a></li>
+                <li><a href="/home/news">官方公告</a></li>
+                <li><a href="/home/faq">FAQ</a></li>
+                <li><a href="/home/mar">跑馬燈</a></li>
             </ul>
 
             {/* 

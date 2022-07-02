@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
 import './store_each.css'
-import Aside from '../../components/Crystal/Aside'
-import Header from '../../components/Crystal/Header'
+import LayOut from '../../components/Crystal/LayOut';
 
 class Store_each extends Component {
     state = {}
     render() {
         return (
             <div className="all-cantainer">
-                <Header></Header>
-                <div className="header-hight"></div>
-                <Aside></Aside>
+                <LayOut />
                 <div className="SC-container">
                     <h1>1店家列表</h1>
                     <h1>2店家列表</h1>
