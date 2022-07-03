@@ -89,7 +89,7 @@ const ActCard = ({ key, id, name, img, hidden }) => {
                 <div>
                 <ThemeProvider theme={theme}>
                     <CardActions style={{ "display": "flex", "justify-content": "space-around" }}>
-                        <Button onClick={actEdit} size="small" variant="contained" color="neutral">編輯</Button>
+                        <Button onClick={actEdit} size="small" variant="outlined" color="neutral">編輯</Button>
                         <Button onClick={actDelete} size="small" variant="outlined" color="error" >刪除</Button>
                         <FormGroup style={{ "margin": "3px" }}>
                             <Stack onClick={isHidden} direction="row" spacing={1} alignItems="center">

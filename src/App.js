@@ -11,7 +11,7 @@ import Stationed_store_each from './page/stationed/stationed_store_each';
 import Stationed_market from './page/stationed/stationed_market';
 import Stationed_market_each from './page/stationed/stationed_market_each';
 import User from './page/user/user';
-import User_each from './page/user/user_each';
+import User_edit from './page/user/user_edit';
 import Login from './page/login/logon';
 
 import Ally from './page/ally_compontents';
@@ -36,7 +36,7 @@ class App extends Component {
             <Route path="/stationed_market" component={Stationed_market} exact/>
             <Route path="/stationed_market/:applyId" component={Stationed_market_each} />
             <Route path="/user" component={User} exact/>
-            <Route path="/user/:userId" component={User_each} />
+            <Route path="/user/:userId" component={User_edit} />
             {/* login */}
             <Route path="/ally" component={Ally} />
           </Switch>

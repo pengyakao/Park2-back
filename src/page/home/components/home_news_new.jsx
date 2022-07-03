@@ -26,7 +26,7 @@ class Home_news_new extends Component {
                 <LayOut />
                 <div className='bs_article'>
                     <div style={{ width: "80%" }}>
-                        <h1>新增公告</h1>
+                        <h1>新增最新公告</h1>
                         <Box
                             component="form"
                             sx={{

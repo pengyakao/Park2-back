@@ -55,10 +55,11 @@ export default function Home_news() {
         <div>
             <LayOut />
             <div className='bs_article'>
+                <h1>最新公告管理</h1>
                 <div>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
                         <Fab size="small" color="black" aria-label="add" href="/home/news_new">
-                            <AddIcon />
+                            <AddIcon sx={{ color: "black" }}/>
                         </Fab>
                     </Box>
                 </div>

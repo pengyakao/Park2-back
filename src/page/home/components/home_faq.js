@@ -35,17 +35,18 @@ export default function Home_faq() {
         }
     ]
 
-   
+
 
 
     return (
         <div>
             <LayOut />
             <div className='bs_article'>
+                <h1>FAQ管理</h1>
                 <div>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
-                        <Fab size="small" color="black" aria-label="add" href="/home/faq_new">
-                            <AddIcon />
+                        <Fab size="small" color="dark" aria-label="add" href="/home/faq_new">
+                            <AddIcon sx={{ color: "black" }}/>
                         </Fab>
                     </Box>
                 </div>

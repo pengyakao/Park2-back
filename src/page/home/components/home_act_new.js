@@ -71,7 +71,7 @@ const Home_act_new = ({ add }) => {
             <LayOut />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
-                    <h1>活動輪播編輯</h1>
+                    <h1>新增輪播活動</h1>
                     <Box
                         component="form"
                         sx={{
