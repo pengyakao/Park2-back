@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './page/home/home';
-import Activity from './page/activity/activity';
+import Activity from './page/activity/activity.jsx';
 import Activity_each from './page/activity/activity_each';
 import Store from './page/store/store';
 import Store_each from './page/store/store_each';
@@ -27,7 +27,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Login} exact />
             <Route path="/home" component={Home} />
-            <Route path="/activity" component={Activity} exact/>
+            <Route path="/activity" component={Activity}/>
             <Route path="/activity/:activityId" component={Activity_each} />
             <Route path="/store" component={Store} exact/>
             <Route path="/store/:storeId" component={Store_each} />

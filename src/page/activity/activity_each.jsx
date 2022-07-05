@@ -9,5 +9,5 @@ class Activity_each extends Component {
         );
     }
 }
- 
+
 export default Activity_each;
