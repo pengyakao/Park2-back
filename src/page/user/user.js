@@ -5,8 +5,8 @@ import Userlist from './user_list';
 
 
 // api
-import {token} from '../../api/token'
-import {data} from '../../api/data'
+import {token} from '../../api/user/token'
+import {data} from '../../api/user/data'
 
 
 export default function User() {
@@ -39,7 +39,7 @@ export default function User() {
             </div>
         )
     } else {
-        return <Redirect to='/user/:user_id' />;
+        return <Redirect to={`/user/${myToken.user_id}`} />;
     }
 
    
