@@ -1,18 +1,70 @@
-.all-cantainer {
-    font-family: 'Noto Sans TC', sans-serif;
-    font-weight: 500;
-    letter-spacing: 1px;
-    font-size: 20px;
+.bs_article h3 {
+    margin-top: 20px;
 }
-
-.SC-container {
-    background-color: aqua;
-    /* float: right; */
+.storeName ,.storeSet,.storePhone,.storeMoreImg{
     display: flex;
-    min-height: calc(100vh - 56px - 1px);
+    flex-direction: column;
+    width: 100%;
+}
+.storeName .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root,
+.storeSet.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root,
+.storePhone .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root
+ {
+    width: 100%;
 }
 
-.header-hight {
-    min-height: 54px;
-    background-color: bisque;
+
+.storeintro textarea {
+    width: 100%;
 }
+.storetime_container,.storepay_container,.storeMoreImg .imgContainer{
+    border: 2px #F4F4F4 solid;
+    justify-content: center;
+    align-items: center;
+}
+.storetime_container>div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    margin: 20px 0;
+    justify-content: space-around;
+    align-items: center;
+}
+.storepay_container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.storepay_container>div{
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: nowrap; */
+    margin: 20px 0;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked{
+    color: #26252b;
+}
+
+.storepay img{
+    width: 60px;
+}
+
+
+
+
+
+
+
+
+.fanspage-container ,.storepay_container{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+.fanspage-container div{
+    width: 18vw;
+}
+
