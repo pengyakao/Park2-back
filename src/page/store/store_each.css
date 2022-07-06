@@ -12,11 +12,6 @@
  {
     width: 100%;
 }
-
-
-.storeintro textarea {
-    width: 100%;
-}
 .storetime_container,.storepay_container,.storeMoreImg .imgContainer{
     border: 2px #F4F4F4 solid;
     justify-content: center;
@@ -42,21 +37,13 @@
     justify-content: space-around;
     align-items: center;
 }
-
-.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked{
-    color: #26252b;
-}
-
 .storepay img{
     width: 60px;
 }
-
-
-
-
-
-
-
+.storepay .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root,.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate
+{
+    color: #26252b;
+}
 
 .fanspage-container ,.storepay_container{
     display: flex;
@@ -66,5 +53,8 @@
 }
 .fanspage-container div{
     width: 18vw;
+}
+.StoreBtn{
+    padding-bottom: 2vh;
 }
 

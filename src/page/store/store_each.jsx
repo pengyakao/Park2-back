@@ -220,33 +220,40 @@ const Store_each = ({ add }) => {
                             </div>
                             <div className="storeintro">
                                 <h3>店家介紹</h3>
-                                <TextareaAutosize
-                                    aria-label="empty textarea"
-                                    style={{ height: 300, border: '2px solid #f4f4f4' }}
-                                    showCount
+                                <TextField
+                                    label=""
+                                    id="outlined-basic"
+                                    variant="outlined"
+                                    required="true"
+                                    multiline
+                                    rows={10}
+                                    fullWidth
+                                    inputProps={{ step: 1, min: 0, max: 10, type: 'number' }}
                                 />
                             </div>
                         </Box>
                         <ThemeProvider theme={theme}>
-                            <Stack
-                                spacing={2}
-                                direction="row"
-                                style={{ display: 'flex', 'justify-content': 'flex-end' }}
-                            >
-                                <Button color="neutral" variant="outlined" href="/store">
-                                    取消
-                                </Button>
-                                <Button
-                                    color="neutral"
-                                    variant="contained"
-                                    href="/store"
-                                    onClick={() => {
-                                        alert('送出')
-                                    }}
+                            <div className="StoreBtn">
+                                <Stack
+                                    spacing={2}
+                                    direction="row"
+                                    style={{ display: 'flex', 'justify-content': 'flex-end' }}
                                 >
-                                    送出
-                                </Button>
-                            </Stack>
+                                    <Button color="neutral" variant="outlined" href="/store">
+                                        取消
+                                    </Button>
+                                    <Button
+                                        color="neutral"
+                                        variant="contained"
+                                        href="/store"
+                                        onClick={() => {
+                                            alert('送出')
+                                        }}
+                                    >
+                                        送出
+                                    </Button>
+                                </Stack>
+                            </div>
                         </ThemeProvider>
                     </div>
                 </div>
