@@ -3,72 +3,75 @@ import LayOut from '../../components/Crystal/LayOut'
 import StoreCard from './store_card'
 import CardList from './store_card_list'
 import { useState } from 'react'
-import Card from '@mui/material/Card'
-import Button from '@mui/material/Button'
-import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export default function store_list() {
     // const [isAct, setAct] = useState([
     //     {
     //         id: 1,
-    //         Name: "活動名稱A",
+    //         Name: "店家名稱A",
     //         img: "https://placem.at/places"
     //     },
     //     {
     //         id: 2,
-    //         Name: "活動名稱B",
+    //         Name: "店家名稱B",
     //         img: "https://placem.at/places"
     //     }, {
     //         id: 3,
-    //         Name: "活動名稱C",
+    //         Name: "店家名稱C",
     //         img: "https://placem.at/places"
     //     }, {
     //         id: 4,
-    //         Name: "活動名稱D",
+    //         Name: "店家名稱D",
     //         img: "https://placem.at/places"
     //     },
     // ]);
     const data = [
         {
             id: 1,
-            name: '活動名稱A',
+            name: '店家名稱A',
             img: 'https://placem.at/places',
             hidden: 1,
         },
         {
             id: 2,
-            name: '活動名稱B',
+            name: '店家名稱B',
             img: 'https://placem.at/people',
             hidden: 0,
         },
         {
             id: 3,
-            name: '活動名稱C',
+            name: '店家名稱C',
             img: 'https://placem.at/things',
             hidden: 1,
         },
         {
             id: 4,
-            name: '活動名稱D',
+            name: '店家名稱D',
             img: 'https://placem.at/places',
             hidden: 1,
         },
         {
             id: 5,
-            name: '活動名稱E',
+            name: '店家名稱E',
             img: 'https://placem.at/things',
             hidden: 1,
         },
         {
             id: 6,
-            name: '活動名稱F',
+            name: '店家名稱F',
             img: 'https://placem.at/things',
             hidden: 1,
         },
         {
             id: 7,
-            name: '活動名稱G',
+            name: '店家名稱G',
             img: 'https://placem.at/people',
+            hidden: 1,
+        },
+        {
+            id: 7,
+            name: '店家名稱H',
+            img: 'https://placem.at/things',
             hidden: 1,
         },
     ]

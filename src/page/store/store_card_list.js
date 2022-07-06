@@ -13,22 +13,6 @@ const CardList = ({ listData }) => {
 
     return (
         <div style={{ display: 'flex', 'flex-wrap': 'wrap' }}>
-            <Card
-                sx={{
-                    minWidth: 247,
-                    minHeight: 218,
-                    border: '0px solid #F4F4F4',
-                    display: 'flex',
-                    'align-items': 'center',
-                    'justify-content': 'center',
-                    margin: '15px',
-                }}
-                onClick={addStore}
-            >
-                <Button id="uploadIcon" sx={{ minWidth: 247, minHeight: 218 }}>
-                    <AddCircleOutlineIcon sx={{ color: 'gray', fontSize: '70px' }} />
-                </Button>
-            </Card>
             {listData.map((item) => {
                 console.log(item)
                 const { id, name, img, hidden } = item
