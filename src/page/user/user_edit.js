@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import LayOut from '../../components/Crystal/LayOut';
 import {User_editTable} from './user_editTable'
 
+
 // api
-import {token} from '../../api/token'
-import {data} from '../../api/data'
+import {token} from '../../api/user/token'
+import {data} from '../../api/user/data'
 
 
 export default function User_edit() {
