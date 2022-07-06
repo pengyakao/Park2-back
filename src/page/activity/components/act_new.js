@@ -6,9 +6,10 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
-
-
+import Autocomplete from '@mui/material/Autocomplete'
+import UploadButtons from './UploadButtons'
+import Select from './Select'
+import UploadMore from './UploadMore'
 
 const theme = createTheme({
     palette: {
@@ -55,6 +56,11 @@ const data = [
     },
 ]
 
+// One time slot every 30 minutes.
+const timeSlots = Array.from(new Array(24 * 2)).map(
+    (_, index) => `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '30'}`
+)
+
 const Act_new = ({ add }) => {
 
     const [date, setDate] = useState("MM/DD-MM/DD");
@@ -64,7 +70,6 @@ const Act_new = ({ add }) => {
         setDate(`${data[0].act_Sdate}-${data[0].act_Edate}`);
         setTime(`${data[0].act_Stime}-${data[0].act_Etime}`);
     }
-
 
     return <div>
         <div>
@@ -80,7 +85,38 @@ const Act_new = ({ add }) => {
                         noValidate
                         autoComplete="off"
                     >
+
+                        <h3>封面圖片</h3>
+                        <UploadButtons label="封面圖片" width={300}></UploadButtons>
+                        
+                        <h3>活動資訊</h3>
+                        <TextField label="活動名稱" id="outlined-basic" variant="outlined" required="true" />
+                        <TextField label="活動日期(起)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
+                        <TextField label="活動日期(迄)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
+                        {/* 活動時間 */}
                         <Autocomplete
+                            id="disabled-options-demo"
+                            options={timeSlots}
+                            getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
+                            sx={{ width: 100 }}
+                            renderInput={(params) => <TextField {...params} label="活動時間(起)" />}
+                        />
+                        <Autocomplete
+                            id="disabled-options-demo"
+                            options={timeSlots}
+                            getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
+                            sx={{ width: 100 }}
+                            renderInput={(params) => <TextField {...params} label="活動時間(迄)" />}
+                        />
+                        <TextField label="活動嘉賓" id="outlined-basic" variant="outlined" />
+                        <TextField label="活動地點" id="outlined-basic" variant="outlined" required="true" />
+                        {/* 活動類別 */}
+                        <Select />
+                        <TextField label="活動介紹" id="outlined-basic" variant="outlined" required="true" multiline rows={10} inputProps={{ step: 1, min: 0, max: 10, type: 'number' }} />
+                        <h3>活動圖片</h3>
+                        <UploadMore />
+
+                        {/* <Autocomplete
                             onChange={dateChange}
                             disablePortal
                             id="combo-box-demo"
@@ -104,27 +140,19 @@ const Act_new = ({ add }) => {
                             id="outlined-disabled"
                             label="活動時間"
                             defaultValue={time}
-                        />
-
+                        /> */}
 
                     </Box>
                     <ThemeProvider theme={theme}>
                         <Stack spacing={2} direction="row" style={{ display: 'flex', 'justify-content': 'flex-end' }}>
                             <Button color="neutral" variant="outlined" href='/activity/'>取消</Button>
-                            <Button color="neutral" variant="contained" href='/activity/'
-                                onClick={() => {
-                                    alert('送出')
-                                }}
-                            >送出</Button>
+                            <Button color="neutral" variant="contained" href='/activity/' onClick={() => { alert('送出') }} >送出</Button>
                         </Stack>
                     </ThemeProvider>
                 </div>
             </div>
         </div>
     </div>
-
 }
-
-
 
 export default Act_new;

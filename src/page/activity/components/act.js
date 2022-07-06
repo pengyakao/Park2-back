@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import LayOut from '../../../components/Crystal/LayOut';
-import ActCard from "./act_card"
 import CardList from './act_card_list';
+
+import ActCard from "./act_card"
 import { useState } from 'react';
 import Card from '@mui/material/Card'
 import Button from '@mui/material/Button'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
-
-
 
 export default function Act() {
     const data = [
@@ -61,4 +60,3 @@ export default function Act() {
     );
 
 }
-

@@ -5,8 +5,6 @@ import Act from './components/act';
 import act_edit from './components/act_edit';
 import act_new from './components/act_new';
 
-
-
 class Activity extends Component {
   state = {}
   render() {
@@ -23,17 +21,3 @@ class Activity extends Component {
 }
 
 export default Activity;
-
-// import React, { Component } from 'react';
-
-
-// class Activity extends Component {
-//     state = {  } 
-//     render() { 
-//         return (
-//             <h3>活動管理</h3>
-//         );
-//     }
-// }
- 
-// export default Activity;

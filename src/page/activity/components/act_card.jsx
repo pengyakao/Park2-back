@@ -12,7 +12,6 @@ import { useState } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
-
 const theme = createTheme({
     palette: {
         neutral: {

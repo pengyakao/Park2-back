@@ -6,8 +6,15 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete'
+import UploadButtons from './UploadButtons'
+import Select from './Select'
+import UploadMore from './UploadMore'
 
-
+import TextareaAutosize from '@mui/material/TextareaAutosize'
+import FormGroup from '@mui/material/FormGroup'
+import FormControlLabel from '@mui/material/FormControlLabel'
+import Checkbox from '@mui/material/Checkbox'
 
 const theme = createTheme({
     palette: {
@@ -25,7 +32,6 @@ const style1 = {
     "letter-spacing": "1px",
     "font-size": "20px",
 }
-
 
 const Act_edit = ({ add }) => {
     const home_act_data = [
@@ -81,64 +87,65 @@ const Act_edit = ({ add }) => {
         },
     ]
 
+    // One time slot every 30 minutes.
+    const timeSlots = Array.from(new Array(24 * 2)).map(
+        (_, index) => `${index < 20 ? '0' : ''}${Math.floor(index / 2)}:${index % 2 === 0 ? '00' : '30'}`
+    )
+
     return <div>
         <div>
             <LayOut />
             <div className='bs_article'>
-                <div style={{ width: "80%" }}>
-                    <h1>活動編輯</h1>
+                <div style={{ width: "80%", paddingBottom: "50px" }}>
+                    <h1>編輯活動資訊</h1>
                     <Box
                         component="form"
-                        sx={{
-                            '& > :not(style)': { m: 1, width: '100%' },
-                        }}
+                        sx={{ '& > :not(style)': { m: 1, width: '100%' }, }}
                         noValidate
                         autoComplete="off"
+                        direction="row"
                     >
-                        <TextField 
-                            id="outlined-basic"
-                            label="首頁輪播標題(限11字)"
-                            variant="outlined"
-                            required="true"
+                        <h3>封面圖片</h3>
+                        <UploadButtons label="封面圖片" width={300}></UploadButtons>
+                        
+                        <h3>活動資訊</h3>
+                        <TextField label="活動名稱" id="outlined-basic" variant="outlined" required="true" />
+                        <TextField label="活動日期(起)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
+                        <TextField label="活動日期(迄)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
+                        {/* 活動時間 */}
+                        <Autocomplete
+                            id="disabled-options-demo"
+                            options={timeSlots}
+                            getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
+                            sx={{ width: 100 }}
+                            renderInput={(params) => <TextField {...params} label="活動時間(起)" />}
                         />
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="活動名稱"
-                            defaultValue={home_act_data[0].home_act_title}
+                        <Autocomplete
+                            id="disabled-options-demo"
+                            options={timeSlots}
+                            getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
+                            sx={{ width: 100 }}
+                            renderInput={(params) => <TextField {...params} label="活動時間(迄)" />}
                         />
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="活動日期"
-                            defaultValue={`${act_data[0].act_Sdate}-${act_data[0].act_Edate}`}
-                        />
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="活動時間"
-                            defaultValue={`${act_data[0].act_Stime}-${act_data[0].act_Etime}`}
-                        />
-
+                        <TextField label="活動嘉賓" id="outlined-basic" variant="outlined" />
+                        <TextField label="活動地點" id="outlined-basic" variant="outlined" required="true" />
+                        {/* 活動類別 */}
+                        <Select />
+                        <TextField label="活動介紹" id="outlined-basic" variant="outlined" required="true" multiline rows={10} inputProps={{ step: 1, min: 0, max: 10, type: 'number' }} />
+                        <h3>活動圖片</h3>
+                        <UploadMore />
 
                     </Box>
                     <ThemeProvider theme={theme}>
                         <Stack spacing={2} direction="row" style={{ display: 'flex', 'justify-content': 'flex-end' }}>
                             <Button color="neutral" variant="outlined" href='/activity/'>取消</Button>
-                            <Button color="neutral" variant="contained" href='/activity/'
-                                onClick={() => {
-                                    alert('送出')
-                                }}
-                            >送出</Button>
+                            <Button color="neutral" variant="contained" href='/activity/' onClick={() => { alert('送出') }} >送出</Button>
                         </Stack>
                     </ThemeProvider>
                 </div>
             </div>
         </div>
     </div>
-
 }
-
-
 
 export default Act_edit;

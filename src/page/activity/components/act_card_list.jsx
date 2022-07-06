@@ -4,8 +4,6 @@ import Button from '@mui/material/Button'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import './UploadCard.css'
 
-
-
 const CardList = ({ listData }) => {
 
     const addAct = () => {
@@ -43,6 +41,5 @@ const CardList = ({ listData }) => {
         }
     </div>
 }
-
 
 export default CardList
