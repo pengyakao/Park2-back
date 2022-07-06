@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
-import store_each from './store_each'
+import Store_each from './store_each'
 import store_list from './store_list'
 
 class Store extends Component {
@@ -10,7 +10,7 @@ class Store extends Component {
             <BrowserRouter>
                 <Switch>
                     <Route path="/store" component={store_list} exact />
-                    <Route path="/store/store_edit/:storeId" component={store_each} />
+                    <Route path="/store/store_edit/:storeId" component={Store_each} />
                 </Switch>
             </BrowserRouter>
         )

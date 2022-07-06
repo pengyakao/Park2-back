@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import LayOut from '../../components/Crystal/LayOut'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
 import Button from '@mui/material/Button'
@@ -16,6 +16,7 @@ import Input_fb from './Input_fb'
 import Input_ig from './Input_ig'
 import Input_line from './Input_line'
 import './store_each.css'
+import { getStores } from '../../api/store/storeApi'
 
 const theme = createTheme({
     palette: {
@@ -26,7 +27,12 @@ const theme = createTheme({
     },
 })
 
-const store_each = ({ add }) => {
+const Store_each = ({ add }) => {
+    useEffect(() => {
+        getStores().then((result) => {
+            console.log(result)
+        })
+    }, [])
     const store_each_data = [
         {
             sto_id: 1,
@@ -101,7 +107,7 @@ const store_each = ({ add }) => {
                             <div className="storeName">
                                 <h3>店家名稱</h3>
                                 <TextField
-                                    id={store_each.sto_name}
+                                    id={Store_each.sto_name}
                                     label="店家名稱"
                                     variant="outlined"
                                     required="true"
@@ -153,45 +159,45 @@ const store_each = ({ add }) => {
                                 <h3>支付方式</h3>
                                 <div className="storepay_container">
                                     <div>
-                                        <Checkbox {...label} checked={store_each.sto_pay1} id="sto_pay1" />
+                                        <Checkbox {...label} checked={Store_each.sto_pay1} id="sto_pay1" />
                                         <label htmlFor="sto_pay1">
                                             <img src="/img/icon/cash.svg" alt="現金支付" />
                                         </label>
                                     </div>
                                     <div>
-                                        <Checkbox {...label} checked={store_each.sto_pay2} id="sto_pay2" />
+                                        <Checkbox {...label} checked={Store_each.sto_pay2} id="sto_pay2" />
                                         <label htmlFor="sto_pay2">
                                             <img src="/img/icon/card.svg" alt="信用卡" />
                                         </label>
                                     </div>
                                     <div>
-                                        <Checkbox {...label} checked={store_each.sto_pay3} id="sto_pay3" />
+                                        <Checkbox {...label} checked={Store_each.sto_pay3} id="sto_pay3" />
                                         <label htmlFor="sto_pay3">
                                             <img src="/img/icon/linepay.png" alt="信用卡" />
                                         </label>
                                     </div>
                                     <div>
-                                        <Checkbox {...label} checked={store_each.sto_pay4} id="sto_pay4" />
+                                        <Checkbox {...label} checked={Store_each.sto_pay4} id="sto_pay4" />
                                         <label htmlFor="sto_pay4">
                                             <img src="/img/icon/street.png" alt="街口" />
                                         </label>
                                     </div>
 
                                     <div>
-                                        <Checkbox {...label} checked={store_each.sto_pay5} id="sto_pay5" />
+                                        <Checkbox {...label} checked={Store_each.sto_pay5} id="sto_pay5" />
                                         <label htmlFor="sto_pay5">
                                             <img src="/img/icon/icash.png" alt="悠遊卡" />
                                         </label>
                                     </div>
 
                                     <div>
-                                        <Checkbox {...label} checked={store_each.sto_pay6} id="sto_pay6" />
+                                        <Checkbox {...label} checked={Store_each.sto_pay6} id="sto_pay6" />
                                         <label htmlFor="sto_pay6">
                                             <img src="/img/icon/Apple_Pay_logo.svg" alt="ApplePay" />
                                         </label>
                                     </div>
                                     <div>
-                                        <Checkbox {...label} checked={store_each.sto_pay7} id="sto_pay7" />
+                                        <Checkbox {...label} checked={Store_each.sto_pay7} id="sto_pay7" />
                                         <label htmlFor="sto_pay7">
                                             <img src="/img/icon/taobao.png" alt="支付寶" />
                                         </label>
@@ -249,4 +255,4 @@ const store_each = ({ add }) => {
     )
 }
 
-export default store_each
+export default Store_each
