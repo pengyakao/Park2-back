@@ -14,9 +14,7 @@ import Button from '@mui/material/Button';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 // api
-// import {getActivities} from '../../api/act'
 
-// import {getActivities} from '../../api/user'
 
 const ListStyle = {
     width: '100%',
@@ -67,8 +65,8 @@ const Userlist = ({ listData }) => {
                     <TableCell >
                         <ThemeProvider theme={theme}>
                             <Stack spacing={2} direction="row">
+                                <Button variant="outlined" color="neutral" href={`/user/${row.user_id-1}`}>修改資料</Button>
                                 {/* <Button variant="outlined" color="neutral" href={`/user/${row.user_id}`}>修改資料</Button> */}
-                                <Button variant="outlined" color="neutral" href={`/user/${row.user_id}`}>修改資料</Button>
                             </Stack>
                         </ThemeProvider>
                     </TableCell>

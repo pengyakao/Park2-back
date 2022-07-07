@@ -81,7 +81,7 @@ class UploadMore extends React.Component {
                                 選擇檔案
                             </Button>
                         </div>
-                        <Button variant="contained">上傳</Button>
+                        {/* <Button variant="contained">上傳</Button> */}
                     </Stack>
                 </label>
             </div>
