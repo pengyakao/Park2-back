@@ -75,7 +75,7 @@ const Act_new = ({ add }) => {
         <div>
             <LayOut />
             <div className='bs_article'>
-                <div style={{ width: "80%" }}>
+                <div style={{ width: "80%", paddingBottom: "50px" }}>
                     <h1>新增活動</h1>
                     <Box
                         component="form"
