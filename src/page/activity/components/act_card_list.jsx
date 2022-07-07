@@ -27,14 +27,14 @@ const CardList = ({ listData }) => {
         {
             listData.map((item) => {
                 console.log(item)
-                const { id, name, img, hidden } = item
+                const { act_id, act_title, act_img, act_sta } = item
                 return (
                     <ActCard
-                        key={id}
-                        id={id}
-                        name={name}
-                        img={img}
-                        hidden={hidden}
+                        key={act_id}
+                        id={act_id}
+                        name={act_title}
+                        img={act_img}
+                        hidden={act_sta}
                     />
                 );
             })

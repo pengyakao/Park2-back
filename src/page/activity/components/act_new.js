@@ -85,62 +85,36 @@ const Act_new = ({ add }) => {
                         noValidate
                         autoComplete="off"
                     >
-
-                        <h3>封面圖片</h3>
+                        <h3>活動封面圖</h3>
                         <UploadButtons label="封面圖片" width={300}></UploadButtons>
                         
                         <h3>活動資訊</h3>
-                        <TextField label="活動名稱" id="outlined-basic" variant="outlined" required="true" />
-                        <TextField label="活動日期(起)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
-                        <TextField label="活動日期(迄)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
+                        <TextField label="活動名稱" id="act_title" variant="outlined" required="true" />
+                        {/* 活動類別 */}
+                        <Select />
+                        <TextField label="活動日期(起)" id="act_Sdate" type="date" required="true" defaultValue="2022-01-01" />
+                        <TextField label="活動日期(迄)" id="act_Edate" type="date" required="true" defaultValue="2022-01-01" />
                         {/* 活動時間 */}
                         <Autocomplete
-                            id="disabled-options-demo"
+                            id="act_Stime"
                             options={timeSlots}
                             getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
                             sx={{ width: 100 }}
                             renderInput={(params) => <TextField {...params} label="活動時間(起)" />}
                         />
                         <Autocomplete
-                            id="disabled-options-demo"
+                            id="act_Etime"
                             options={timeSlots}
                             getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
                             sx={{ width: 100 }}
                             renderInput={(params) => <TextField {...params} label="活動時間(迄)" />}
                         />
-                        <TextField label="活動嘉賓" id="outlined-basic" variant="outlined" />
-                        <TextField label="活動地點" id="outlined-basic" variant="outlined" required="true" />
-                        {/* 活動類別 */}
-                        <Select />
-                        <TextField label="活動介紹" id="outlined-basic" variant="outlined" required="true" multiline rows={10} inputProps={{ step: 1, min: 0, max: 10, type: 'number' }} />
-                        <h3>活動圖片</h3>
+                        <TextField label="活動地點" id="act_location" variant="outlined" required="true" />
+                        <TextField label="活動嘉賓" id="act_guests" variant="outlined" multiline />
+                        <TextField label="主辦單位" id="acr_org" variant="outlined" required="true" />
+                        <TextField label="活動介紹" id="act_info" variant="outlined" required="true" multiline rows={10} inputProps={{ step: 1, min: 0, max: 10, type: 'number' }} />
+                        <h3>活動照片</h3>
                         <UploadMore />
-
-                        {/* <Autocomplete
-                            onChange={dateChange}
-                            disablePortal
-                            id="combo-box-demo"
-                            options={data}
-                            renderInput={(params) => <TextField {...params} label="選擇活動" />}
-                        />
-                        <TextField
-                            id="outlined-basic"
-                            label="首頁輪播標題(限11字)"
-                            variant="outlined"
-                            required="true"
-                        />
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="活動日期"
-                            defaultValue={date}
-                        />
-                        <TextField
-                            disabled
-                            id="outlined-disabled"
-                            label="活動時間"
-                            defaultValue={time}
-                        /> */}
 
                     </Box>
                     <ThemeProvider theme={theme}>
