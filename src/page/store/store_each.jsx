@@ -158,45 +158,45 @@ const Store_each = ({ add }) => {
                             <div className="storepay">
                                 <h3>支付方式</h3>
                                 <div className="storepay_container">
-                                    <div>
+                                    <div className="storepay1">
                                         <Checkbox {...label} checked={Store_each.sto_pay1} id="sto_pay1" />
                                         <label htmlFor="sto_pay1">
                                             <img src="/img/icon/cash.svg" alt="現金支付" />
                                         </label>
                                     </div>
-                                    <div>
+                                    <div className="storepay2">
                                         <Checkbox {...label} checked={Store_each.sto_pay2} id="sto_pay2" />
                                         <label htmlFor="sto_pay2">
                                             <img src="/img/icon/card.svg" alt="信用卡" />
                                         </label>
                                     </div>
-                                    <div>
+                                    <div className="storepay3">
                                         <Checkbox {...label} checked={Store_each.sto_pay3} id="sto_pay3" />
                                         <label htmlFor="sto_pay3">
-                                            <img src="/img/icon/linepay.png" alt="信用卡" />
+                                            <img src="/img/icon/linepay.png" alt="Linepay" />
                                         </label>
                                     </div>
-                                    <div>
+                                    <div className="storepay4">
                                         <Checkbox {...label} checked={Store_each.sto_pay4} id="sto_pay4" />
                                         <label htmlFor="sto_pay4">
                                             <img src="/img/icon/street.png" alt="街口" />
                                         </label>
                                     </div>
 
-                                    <div>
+                                    <div className="storepay5">
                                         <Checkbox {...label} checked={Store_each.sto_pay5} id="sto_pay5" />
                                         <label htmlFor="sto_pay5">
                                             <img src="/img/icon/icash.png" alt="悠遊卡" />
                                         </label>
                                     </div>
 
-                                    <div>
+                                    <div className="storepay6">
                                         <Checkbox {...label} checked={Store_each.sto_pay6} id="sto_pay6" />
                                         <label htmlFor="sto_pay6">
                                             <img src="/img/icon/Apple_Pay_logo.svg" alt="ApplePay" />
                                         </label>
                                     </div>
-                                    <div>
+                                    <div className="storepay7">
                                         <Checkbox {...label} checked={Store_each.sto_pay7} id="sto_pay7" />
                                         <label htmlFor="sto_pay7">
                                             <img src="/img/icon/taobao.png" alt="支付寶" />
@@ -208,13 +208,31 @@ const Store_each = ({ add }) => {
                                 <h3>粉絲專頁</h3>
                                 <div className="fanspage-container">
                                     <div>
-                                        <Input_fb />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Facebook"
+                                            placeholder="https://www.facebook.com/cmppark2/"
+                                            variant="outlined"
+                                            required="true"
+                                        />
                                     </div>
                                     <div>
-                                        <Input_ig />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Instargam"
+                                            placeholder="https://www.Instargam.com/cmppark2/"
+                                            variant="outlined"
+                                            required="true"
+                                        />
                                     </div>
                                     <div>
-                                        <Input_line />
+                                        <TextField
+                                            id="outlined-basic"
+                                            label="Line"
+                                            placeholder="https://line.me/ti/p/~@Park2"
+                                            variant="outlined"
+                                            required="true"
+                                        />
                                     </div>
                                 </div>
                             </div>

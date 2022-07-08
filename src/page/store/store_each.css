@@ -29,20 +29,25 @@
     display: flex;
     flex-wrap: wrap;
 }
-.storepay_container>div{
-    display: flex;
-    flex-direction: row;
-    /* flex-wrap: nowrap; */
+.storepay_container div{
     margin: 20px 0;
     justify-content: space-around;
     align-items: center;
+}
+.storepay1,.storepay2,.storepay3,.storepay4,.storepay5,.storepay6,.storepay7{
+    display: flex;
+    flex-direction: row;
 }
 .storepay img{
     width: 60px;
 }
 .storepay .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root,.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked, .css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.MuiCheckbox-indeterminate
 {
-    color: #26252b;
+    color: #26252b !important;
+}
+
+.storepay.css-i4bv87-MuiSvgIcon-root,.storepay.css-12wnr2w-MuiButtonBase-root-MuiCheckbox-root.Mui-checked{
+    color: #26252b !important;
 }
 
 .fanspage-container ,.storepay_container{
@@ -57,4 +62,6 @@
 .StoreBtn{
     padding-bottom: 2vh;
 }
+
+
 
