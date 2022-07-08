@@ -36,55 +36,95 @@ const style1 = {
 const Act_edit = ({ add }) => {
     const home_act_data = [
         {
-            home_act_id: 1,
+            // home_act_id: 1,
             act_id: 1,
-            home_act_sta: 1,
-            home_act_title: "活動名稱A"
+            act_sta: 1,
+            act_title: "DJ Night in PARK2 ✦ Question Mark"
         },
         {
-            home_act_id: 2,
+            // home_act_id: 2,
             act_id: 2,
-            home_act_sta: 0,
-            home_act_title: "活動名稱B"
+            act_sta: 1,
+            act_title: "我出去一下．風格品牌出店計畫 ：生活裝飾篇"
         }, {
-            home_act_id: 3,
+            // home_act_id: 3,
             act_id: 3,
-            home_act_sta: 1,
-            home_act_title: "活動名稱C"
+            act_sta: 1,
+            act_title: "PPK設計師交流之夜IN草悟道生活圈"
         }, {
-            home_act_id: 4,
+            // home_act_id: 4,
             act_id: 4,
-            home_act_sta: 0,
-            home_act_title: "活動名稱D"
+            act_sta: 1,
+            act_title: "我出去一下．城市裡的戶外生活篇"
+        }, {
+            act_id: 5,
+            act_sta: 1,
+            act_title: "𝐃𝐉 𝐍𝐈𝐆𝐇𝐓 | 游璨賓"
+        }, {
+            act_id: 6,
+            act_sta: 1,
+            act_title: "劍聚 𝐢𝐧 𝐭𝐡𝐞 𝐏𝐀𝐑𝐊𝟐"
+        }, {
+            act_id: 7,
+            act_sta: 1,
+            act_title: "星際大戰塔圖因模型展示"
+        }, {
+            act_id: 8,
+            act_sta: 1,
+            act_title: "我出去一下《生活裝飾篇》"
         }
     ]
 
     const act_data = [
         {
-            act_id:"活動名稱A",
+            act_id:"1",
             act_Sdate:"05/06",		
             act_Edate:"05/21",
             act_Stime:"21:00",
             act_Etime:"21:30"
         },{
-            act_id:"活動名稱B",
-            act_Sdate:"05/01",		
-            act_Edate:"05/02",
+            act_id:"2",
+            act_Sdate:"05/21",		
+            act_Edate:"05/22",
+            act_Stime: null,
+            act_Etime: null
+        },{
+            act_id:"3",
+            act_Sdate:"05/06",		
+            act_Edate:"05/06",
+            act_Stime:"19:00",
+            act_Etime:"21:30"
+        },{
+            act_id:"4",
+            act_Sdate:"06/18",		
+            act_Edate:"06/19",
+            act_Stime:"14:00",
+            act_Etime:"21:00"
+        },{
+            act_id:"5",
+            act_Sdate:"06/18",		
+            act_Edate:"06/18",
             act_Stime:"20:00",
+            act_Etime:"21:30"
+        },{
+            act_id:"6",
+            act_Sdate:"06/04",		
+            act_Edate:"06/04",
+            act_Stime:"21:00",
+            act_Etime:"22:00"
+        },{
+            act_id:"7",
+            act_Sdate:"05/07",		
+            act_Edate:"05/07",
+            act_Stime:"13:30",
             act_Etime:"20:30"
         },{
-            act_id:"活動名稱C",
-            act_Sdate:"04/28",		
-            act_Edate:"04/29",
-            act_Stime:"09:00",
-            act_Etime:"09:30"
-        },{
-            act_id:"活動名稱D",
-            act_Sdate:"05/16",		
-            act_Edate:"05/17",
-            act_Stime:"21:00",
-            act_Etime:"21:30"
-        },
+            act_id:"8",
+            act_Sdate:"05/07",		
+            act_Edate:"05/08",
+            act_Stime:"13:30",
+            act_Etime:"20:30"
+        }
     ]
 
     // One time slot every 30 minutes.
@@ -105,34 +145,35 @@ const Act_edit = ({ add }) => {
                         autoComplete="off"
                         direction="row"
                     >
-                        <h3>封面圖片</h3>
+                        <h3>活動封面圖</h3>
                         <UploadButtons label="封面圖片" width={300}></UploadButtons>
                         
                         <h3>活動資訊</h3>
-                        <TextField label="活動名稱" id="outlined-basic" variant="outlined" required="true" />
-                        <TextField label="活動日期(起)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
-                        <TextField label="活動日期(迄)" id="outlined-disabled" type="date" required="true" defaultValue="2022-01-01" />
+                        <TextField label="活動名稱" id="act_title" variant="outlined" required="true" />
+                        {/* 活動類別 */}
+                        <Select />
+                        <TextField label="活動日期(起)" id="act_Sdate" type="date" required="true" defaultValue="2022-01-01" />
+                        <TextField label="活動日期(迄)" id="act_Edate" type="date" required="true" defaultValue="2022-01-01" />
                         {/* 活動時間 */}
                         <Autocomplete
-                            id="disabled-options-demo"
+                            id="act_Stime"
                             options={timeSlots}
                             getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
                             sx={{ width: 100 }}
                             renderInput={(params) => <TextField {...params} label="活動時間(起)" />}
                         />
                         <Autocomplete
-                            id="disabled-options-demo"
+                            id="act_Etime"
                             options={timeSlots}
                             getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}
                             sx={{ width: 100 }}
                             renderInput={(params) => <TextField {...params} label="活動時間(迄)" />}
                         />
-                        <TextField label="活動嘉賓" id="outlined-basic" variant="outlined" />
-                        <TextField label="活動地點" id="outlined-basic" variant="outlined" required="true" />
-                        {/* 活動類別 */}
-                        <Select />
-                        <TextField label="活動介紹" id="outlined-basic" variant="outlined" required="true" multiline rows={10} inputProps={{ step: 1, min: 0, max: 10, type: 'number' }} />
-                        <h3>活動圖片</h3>
+                        <TextField label="活動地點" id="act_location" variant="outlined" required="true" />
+                        <TextField label="活動嘉賓" id="act_guests" variant="outlined" multiline />
+                        <TextField label="主辦單位" id="acr_org" variant="outlined" required="true" />
+                        <TextField label="活動介紹" id="act_info" variant="outlined" required="true" multiline rows={10} inputProps={{ step: 1, min: 0, max: 10, type: 'number' }} />
+                        <h3>活動照片</h3>
                         <UploadMore />
 
                     </Box>

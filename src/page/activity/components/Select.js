@@ -15,9 +15,9 @@ export default function BasicSelect() {
   return (
     <Box sx={{ minWidth: 120 }}>
       <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">活動類別</InputLabel>
+        <InputLabel id="act_class">活動類別</InputLabel>
         <Select
-          labelId="demo-simple-select-label"
+          labelId="act_class"
           id="demo-simple-select"
           value={type}
           label="活動類別"
