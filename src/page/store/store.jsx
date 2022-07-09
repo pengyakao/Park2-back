@@ -1,13 +1,20 @@
-import React, { Component } from 'react';
-
+import React, { Component } from 'react'
+import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import Store_each from './store_each'
+import store_list from './store_list'
 
 class Store extends Component {
-    state = {  } 
-    render() { 
+    state = {}
+    render() {
         return (
-            <h3>店家管理後台頁面</h3>
-        );
+            <BrowserRouter>
+                <Switch>
+                    <Route path="/store" component={store_list} exact />
+                    <Route path="/store/store_edit/:storeId" component={Store_each} />
+                </Switch>
+            </BrowserRouter>
+        )
     }
 }
- 
-export default Store;
+
+export default Store

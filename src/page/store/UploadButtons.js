@@ -12,7 +12,7 @@ const Input = styled('input')({
 })
 
 export default function UploadButtons() {
-    const [isimg, setImg] = useState([])
+    const [sto_img, setImg] = useState([])
 
     const onChange = (e) => {
         const file = e.target.files.item(0) // 取得選中檔案們的一個檔案
@@ -45,18 +45,18 @@ export default function UploadButtons() {
                     overflow: 'hidden',
                 }}
             >
-                <img height={300} src={isimg} />
+                <img height={300} src={sto_img} />
             </div>
             <Stack direction="row" alignItems="center" justifyContent="center" margin={2} spacing={2}>
                 <label htmlFor="contained-button-file">
                     <Input onChange={onChange} accept="image/*" id="contained-button-file" multiple type="file" />
-                    <Button variant="outlined" component="span" style={{ color: '#26252b', borderColor: '#26252b' }}>
+                    <Button variant="outlined" component="span" style={{ backgroundColor: '#26252b', color: 'white' }}>
                         選擇檔案
                     </Button>
                 </label>
-                <Button variant="contained" style={{ backgroundColor: '#26252b', color: 'white' }}>
+                {/* <Button variant="contained" style={{ backgroundColor: '#26252b', color: 'white' }}>
                     上傳
-                </Button>
+                </Button> */}
             </Stack>
         </div>
     )

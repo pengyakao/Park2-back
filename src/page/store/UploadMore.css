@@ -124,12 +124,12 @@
 }
 /* btn color */
 .Upload .css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
-  color: #26252b;
-  border-color: #26252b;
+  color: white !important;
+  background-color: #26252b ;
 }
 
-.Upload .css-sghohy-MuiButtonBase-root-MuiButton-root {
+/* .Upload .css-sghohy-MuiButtonBase-root-MuiButton-root {
   background-color: #26252b ;
   color: white;
-}
+} */
 

@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 import Home from './page/home/home';
-import Activity from './page/activity/activity';
-import Activity_each from './page/activity/activity_each';
+import Activity from './page/activity/activity.jsx';
 import Store from './page/store/store';
 import Store_each from './page/store/store_each';
 import Stationed_store from './page/stationed/stationed_store';
@@ -14,9 +13,7 @@ import User from './page/user/user';
 import User_edit from './page/user/user_edit';
 import Login from './page/login/logon';
 
-
 import Ally from './page/ally_compontents';
-
 
 import './App.css';
 
@@ -28,8 +25,7 @@ class App extends Component {
           <Switch>
             <Route path="/" component={Login} exact />
             <Route path="/home" component={Home} />
-            <Route path="/activity" component={Activity} exact/>
-            <Route path="/activity/:activityId" component={Activity_each} />
+            <Route path="/activity" component={Activity}/>
             <Route path="/store" component={Store} exact/>
             <Route path="/store/:storeId" component={Store_each} />
             <Route path="/stationed_store" component={Stationed_store} exact/>

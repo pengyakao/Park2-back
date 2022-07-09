@@ -22,7 +22,7 @@ class UploadMore extends React.Component {
     uploadItem = (e) => {
         const cnt = this.state.files.length
         console.log(cnt)
-        if (cnt < 9) {
+        if (cnt < 10) {
             e.preventDefault()
             let files = e.target.files
             const reader = new FileReader()
@@ -77,7 +77,7 @@ class UploadMore extends React.Component {
                     <Stack spacing={2} direction="row" justifyContent="center" margin={2}>
                         <div>
                             <Input type="file" onChange={this.uploadItem} ref={this.inputRef} accept="image/*" />
-                            <Button variant="outlined" component="span">
+                            <Button variant="outlined" component="span" style={{ color: '#26252b', borderColor: '#26252b' }}>
                                 選擇檔案
                             </Button>
                         </div>
