@@ -21,20 +21,33 @@ const CardList = ({ listData }) => {
             "margin": "15px"
         }} onClick={addAct}>
             <Button id="uploadIcon" sx={{ minWidth: 247, minHeight: 218 }}>
-                <AddCircleOutlineIcon sx={{ color: "gray" ,fontSize: "70px"}} />
+                <AddCircleOutlineIcon sx={{ color: "gray", fontSize: "70px" }} />
             </Button>
         </Card>
         {
             listData.map((item) => {
                 console.log(item)
-                const { act_id, act_title, act_img, act_sta } = item
+                const { act_id, act_title, act_Sdate, act_Edate, 
+                act_Stime,act_Etime,acr_org,acr_orgimg,act_location,
+                act_class,act_guests,act_info,act_img,act_sta,act_is_slider } = item
                 return (
                     <ActCard
                         key={act_id}
+                        title={act_title}
+                        startDate={act_Sdate}
+                        endDate={act_Edate}
+                        startTime={act_Stime}
+                        endTime={act_Etime}
+                        organizer={acr_org}
+                        organizerImg={acr_orgimg}
+                        location={act_location}
+                        type={act_class}
+                        quests={act_guests}
+                        info={act_info}
+                        mainImg={act_img}
+                        isShow={act_sta}
+                        isSlider={act_is_slider}
                         id={act_id}
-                        name={act_title}
-                        img={act_img}
-                        hidden={act_sta}
                     />
                 );
             })

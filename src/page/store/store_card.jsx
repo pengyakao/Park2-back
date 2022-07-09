@@ -122,9 +122,9 @@ const StoreCard = ({ name, type, img, tel, location, pay1, pay2, pay3, pay4, pay
 
     // 監測data有異動就執行function
     useEffect(() => {
-        // putStore(data).then((result) => {
-        //     console.log(result)
-        // })
+        putStore(data).then((result) => {
+            console.log(result)
+        })
     }, [data.state])
 
     return (

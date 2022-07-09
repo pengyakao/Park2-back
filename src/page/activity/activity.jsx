@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
 
 import Act from './components/act';
-import act_edit from './components/act_edit';
-import act_new from './components/act_new';
+import Act_edit from './components/act_edit';
+import Act_new from './components/act_new';
 
 class Activity extends Component {
   state = {}
@@ -12,8 +12,8 @@ class Activity extends Component {
       <BrowserRouter>
         <Switch>
           <Route path="/activity" component={Act} exact />
-          <Route path="/activity/act_edit/:actId" component={act_edit} />
-          <Route path="/activity/act_new" component={act_new} />
+          <Route path="/activity/act_edit/:actId" component={Act_edit} />
+          <Route path="/activity/act_new" component={Act_new} />
         </Switch>
       </BrowserRouter>
     );
