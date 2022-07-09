@@ -8,9 +8,12 @@ import Typography from '@mui/material/Typography'
 import Switch from '@mui/material/Switch'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import FormGroup from '@mui/material/FormGroup'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import { putStore } from '../../api/store/putStore'
+import { deleteStore } from '../../api/store/deleteStore'
+
 
 const theme = createTheme({
     palette: {
@@ -62,27 +65,75 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
     },
 }))
 
-const StoreCard = ({ key, id, name, img, hidden }) => {
-    const [ischeck, setCheck] = useState(hidden)
+const StoreCard = ({ name, type, img, tel, location, pay1, pay2, pay3, pay4, pay5, pay6, pay7, mon, tue, wed, thu, fri, sat, sun, fb, ig, line, info, state, isMain, firstImg, id }) => {
 
-    const isHidden = () => {
-        setCheck(!ischeck)
-    }
+    const [data, setData] = useState({
+        name: name,
+        type: type,
+        img: img,
+        tel: tel,
+        location: location,
+        pay1: pay1,
+        pay2: pay2,
+        pay3: pay3,
+        pay4: pay4,
+        pay5: pay5,
+        pay6: pay6,
+        pay7: pay7,
+        mon: mon,
+        tue: tue,
+        wed: wed,
+        thu: thu,
+        fri: fri,
+        sat: sat,
+        sun: sun,
+        fb: fb,
+        ig: ig,
+        line: line,
+        info: info,
+        state: state,
+        isMain: isMain,
+        firstImg: firstImg,
+        id: id
+    })
+
+
+    // const [ischeck, setCheck] = useState(state)
+
+    // const isHidden = () => {
+    //     setCheck(!ischeck)
+    // }
 
     const Edit = () => {
         window.location.href = `/store/store_edit/${id}`
     }
     const Delete = () => {
-        window.confirm('是否確定刪除')
+        // window.confirm("是否確定刪除");
+        if (window.confirm("是否確認刪除") == true) {
+            deleteStore(id).then((result) => {
+                console.log("已刪除")
+                console.log(result)
+            })
+            window.location.href = "/store"
+        } else {
+            console.log("NO");
+        }
     }
+
+    // 監測data有異動就執行function
+    useEffect(() => {
+        // putStore(data).then((result) => {
+        //     console.log(result)
+        // })
+    }, [data.state])
 
     return (
         <div style={{ margin: '15px' }}>
             <Card sx={{ maxWidth: 252, minHeight: 223 }}>
-                <CardMedia component="img" alt="store-img" height="140" image={img} />
+                <CardMedia component="img" alt="store-img" height="140" image={data.firstImg} />
                 <div style={{ display: 'flex', 'justify-content': 'space-around', 'align-items': 'center' }}>
                     <Typography gutterBottom fontSize="14" margin="5px" component="div">
-                        {name}
+                        {data.name}
                     </Typography>
                 </div>
                 <div>
@@ -95,10 +146,20 @@ const StoreCard = ({ key, id, name, img, hidden }) => {
                                 刪除
                             </Button>
                             <FormGroup style={{ margin: '3px' }}>
-                                <Stack onClick={isHidden} direction="row" spacing={1} alignItems="center">
+                                <Stack onClick={() => {
+                                    if (window.confirm("是否確認修改顯示狀態") == true) {
+                                        console.log('origin', data.state)
+                                        setData(prevState => ({
+                                            ...prevState,
+                                            state: !data.state
+                                        }))
+                                        console.log('new', data.state)
+                                    }
+                                }}
+                                    direction="row" spacing={1} alignItems="center">
                                     <Typography style={{ 'font-size': '10px' }}>OFF</Typography>
                                     <AntSwitch
-                                        checked={ischeck}
+                                        checked={data.state}
                                         inputProps={{ 'aria-label': 'ant design' }}
                                         size="small"
                                     />

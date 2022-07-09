@@ -16,7 +16,8 @@ import Input_fb from './Input_fb'
 import Input_ig from './Input_ig'
 import Input_line from './Input_line'
 import './store_each.css'
-import { getStores } from '../../api/store/storeApi'
+import { useParams } from 'react-router-dom'
+import { getStore } from '../../api/store/getStore'
 
 const theme = createTheme({
     palette: {
@@ -28,61 +29,55 @@ const theme = createTheme({
 })
 
 const Store_each = ({ add }) => {
-    useEffect(() => {
-        getStores().then((result) => {
-            console.log(result)
-        })
-    }, [])
-    const store_each_data = [
-        {
-            sto_id: 1,
-            sto_name: 12333,
-            sto_img: 'https://placem.at/people',
-        },
-    ]
 
-    // const new_data = [
-    //     {
-    //         act_id: '活動名稱A',
-    //         act_Sdate: '05/06',
-    //         act_Edate: '05/21',
-    //         act_Stime: '21:00',
-    //         act_Etime: '21:30',
-    //     },
-    //     {
-    //         act_id: '活動名稱B',
-    //         act_Sdate: '05/01',
-    //         act_Edate: '05/02',
-    //         act_Stime: '20:00',
-    //         act_Etime: '20:30',
-    //     },
-    //     {
-    //         act_id: '活動名稱C',
-    //         act_Sdate: '04/28',
-    //         act_Edate: '04/29',
-    //         act_Stime: '09:00',
-    //         act_Etime: '09:30',
-    //     },
-    //     {
-    //         act_id: '活動名稱D',
-    //         act_Sdate: '05/16',
-    //         act_Edate: '05/17',
-    //         act_Stime: '21:00',
-    //         act_Etime: '21:30',
-    //     },
-    // ]
-    // const store_each = [
-    //     {
-    //         sto_pay1: '1',
-    //         sto_pay2: '0',
-    //         sto_pay3: '1',
-    //         sto_pay4: '0',
-    //         sto_pay5: '0',
-    //         sto_pay6: '1',
-    //         sto_pay7: '1',
-    //     },
-    // ]
+    const [isData, setData] = useState(
+        {
+            name: '店家名稱',
+            type: '店家類型',
+            img: '店家Logo',
+            tel: '店家電話',
+            location: '店家位置',
+            pay1: '現金支付',
+            pay2: '信用卡',
+            pay3: 'LinePay',
+            pay4: '街口支付',
+            pay5: '悠遊卡',
+            pay6: 'ApplePay',
+            pay7: '支付寶',
+            mon: '開放時間',
+            tue: '開放時間',
+            wed: '開放時間',
+            thu: '開放時間',
+            fri: '開放時間',
+            sat: '開放時間',
+            sun: '開放時間',
+            fb: 'fb連結',
+            ig: 'ig連結',
+            line: 'line連結',
+            info: '資訊',
+            state: '狀態',
+            isMain: '是否主打',
+            id: '編號'
+        }
+    );
+
+    useEffect(() => {
+        async function getData() {
+            let faqList = await getStore().then((result) => {
+                setData(result)
+            })
+        }
+        getData();
+    }, [])
+
+
+
+    //  店家類別
     const label = { inputProps: { 'aria-label': 'Checkbox demo' } }
+
+    //get url ID
+    const { storeId } = useParams();
+    // console.log(storeId);
 
     return (
         <div>
@@ -90,7 +85,7 @@ const Store_each = ({ add }) => {
                 <LayOut />
                 <div className="bs_article">
                     <div style={{ width: '80%' }}>
-                        <h1>新增店家資訊</h1>
+                        <h1>編輯店家資訊</h1>
                         <Box
                             component="form"
                             sx={{
@@ -107,10 +102,17 @@ const Store_each = ({ add }) => {
                             <div className="storeName">
                                 <h3>店家名稱</h3>
                                 <TextField
-                                    id={Store_each.sto_name}
+                                    id="outlined-basic"
                                     label="店家名稱"
                                     variant="outlined"
                                     required="true"
+                                    value={isData.sto_name}
+                                    onChange={(e) => {
+                                        setData(prev => ({
+                                            ...prev
+                                            , sto_name: e.target.value
+                                        }))
+                                    }}
                                 />
                             </div>
                             <div className="storeSet">
