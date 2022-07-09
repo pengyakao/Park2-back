@@ -8,15 +8,16 @@ import Button from '@mui/material/Button'
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 import { getActivities } from '../../../api/home/getActivities'
-import { getCarousel } from '../../../api/home/getCarousel'
-
 
 export default function Home_act() {
-
+    
     const [data, setData] = useState(
         []
     );
-
+    
+    const [data2, setData2] = useState(
+        []
+    );
 
     // const data = [
     //     {
@@ -62,31 +63,13 @@ export default function Home_act() {
 
     // 接api (要先input {getActivities})
     useEffect(() => {
+        // 要拿 某筆活動 的資料
         async function getData() {
-            await getCarousel().then((result) => {
-                const listData = result
-                getActivities().then((result2) => {
-                    const listData2 = result2
-                    const margeData = listData;
-                    listData.forEach(margeList);
-                    console.log('margeData', margeData);
-                    setData(margeData);
-                    function margeList(item, index) {
-                        console.log('margeData', margeData)
-                        // console.log(item.act_id);
-                        let filter = listData2.filter(e => e.act_id == item.act_id)
-                        // console.log(filter[0])
-                        margeData[index].act_Sdate = filter[0].act_Sdate
-                        margeData[index].act_Edate = filter[0].act_Edate
-                        margeData[index].act_Stime = filter[0].act_Stime
-                        margeData[index].act_Etime = filter[0].act_Etime
-                        margeData[index].act_img = filter[0].act_img
-                        margeData[index].act_sta = filter[0].act_sta
-                    }
-                });
-            });
+            let faqList = await getActivities().then((result) => {
+                setData(result)
+            })
         }
-        getData()
+        getData();
     }, [])
 
 

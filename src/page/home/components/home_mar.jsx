@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -7,7 +7,8 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import LayOut from '../../../components/Crystal/LayOut';
 
-
+import { getMarquee } from '../../../api/home/getMarquee';
+import { putMarquee } from '../../../api/home/putMarquee';
 
 const theme = createTheme({
     palette: {
@@ -20,13 +21,38 @@ const theme = createTheme({
 
 
 export default function Home_mar() {
-
-    const [isMar, setMar] = useState([
+    const [isMar, setMar] = useState(
         {
-            id: 1,
-            text: "//   PARK2，一座大人系非典型公園，探索公園與城市生活的更多可能！   "
+            id: 0,
+            info: ""
         }
-    ]);
+    );
+
+
+    // 接api (要先input {getMarquee})
+    useEffect(() => {
+        // 要拿 某筆活動 的資料
+        async function getMar(params) {
+            let test = await getMarquee().then((result) => {
+                return result
+            })
+            await setMar(prev => ({
+                ...prev
+                , id: test[0].marquee_id
+            }))
+            await setMar(prev => ({
+                ...prev
+                , info: test[0].marquee_info
+            }))
+
+            console.log(isMar)
+        }
+        getMar()
+    }, [])
+
+
+
+
 
     return (
         <div>
@@ -48,15 +74,28 @@ export default function Home_mar() {
                             required="true"
                             multiline
                             rows={10}
-                            value={isMar[0].text}
+                            value={isMar.info}
+                            onChange={(e) => {
+                                setMar(prev => ({
+                                    ...prev
+                                    , info: e.target.value
+                                }))
+                            }}
                         />
                     </Box>
                     <ThemeProvider theme={theme}>
                         <Stack spacing={2} direction="row" style={{ display: 'flex', 'justify-content': 'flex-end' }}>
-                            {/* <Button color="neutral" variant="outlined">取消</Button> */}
                             <Button color="neutral" variant="contained"
                                 onClick={() => {
-                                    window.confirm("是否確定修改");
+                                    if (window.confirm("是否確認修改") == true) {
+                                        console.log("OK");
+                                        putMarquee(isMar).then((result) => {
+                                            console.log(result)
+                                        })
+                                    } else {
+                                        console.log("NO");
+                                    }
+
                                 }}
                             >送出</Button>
                         </Stack>

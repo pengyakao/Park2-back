@@ -22,14 +22,14 @@ const FAQlist = ({ listData }) => {
                 {
                     listData.map((item) => {
                         console.log(item)
-                        const { id, textQ, textA, hidden } = item
+                        const { home_FAQ_id, home_FAQ_qu, home_FAQ_ans, home_FAQ_sta } = item
                         return (
                             <FAQ_item
-                                key = {id}
-                                id = {id}
-                                textQ = {textQ}
-                                textA = {textA}
-                                hidden = {hidden}
+                                key = {home_FAQ_id}
+                                FAQid = {home_FAQ_id}
+                                textQ = {home_FAQ_qu}
+                                textA = {home_FAQ_ans}
+                                hidden = {home_FAQ_sta}
                             />
                         );
                     })

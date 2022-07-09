@@ -8,9 +8,10 @@ import Typography from '@mui/material/Typography'
 import Switch from '@mui/material/Switch'
 import Stack from '@mui/material/Stack'
 import { styled } from '@mui/material/styles'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { putHomeAct } from '../../../api/home/putHomeAct';
 
 
 const theme = createTheme({
@@ -63,46 +64,76 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
     },
 }))
 
-const ActCard = ({ key, id, name, img, hidden }) => {
+const ActCard = ({ key, id, name, img, hidden, sdate, edate, stime, etime, act_sta, act_id }) => {
 
-    const [ischeck, setCheck] = useState(hidden)
+    // const [ischeck, setCheck] = useState(hidden)
 
-    const isHidden = () => {
-        setCheck(!ischeck);
+    const [data, setData] = useState(
+        {
+            relation: act_id,
+            isShow: hidden,
+            title: name,
+            id: id
+        }
+    )
+
+    // const isHidden = () => {
+    //     setCheck(!ischeck);
+    // }
+
+
+    const actEdit = () => {
+        window.location.href = `/home/act_edit/${id}`;
     }
-
-    const actEdit = () =>{
-        window.location.href=`/home/act_edit/${id}`;
-    }
-    const actDelete = () =>{
+    const actDelete = () => {
         window.confirm("是否確定刪除");
+        console.log(img)
     }
 
-    return <div  style={{"margin":"15px"}}>
-            <Card sx={{ maxWidth: 252, minHeight: 223 }}>
-                <CardMedia component="img" alt="store-img" height="140" image={img} />
-                <div style={{ "display": "flex", "justify-content": "space-around", "align-items": "center" }}>
-                    <Typography gutterBottom fontSize="14" margin="5px" component="div">
-                        {name}
-                    </Typography>
-                </div>
-                <div>
+    // 監測data有異動就執行function
+    useEffect(() => {
+        putHomeAct(data).then((result) => {
+            console.log(result)
+        })
+    }, [data])
+
+
+
+    return <div style={{ "margin": "15px" }}>
+        <Card sx={{ maxWidth: 252, minHeight: 223 }}>
+            <CardMedia component="img" alt="store-img" height="140" image={img} />
+            <div style={{ "display": "flex", "justify-content": "space-around", "align-items": "center" }}>
+                <Typography gutterBottom fontSize="14" margin="5px" component="div">
+                    {name}
+                </Typography>
+            </div>
+            <div>
                 <ThemeProvider theme={theme}>
                     <CardActions style={{ "display": "flex", "justify-content": "space-around" }}>
                         <Button onClick={actEdit} size="small" variant="outlined" color="neutral">編輯</Button>
                         <Button onClick={actDelete} size="small" variant="outlined" color="error" >刪除</Button>
                         <FormGroup style={{ "margin": "3px" }}>
-                            <Stack onClick={isHidden} direction="row" spacing={1} alignItems="center">
+                            <Stack onClick={() => {
+                                if (window.confirm("是否確認修改顯示狀態") == true) {
+                                    console.log('origin', data.isShow)
+                                    setData(prevState => ({
+                                        ...prevState,
+                                        isShow: !data.isShow
+                                    }))
+                                    console.log('new', data.isShow)
+                                }
+                            }}
+                                direction="row" spacing={1} alignItems="center">
                                 <Typography style={{ "font-size": "10px" }}>OFF</Typography>
-                                <AntSwitch checked={ischeck} inputProps={{ 'aria-label': 'ant design' }} size="small" />
+                                <AntSwitch checked={data.isShow} inputProps={{ 'aria-label': 'ant design' }} size="small" />
                                 <Typography style={{ "font-size": "10px" }}>ON</Typography>
                             </Stack>
                         </FormGroup>
                     </CardActions>
                 </ThemeProvider>
-                </div>
-            </Card>
-        
+            </div>
+        </Card>
+
     </div>
 }
 

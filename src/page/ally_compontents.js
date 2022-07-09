@@ -9,6 +9,8 @@ import UploadFile from '../components/Ally/UploadFile';
 import BasicModal from '../components/Ellie/BasicModal';
 import  { Component } from 'react';
 
+import { getActivities } from '../api/home/getActivities'
+import { getCarousel } from '../api/home/getCarousel'
 
 
 class Ally extends Component {
@@ -35,6 +37,16 @@ class Ally extends Component {
       </React.Fragment>
     );
   }
+
+  componentDidMount(){
+    getActivities().then((result) => {
+      console.log(result)
+  });
+  getCarousel().then((result) => {
+    console.log(result)
+});
+  }
+
 }
 export default Ally;
 
