@@ -89,7 +89,6 @@ const Store_each = () => {
     setsto_pay6(data.sto_pay6);
     setsto_pay7(data.sto_pay7);
     setsto_info(data.sto_info);
-    console.log(1)
   }, [data]);
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
