@@ -1,5 +1,5 @@
-<<<<<<< HEAD
 import React, { Component } from 'react'
+import { useLocation } from "react-router-dom";
 import LayOut from '../../components/layout/LayOut'
 import { useState, useEffect } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
@@ -18,27 +18,10 @@ import Input_ig from './Input_ig'
 import Input_line from './Input_line'
 import './store_each.css'
 import { useParams } from 'react-router-dom'
-import { getStore } from '../../api/store/getStore'
-=======
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import LayOut from "../../components/Crystal/LayOut";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
-import TextareaAutosize from "./TextareaAutosize";
-import Checkbox from "@mui/material/Checkbox";
-import UploadButtons from "./UploadButtons";
-// import ComboBox from "./ComboBox";
-import UploadMore from "./UploadMore";
-import TimeOption from "./TimeOption";
-import "./store_each.css";
 
 // api
-import { getStore, putStore } from "../../api/store/storeApi";
->>>>>>> 692559ffeef1df1c403bd35b3725f9463fd98aba
+import { getStore } from '../../api/store/storeApi'
+import { putStore } from '../../api/store/storeApi'
 
 const theme = createTheme({
   palette: {
