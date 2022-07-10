@@ -89,6 +89,7 @@ const Store_each = () => {
     setsto_pay6(data.sto_pay6);
     setsto_pay7(data.sto_pay7);
     setsto_info(data.sto_info);
+    console.log(1)
   }, [data]);
 
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -99,7 +100,7 @@ const Store_each = () => {
   // console.log(data.sto_sat);
   // console.log(data.sto_sun);
   // console.log(sto_img);
-  console.log(document.getElementById('contained-button-file'));
+  // console.log(document.getElementById('contained-button-file'));
 
   return (
     <div>
