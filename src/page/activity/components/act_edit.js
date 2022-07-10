@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import LayOut from "../../../components/layout/LayOut";
+import LayOutAct from "../../../components/layout/LayOut_activity";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -100,7 +100,7 @@ const Act_edit = () => {
   return (
     <div>
       <div>
-        <LayOut />
+        <LayOutAct />
         <div className="bs_article">
           <div style={{ width: "80%", paddingBottom: "50px" }}>
             <h1>編輯活動資訊</h1>
@@ -111,8 +111,8 @@ const Act_edit = () => {
               autoComplete="off"
               direction="row"
             >
-              <h3>活動封面圖</h3>
-              <UploadButtons label="封面圖片" width={300}></UploadButtons>
+              {/* <h3>活動封面圖</h3> */}
+              {/* <UploadButtons label="封面圖片" width={300}></UploadButtons> */}
 
               <h3>活動資訊</h3>
               <TextField

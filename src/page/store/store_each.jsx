@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { useLocation } from "react-router-dom";
-import LayOut from '../../components/layout/LayOut'
+import LayOutStore from '../../components/layout/LayOut_store'
 import { useState, useEffect } from 'react'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import Stack from '@mui/material/Stack'
@@ -110,7 +110,7 @@ const Store_each = () => {
   return (
     <div>
       <div>
-        <LayOut />
+        <LayOutStore />
         <div className="bs_article">
           <div style={{ width: "80%" }}>
             <h1>新增店家資訊</h1>
@@ -123,10 +123,10 @@ const Store_each = () => {
               autoComplete="off"
               direction="row"
             >
-              <div className="storeMainImg">
+              {/* <div className="storeMainImg">
                 <h3>封面圖片</h3>
                 <UploadButtons width={300}></UploadButtons>
-              </div>
+              </div> */}
               <div className="storeName">
                 <h3>店家名稱</h3>
                 <TextField
