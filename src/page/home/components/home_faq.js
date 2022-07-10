@@ -5,7 +5,7 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import FAQlist from './home_faq_list';
-import LayOut from '../../../components/Crystal/LayOut';
+import LayOut from '../../../components/layout/LayOut';
 
 import { getFaq } from '../../../api/home/getFaq';
 

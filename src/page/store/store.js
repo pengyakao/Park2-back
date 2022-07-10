@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import LayOut from '../../components/Crystal/LayOut'
+import LayOutStore from '../../components/layout/LayOut_store'
 import StoreCard from './store_card'
 import CardList from './cardList'
 import { useState , useEffect } from 'react'
@@ -76,7 +76,7 @@ export default function Store() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutStore />
             <div className="bs_article">
                 <h1>店家管理</h1>
                 <CardList listData={data} />

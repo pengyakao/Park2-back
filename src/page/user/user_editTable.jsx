@@ -81,7 +81,7 @@ const User_editTable = ({ listData, token, id }) => {
             />
             <TextField
               id="outlined-basic"
-              disabled
+              // disabled
               label="帳號"
               variant="outlined"
               required="true"

@@ -4,7 +4,9 @@ import axios from 'axios'
 // 設定 baseUrl
 const reqObj = axios.create({
     // baseURL 設定的是自己測試的 IP位址:server埠號 (ex. http://192.168.0.112:3000)
-    baseURL: 'http://10.0.102.113:3001',
+    // baseURL: 'http://192.168.100.11:3001',
+	baseURL: 'http://192.168.0.7:3001',
+
     header: {
         'Content-Type': 'application/json',
     },
@@ -22,16 +24,15 @@ export function getStores() {
     return handleReq(reqObj.get('/admin/store/get'))
 }
 
-// function getActivities(id) {
-//     return handleReq(
-//         reqObj.get('/activity/get', {
-//             params: {
-//                 id,
-//             },
-//         })
-//     )
-// }
+export function getStore(id) {
+    return handleReq(reqObj.get('/self/store/get', {
+        params: {
+            id
+        }
+    }))
+}
 
-// function getActivities(data) {
-//     return handleReq(reqObj.get('/activity/get', data))
-// }
+
+export function putStore(data) {
+    return handleReq(reqObj.put('/self/store/edit', data))
+}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { useState } from 'react';
 import { useEffect } from 'react';
-import LayOut from '../../../components/Crystal/LayOut';
+import LayOut from '../../../components/layout/LayOut';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';

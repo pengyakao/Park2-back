@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ReactDOM from "react-dom";
 
-import LayOut from '../../../components/Crystal/LayOut';
+import LayOut from '../../../components/layout/LayOut';
 import { getNews } from '../../../api/home/getNews';
 import { putNews } from '../../../api/home/putNews'
 import { useParams } from 'react-router-dom'

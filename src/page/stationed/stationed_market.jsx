@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-
+import LayOutMarketSta from '../../components/layout/LayOut_MarketSta';
 
 class Stationed_market extends Component {
     state = {  } 
     render() { 
         return (
-            <h3>『攤位』進駐申請清單列表</h3>
+            <div>
+            <LayOutMarketSta />
+            <div className='bs_article'>
+                <h1>『攤位』進駐申請清單列表</h1>
+            </div>
+        </div>
         );
     }
 }

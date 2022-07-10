@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LayOut from '../../../components/Crystal/LayOut';
+import LayOut from '../../../components/layout/LayOut';
 import ActCard from "./home_act_card"
 import CardList from './home_card_list';
 import { useState, useEffect } from 'react';

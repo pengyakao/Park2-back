@@ -13,7 +13,7 @@ import User from './page/user/user';
 import User_edit from './page/user/user_edit';
 import Login from './page/login/logon';
 
-import Ally from './page/ally_compontents';
+// import Ally from './page/ally_compontents';
 
 import './App.css';
 
@@ -35,7 +35,7 @@ class App extends Component {
             <Route path="/user" component={User} exact/>
             <Route path="/user/:userId" component={User_edit} />
             {/* login */}
-            <Route path="/ally" component={Ally} />
+            {/* <Route path="/ally" component={Ally} /> */}
           </Switch>
         </BrowserRouter>
       </React.Fragment>

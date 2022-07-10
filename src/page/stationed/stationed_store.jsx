@@ -63,7 +63,7 @@ export default function Stationed_store() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutStoreSta />
             <div className='bs_article'>
                 <h1>『店家』進駐申請列表</h1>
                 <Stationed_store_list listData={data} />
