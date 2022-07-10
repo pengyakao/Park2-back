@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
-import LayOut from '../../components/Crystal/LayOut';
+import LayOutStoreSta from '../../components/layout/LayOut_StoreSta';
 import Stationed_store_list from './stationed_store_list';
 
 export default function Stationed_store() {
@@ -52,9 +52,9 @@ export default function Stationed_store() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutStoreSta />
             <div className='bs_article'>
-                <h1>店家』進駐申請清單列表</h1>
+                <h1>『店家』進駐申請清單列表</h1>
                 <Stationed_store_list listData={data} />
             </div>
         </div>

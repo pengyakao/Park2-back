@@ -1,6 +1,6 @@
 import './LayOut.css'
 
-const LayOut = () => {
+const LayOutStore = () => {
     return <div>
         <div className="bs_navbar">
             <img src="/img/Park2B3E24D.svg" alt="Park2_logo" />
@@ -8,7 +8,7 @@ const LayOut = () => {
             <ul>
                 <li><a href="/home/act">首頁管理</a></li>
                 <li><a href="/activity">活動管理</a></li>
-                <li><a href="/store">店家管理</a></li>
+                <li><a href="/store" style={{ color: "#B3E24D" }}>店家管理</a></li>
                 <li><a href="/stationed_store">店家進駐</a></li>
                 <li><a href="/stationed_market">攤位進駐</a></li>
                 <li><a href="/user">帳號管理</a></li>
@@ -19,10 +19,7 @@ const LayOut = () => {
         </div>
         <div className="bs_aside">
             <ul>
-                <li><a href="/home/act">活動輪播</a></li>
-                <li><a href="/home/news">官方公告</a></li>
-                <li><a href="/home/faq">FAQ</a></li>
-                <li><a href="/home/mar">跑馬燈</a></li>
+                <li><a href="/store">店家管理</a></li>
             </ul>
 
             {/* 
@@ -38,4 +35,4 @@ const LayOut = () => {
     </div> 
 }
 
-export default LayOut
+export default LayOutStore

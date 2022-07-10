@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LayOut from '../../../components/Crystal/LayOut';
+import LayOutAct from '../../../components/layout/LayOut_activity'
 import CardList from './act_card_list';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -76,7 +76,7 @@ export default function Act() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutAct />
             <div className='bs_article'>
                 <h1>活動管理</h1>
                 <CardList listData={data} />

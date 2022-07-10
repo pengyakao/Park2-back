@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LayOut from '../../components/Crystal/LayOut';
+import LayOutUser from '../../components/layout/LayOut_user';
 import {User_editTable} from './user_editTable'
 
 
@@ -20,7 +20,7 @@ export default function User_edit() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutUser />
             <User_editTable listData={listData} token={myToken}/>
         </div>
     )

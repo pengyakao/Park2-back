@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component, useEffect, useState } from "react";
 import LayOut from "../../../components/Crystal/LayOut";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -9,6 +10,21 @@ import Autocomplete from "@mui/material/Autocomplete";
 import UploadButtons from "./UploadButtons";
 import Select from "./Select";
 import UploadMore from "./UploadMore";
+=======
+import React, { Component } from 'react';
+import LayOut from '../../../components/layout/LayOut';
+import { useState } from 'react'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete'
+import UploadButtons from './UploadButtons'
+import Select from './Select'
+import UploadMore from './UploadMore'
+
+>>>>>>> e54a5a6dd08a179976e6cd1ee0fb2d5221dc1292
 
 // api
 import { postActivity } from "../../../api/activity/postActivity";

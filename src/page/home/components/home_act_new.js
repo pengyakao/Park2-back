@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LayOut from '../../../components/Crystal/LayOut';
+import LayOut from '../../../components/layout/LayOut';
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';

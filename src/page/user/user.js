@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import LayOut from '../../components/Crystal/LayOut';
+import LayOutUser from '../../components/layout/LayOut_user';
 import Userlist from './user_list';
 
 
@@ -31,7 +31,7 @@ export default function User() {
     if (myToken.user_id == 1) {
         return (
             <div>
-                <LayOut />
+                <LayOutUser />
                 <div className='bs_article'>
                     <h1>帳號管理</h1>
                     <Userlist listData={listData} />
