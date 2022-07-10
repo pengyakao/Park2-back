@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
@@ -28,9 +28,31 @@ const theme = createTheme({
     },
 });
 
-const Stationed_store_list = ({ listData }) => {
 
-    console.log('listData', listData)
+
+const Stationed_store_list = ({ listData }) => {
+    const [transfer, setTransfer] = useState([])
+    
+    useEffect(()=>{
+        let standard = {
+            '1': '申請中',
+            '2': '進駐中',
+            '3': '已退租',
+            '4': '已取消'
+        }
+        let result = listData.map(e=>{
+            Object.keys(standard).forEach((o, i)=>{
+                if(o==e.sto_apply_sta){
+                    e.sto_apply_sta = standard[o]
+                }
+            })
+            return e
+        })
+        console.log(result)
+        setTransfer(result)
+    }, [listData])
+
+    // console.log('listData', listData)
 
     return (
         <div>
@@ -46,19 +68,19 @@ const Stationed_store_list = ({ listData }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        {listData.map((row) => (
+                        {transfer.map((row) => (
                             <TableRow
-                                key={row.user_id}
+                                key={row.sto_apply_id}
                                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                             >
-                                <TableCell component="th" scope="row">{row.user_name}</TableCell>
-                                <TableCell >{row.user_account}</TableCell>
-                                <TableCell align="center">{row.user_level}</TableCell>
-                                <TableCell align="center">{row.sto_sta}</TableCell>
+                                <TableCell component="th" scope="row">{row.sto_apply_brand}</TableCell>
+                                <TableCell >{row.sto_apply_mail}</TableCell>
+                                <TableCell align="center">一般店家</TableCell>
+                                <TableCell align="center">{row.sto_apply_sta}</TableCell>
                                 <TableCell >
                                     <ThemeProvider theme={theme}>
                                         <Stack spacing={2} direction="row">
-                                            <Button variant="outlined" color="neutral" href={`/stationed_store/${row.user_id}`}>修改資料</Button>
+                                            <Button variant="outlined" color="neutral" href={`/stationed_store/${row.sto_apply_id}`}>修改資料</Button>
                                         </Stack>
                                     </ThemeProvider>
                                 </TableCell>
