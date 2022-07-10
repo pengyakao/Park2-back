@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 import LayOut from "../../../components/layout/LayOut";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
