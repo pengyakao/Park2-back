@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import LayOut from '../../../components/Crystal/LayOut';
+import LayOut from '../../../components/layout/LayOut';
 
 import { getMarquee } from '../../../api/home/getMarquee';
 import { putMarquee } from '../../../api/home/putMarquee';

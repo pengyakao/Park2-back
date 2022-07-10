@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import LayOut from '../../components/Crystal/LayOut';
+import LayOutStoreSta from '../../components/layout/LayOut_StoreSta';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
@@ -83,7 +83,7 @@ export default function Stationed_store_each() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutStoreSta />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>『店家』單一訂單資訊審核頁(通過、轉待繳費/需補件/不通過)</h1>
