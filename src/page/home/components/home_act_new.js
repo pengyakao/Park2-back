@@ -165,7 +165,7 @@ export default function Home_act_new() {
                                         postCarousel(isData1).then((result) => {
                                             console.log(result)
                                         })
-                                        window.location.href="/home/act"
+                                        // window.location.href="/home/act"
                                     } else {
                                         console.log("NO");
                                     }

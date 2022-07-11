@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import LayOut from '../../components/Crystal/LayOut';
+import LayOutStoreSta from '../../components/layout/LayOut_StoreSta';
 import Stationed_store_list from './stationed_store_list';
 import { getStoreApply } from '../../api/stationed/storeApi'
 
@@ -65,7 +65,7 @@ export default function Stationed_store() {
         <div>
             <LayOutStoreSta />
             <div className='bs_article'>
-                <h1>『店家』進駐申請列表</h1>
+                <h1 style={{fontSize: '28px'}}>進駐店家列表</h1>
                 <Stationed_store_list listData={data} />
             </div>
         </div>
