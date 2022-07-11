@@ -7,7 +7,9 @@ import Button from '@mui/material/Button';
 import LayOutStoreSta from '../../components/layout/LayOut_StoreSta';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import { getStoreApply } from '../../api/stationed/storeApi'
 
 const style = {
     position: 'absolute',
@@ -24,45 +26,45 @@ const style = {
     p: 4,
 };
 
-var data = [
-    {
-        user_id: 1,
-        sto_id: null,
-        user_account: "park2@google.com",
-        user_password: 12345678,
-        user_name: "Park2",
-        user_level: 999,
-        sto_sta: 1
-    },
-    {
-        user_id: 2,
-        sto_id: 1,
-        user_account: "min@google.com",
-        user_password: 12345678,
-        user_name: "酉5PM TWCAUDEX",
-        user_level: 1,
-        sto_sta: 1
-    },
-    {
-        user_id: 3,
-        sto_id: 2,
-        user_account: "alice@google.com",
-        user_password: 12345678,
-        user_name: "米弎豆お茶処MISATO",
-        user_level: 2,
-        sto_sta: 1
-    },
-    {
-        user_id: 4,
-        sto_id: 3,
-        user_account: "bear@google.com",
-        user_password: 12345678,
-        user_name: "新村站著吃烤肉",
-        user_level: 3,
-        sto_sta: 0
-    },
+// var data = [
+//     {
+//         user_id: 1,
+//         sto_id: null,
+//         user_account: "park2@google.com",
+//         user_password: 12345678,
+//         user_name: "Park2",
+//         user_level: 999,
+//         sto_sta: 1
+//     },
+//     {
+//         user_id: 2,
+//         sto_id: 1,
+//         user_account: "min@google.com",
+//         user_password: 12345678,
+//         user_name: "酉5PM TWCAUDEX",
+//         user_level: 1,
+//         sto_sta: 1
+//     },
+//     {
+//         user_id: 3,
+//         sto_id: 2,
+//         user_account: "alice@google.com",
+//         user_password: 12345678,
+//         user_name: "米弎豆お茶処MISATO",
+//         user_level: 2,
+//         sto_sta: 1
+//     },
+//     {
+//         user_id: 4,
+//         sto_id: 3,
+//         user_account: "bear@google.com",
+//         user_password: 12345678,
+//         user_name: "新村站著吃烤肉",
+//         user_level: 3,
+//         sto_sta: 0
+//     },
 
-]
+// ]
 
 const theme = createTheme({
     palette: {
@@ -80,13 +82,25 @@ export default function Stationed_store_each() {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
+    const { applyId } = useParams();
+
+    const [data, setData] = useState([])
+    useEffect(()=>{
+        getStoreApply().then((result)=>{
+            console.log(applyId)
+            let target = result.filter(e=>e.sto_apply_id == applyId)
+            setData(target)
+            console.log(target)
+        })
+    },[])
 
     return (
         <div>
             <LayOutStoreSta />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
-                    <h1>『店家』單一訂單資訊審核頁(通過、轉待繳費/需補件/不通過)</h1>
+                    <h1>『店家進駐申請』審核 - {data[0].sto_apply_brand} </h1>
+                    {/* <h1>『店家』單一訂單資訊審核頁(通過、轉待繳費/需補件/不通過)</h1> */}
                     <Box
                         component="form"
                         sx={{
@@ -100,34 +114,35 @@ export default function Stationed_store_each() {
                             label="店家名稱"
                             variant="outlined"
                             required="true"
-                            defaultValue={data[0].user_name}
+                            // value={data[0].sto_apply_brand} 
+                            // defaultValue={data[0]}
                         />
                         <TextField id="outlined-basic"
                             disabled
                             label="帳號"
                             variant="outlined"
                             required="true"
-                            defaultValue={data[0].user_account}
+                            // defaultValue={data[0].user_account}
                         />
                         <TextField id="outlined-basic"
                             label="密碼"
                             variant="outlined"
                             required="true"
-                            defaultValue={data[0].user_password}
+                            // defaultValue={data[0].user_password}
                         />
                         <TextField id="outlined-basic"
                             disabled
                             label="帳號權限(請至店家管理頁修改)"
                             variant="outlined"
                             required="true"
-                            defaultValue={data[0].user_level}
+                            // defaultValue={data[0].user_level}
                         />
                         <TextField id="outlined-basic"
                             disabled
                             label="進駐狀態(請至店家管理頁修改)"
                             variant="outlined"
                             required="true"
-                            defaultValue={data[0].sto_sta}
+                            // defaultValue={data[0].sto_sta}
                         />
 
                     </Box>
