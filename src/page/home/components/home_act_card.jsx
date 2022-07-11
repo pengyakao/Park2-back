@@ -12,7 +12,8 @@ import { useState, useEffect } from 'react';
 import FormGroup from '@mui/material/FormGroup';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { putHomeAct } from '../../../api/home/putHomeAct';
-
+import { putActivity } from '../../../api/home/putActivity';
+import { deleteHomeAct } from '../../../api/home/deleteHomeAct'
 
 const theme = createTheme({
     palette: {
@@ -64,7 +65,7 @@ const AntSwitch = styled(Switch)(({ theme }) => ({
     },
 }))
 
-const ActCard = ({ key, id, name, img, hidden, sdate, edate, stime, etime, act_sta, act_id }) => {
+const ActCard = ({ key, id, name, img, hidden, sdate, edate, stime, etime, act_sta, act_id,act_title }) => {
 
     // const [ischeck, setCheck] = useState(hidden)
 
@@ -77,17 +78,32 @@ const ActCard = ({ key, id, name, img, hidden, sdate, edate, stime, etime, act_s
         }
     )
 
-    // const isHidden = () => {
-    //     setCheck(!ischeck);
-    // }
+    //要傳回activity的資料=>putActData
+    const [putActData, setPutActData] = useState({
+        title: act_title,
+        isSlider: 0,
+        id: act_id
+    });
+
 
 
     const actEdit = () => {
         window.location.href = `/home/act_edit/${id}`;
     }
     const actDelete = () => {
-        window.confirm("是否確定刪除");
-        console.log(img)
+        // window.confirm("是否確定刪除");
+        if (window.confirm("是否確認刪除") == true) {
+            putActivity(putActData).then((result) => {
+                console.log(result)
+            })
+            deleteHomeAct(id).then((result) => {
+                console.log("已刪除")
+                console.log(result)
+            })
+            window.location.href = "/home/act"
+        } else {
+            console.log("NO");
+        }
     }
 
     // 監測data有異動就執行function

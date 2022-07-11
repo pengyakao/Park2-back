@@ -27,7 +27,7 @@ const CardList = ({ listData, listData2 }) => {
         {
             listData.map((item) => {
                 console.log(item)
-                const { act_id, home_act_id, home_act_sta, home_act_title,act_Sdate, act_Edate,act_Stime,act_Etime,act_img,act_sta} = item
+                const { act_id, home_act_id, home_act_sta, home_act_title,act_title,act_Sdate, act_Edate,act_Stime,act_Etime,act_img,act_sta} = item
                 return (
                     <ActCard
                         key={home_act_id}
@@ -35,6 +35,7 @@ const CardList = ({ listData, listData2 }) => {
                         name={home_act_title}
                         img={act_img}
                         hidden={home_act_sta}
+                        act_title={act_title}
                         sdate={act_Sdate}
                         edate={act_Edate}
                         stime={act_Stime}

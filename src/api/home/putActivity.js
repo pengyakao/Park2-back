@@ -23,12 +23,8 @@ function handleReq(e) {
 }
 
 // api function
-export function deleteFaq(id) {
-	return handleReq(reqObj.delete('/admin/home/faq/delete',{
-		params: {
-			id
-		}
-	}))
+export function putActivity(data) {
+	return handleReq(reqObj.put('/admin/home/carousel/edit/activity',data))
 }
 
 // 放到要get資料的頁面

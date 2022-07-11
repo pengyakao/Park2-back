@@ -76,6 +76,7 @@ export default function Home_act() {
                         // console.log(item.act_id);
                         let filter = listData2.filter(e => e.act_id == item.act_id)
                         // console.log(filter[0])
+                        margeData[index].act_title = filter[0].act_title
                         margeData[index].act_Sdate = filter[0].act_Sdate
                         margeData[index].act_Edate = filter[0].act_Edate
                         margeData[index].act_Stime = filter[0].act_Stime
