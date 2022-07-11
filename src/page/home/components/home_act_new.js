@@ -9,6 +9,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import { postCarousel } from '../../../api/home/postCarousel';
 import { getActivities } from '../../../api/home/getActivities';
+import { putActivity } from '../../../api/home/putActivity';
 
 
 const theme = createTheme({
@@ -28,42 +29,13 @@ const style1 = {
     "font-size": "20px",
 }
 
-// const data = [
-//     {
-//         label: "活動名稱A",
-//         act_Sdate: "05/06",
-//         act_Edate: "05/21",
-//         act_Stime: "21:00",
-//         act_Etime: "21:30"
-//         act_sta:0
-//     }, {
-//         label: "活動名稱B",
-//         act_Sdate: "05/01",
-//         act_Edate: "05/02",
-//         act_Stime: "20:00",
-//         act_Etime: "20:30"
-//     }, {
-//         label: "活動名稱C",
-//         act_Sdate: "04/28",
-//         act_Edate: "04/29",
-//         act_Stime: "09:00",
-//         act_Etime: "09:30"
-//     }, {
-//         label: "活動名稱D",
-//         act_Sdate: "05/16",
-//         act_Edate: "05/17",
-//         act_Stime: "21:00",
-//         act_Etime: "21:30"
-//     },
-// ]
-
-
-
 
 export default function Home_act_new() {
 
+    //這邊需要用的資料=>data
     const [data, setData] = useState([]);
 
+    // 要傳回home_act的資料=>isData1
     const [isData1, setData1] = useState(
         {
             relation: '活動編號',
@@ -72,36 +44,59 @@ export default function Home_act_new() {
         }
     );
 
+    //activity的資料=>actData
+    const [actData, setActData] = useState({});
+    //要傳回activity的資料=>putActData
+    const [putActData, setPutActData] = useState({
+        title: "",
+        isSlider: "",
+        id: ""
+    });
+
+
+
+
+
+
     useEffect(() => {
         async function getData() {
             await getActivities().then((result) => {
-                let data = result.filter(e=>e.act_sta == 1)
-                data = result.filter(e=>e.act_is_slider == 0)
+                let data = result.filter(e => e.act_sta == 1)
+                data = result.filter(e => e.act_is_slider == 0)
+                //加label=>下拉要用的
                 data.forEach(addLabel);
                 console.log(data);
                 setData(data)
                 function addLabel(item, index) {
-                    item.label = item.act_title;
+                    item.label = item.act_id + " - " + item.act_title;
                 }
+                //actData 資料定義
+                setActData(result)
             })
         }
         getData()
     }, [])
 
+
     const [date, setDate] = useState("MM/DD-MM/DD");
     const [time, setTime] = useState("HH/mm-HH/mm");
 
     var dateChange = (obj) => {
-        // var title = obj.target.innerHTML;
+        var selectId = obj.target.innerHTML.split(" - ")[0];
         console.log(obj);
-        console.log(obj.target.dataset.optionIndex);
+        console.log(selectId);
         var cnt = obj.target.dataset.optionIndex;
         setDate(`${data[cnt].act_Sdate.slice(0, 10)} ~ ${data[cnt].act_Edate.slice(0, 10)}`);
         setTime(`${data[cnt].act_Stime.slice(0, 5)} ~ ${data[cnt].act_Etime.slice(0, 5)}`);
         setData1(prev => ({
             ...prev
-            , relation: obj.target.value
+            , relation: selectId
         }))
+        var newactData = actData.filter(e => e.act_id == selectId)
+        console.log(newactData)
+        setPutActData(prev => ({ ...prev, title: newactData[0].act_title }))
+        setPutActData(prev => ({ ...prev, isSlider: 1 }))
+        setPutActData(prev => ({ ...prev, id: newactData[0].act_id }))
     }
 
 
@@ -120,6 +115,7 @@ export default function Home_act_new() {
                         autoComplete="off"
                     >
                         <Autocomplete
+
                             onChange={dateChange}
                             disablePortal
                             id="combo-box-demo"
@@ -162,10 +158,14 @@ export default function Home_act_new() {
                                 onClick={() => {
                                     if (window.confirm("是否確認新增") == true) {
                                         console.log(isData1);
+                                        console.log(putActData)
                                         postCarousel(isData1).then((result) => {
                                             console.log(result)
                                         })
-                                        // window.location.href="/home/act"
+                                        putActivity(putActData).then((result) => {
+                                            console.log(result)
+                                        })
+                                        window.location.href="/home/act"
                                     } else {
                                         console.log("NO");
                                     }
@@ -179,6 +179,5 @@ export default function Home_act_new() {
     </div>
 
 }
-
 
 

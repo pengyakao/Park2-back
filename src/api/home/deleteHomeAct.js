@@ -23,8 +23,8 @@ function handleReq(e) {
 }
 
 // api function
-export function deleteFaq(id) {
-	return handleReq(reqObj.delete('/admin/home/faq/delete',{
+export function deleteHomeAct(id) {
+	return handleReq(reqObj.delete('/admin/home/carousel/delete',{
 		params: {
 			id
 		}
