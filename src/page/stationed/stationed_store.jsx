@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Box from '@mui/material/Box';
 import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
-import LayOut from '../../components/Crystal/LayOut';
+import LayOutStoreSta from '../../components/layout/LayOut_StoreSta';
 import Stationed_store_list from './stationed_store_list';
 import { getStoreApply } from '../../api/stationed/storeApi'
 
