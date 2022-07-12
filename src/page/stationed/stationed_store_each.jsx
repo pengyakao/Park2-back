@@ -16,55 +16,22 @@ const style = {
     top: '50%',
     left: '50%',
     transform: 'translate(-50%, -50%)',
-    // width: 757,
-    // height: 405,
     display: 'flex',
     bgcolor: 'background.paper',
     border: '2px solid #000',
     borderRadius: 5,
-    boxShadow: 24,
-    p: 4,
+    boxShadow: 24
 };
-
-// var data = [
-//     {
-//         user_id: 1,
-//         sto_id: null,
-//         user_account: "park2@google.com",
-//         user_password: 12345678,
-//         user_name: "Park2",
-//         user_level: 999,
-//         sto_sta: 1
-//     },
-//     {
-//         user_id: 2,
-//         sto_id: 1,
-//         user_account: "min@google.com",
-//         user_password: 12345678,
-//         user_name: "酉5PM TWCAUDEX",
-//         user_level: 1,
-//         sto_sta: 1
-//     },
-//     {
-//         user_id: 3,
-//         sto_id: 2,
-//         user_account: "alice@google.com",
-//         user_password: 12345678,
-//         user_name: "米弎豆お茶処MISATO",
-//         user_level: 2,
-//         sto_sta: 1
-//     },
-//     {
-//         user_id: 4,
-//         sto_id: 3,
-//         user_account: "bear@google.com",
-//         user_password: 12345678,
-//         user_name: "新村站著吃烤肉",
-//         user_level: 3,
-//         sto_sta: 0
-//     },
-
-// ]
+const tag= {
+    fontSize: '13px',
+    fontWeight: '700',
+    // backgroundColor: '#000',
+    // color: '#fff',
+    // padding: '5px 15px',
+    borderRadius: '2px',
+    margin: '10px 7px',
+    display: 'inline-block'
+}
 
 const theme = createTheme({
     palette: {
@@ -84,10 +51,23 @@ export default function Stationed_store_each() {
     const handleClose = () => setOpen(false);
     const { applyId } = useParams();
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState([
+        {
+            sto_apply_id: '',
+            sto_apply_brand: '',
+            sto_apply_location: '',
+            sto_apply_class: '',
+            sto_apply_name: '',
+            sto_apply_tel: '',
+            sto_apply_mail: '',
+            sto_apply_time: '',
+            sto_apply_file: '',
+            sto_apply_sta: '',
+            sto_apply_date: ''
+        }
+    ])
     useEffect(()=>{
         getStoreApply().then((result)=>{
-            console.log(applyId)
             let target = result.filter(e=>e.sto_apply_id == applyId)
             setData(target)
             console.log(target)
@@ -99,7 +79,11 @@ export default function Stationed_store_each() {
             <LayOutStoreSta />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
-                    <h1>『店家進駐申請』審核 - {data[0].sto_apply_brand} </h1>
+                    <div className="title">
+                        <h1 style={{fontSize: '28px', margin: '0', margin: '10px 5px 5px 5px'}}>店家進駐申請</h1>
+                        <div style={tag}>{data[0].sto_apply_brand}</div>
+                    </div>
+
                     {/* <h1>『店家』單一訂單資訊審核頁(通過、轉待繳費/需補件/不通過)</h1> */}
                     <Box
                         component="form"

@@ -1,18 +1,34 @@
-import React, { Component } from 'react';
-import LayOutMarketSta from '../../components/layout/LayOut_MarketSta';
+// import React, { Component } from 'react';
+import * as React from 'react';
+import { useState, useEffect } from 'react';
+import Box from '@mui/material/Box';
+import Fab from '@mui/material/Fab';
+import AddIcon from '@mui/icons-material/Add';
+import LayOutStoreSta from '../../components/layout/LayOut_StoreSta';
+import Stationed_market_list from './stationed_market_list';
+import { getMarketApply, getMarketList } from '../../api/stationed/marketApi'
 
-class Stationed_market extends Component {
-    state = {  } 
-    render() { 
-        return (
-            <div>
-            <LayOutMarketSta />
+export default function Stationed_market() {
+    const [data, setData] = useState([]);
+    const [market, setMarket] = useState([]);
+
+    useEffect(()=>{
+        getMarketApply().then((result)=>{
+            setData(result)
+        })
+        getMarketList().then((result)=>{
+            setMarket(result)
+        })
+    },[])
+
+    return (
+        <div>
+            <LayOutStoreSta />
             <div className='bs_article'>
-                <h1>『攤位』進駐申請清單列表</h1>
+                <h1 style={{fontSize: '28px'}}>風格市集進駐申請</h1>
+                <Stationed_market_list listData={data} marketData={market}/>
             </div>
         </div>
-        );
-    }
+    )
+
 }
- 
-export default Stationed_market;
