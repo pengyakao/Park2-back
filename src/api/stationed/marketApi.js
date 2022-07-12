@@ -16,7 +16,12 @@ function handleReq(e) {
 	})
 }
 
+// 取得市集申請資料
+export function getMarketApply() {
+	return handleReq(reqObj.get('/admin/apply/market/get'))
+}
+
 // 取得市集資料
-export function getStoreApply() {
-	return handleReq(reqObj.get('/admin/apply/store/get'))
+export function getMarketList() {
+	return handleReq(reqObj.get('/admin/apply/market/list/get'))
 }

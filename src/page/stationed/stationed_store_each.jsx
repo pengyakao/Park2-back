@@ -23,13 +23,13 @@ const style = {
     boxShadow: 24
 };
 const tag= {
-    fontSize: '14px',
-    fontWeight: '500',
-    backgroundColor: '#000',
-    color: '#fff',
-    padding: '5px 15px',
+    fontSize: '13px',
+    fontWeight: '700',
+    // backgroundColor: '#000',
+    // color: '#fff',
+    // padding: '5px 15px',
     borderRadius: '2px',
-    margin: '10px 0px',
+    margin: '10px 7px',
     display: 'inline-block'
 }
 
@@ -80,8 +80,8 @@ export default function Stationed_store_each() {
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <div className="title">
-                        <div style={tag}>店家進駐申請</div>
-                        <h1 style={{fontSize: '28px', margin: '0', marginBottom: '5px'}}>{data[0].sto_apply_brand}</h1>
+                        <h1 style={{fontSize: '28px', margin: '0', margin: '10px 5px 5px 5px'}}>店家進駐申請</h1>
+                        <div style={tag}>{data[0].sto_apply_brand}</div>
                     </div>
 
                     {/* <h1>『店家』單一訂單資訊審核頁(通過、轉待繳費/需補件/不通過)</h1> */}

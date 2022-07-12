@@ -166,7 +166,7 @@ const Stationed_store_list = ({ listData }) => {
                                 <TableCell >
                                     <ThemeProvider theme={theme}>
                                         <Stack spacing={2} direction="row">
-                                            <Button variant="outlined" color="neutral" href={`/stationed_store/${row.sto_apply_id}`}>修改資料</Button>
+                                            <Button variant="outlined" color="neutral" href={`/stationed_store/${row.sto_apply_id}`}>查看資料</Button>
                                         </Stack>
                                     </ThemeProvider>
                                 </TableCell>
