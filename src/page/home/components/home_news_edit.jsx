@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { useLocation } from 'react-router-dom'
-
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Box from '@mui/material/Box';
@@ -10,11 +9,11 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ReactDOM from "react-dom";
-
 import LayOut from '../../../components/layout/LayOut';
 import { getNews } from '../../../api/home/getNews';
 import { putNews } from '../../../api/home/putNews'
 import { useParams } from 'react-router-dom'
+import dayjs from "dayjs"
 
 
 export default function Home_news_edit() {
@@ -93,9 +92,7 @@ export default function Home_news_edit() {
             },
         },
     });
-    // console.log(isData.endDate.slice(8, 10))
-    // console.log(isData.endDate.slice(0, 8) + (parseInt(isData.endDate.slice(8, 10))+1))
-
+   
     // 圖片上傳
 
     // const Input = styled('input')({
@@ -148,13 +145,12 @@ export default function Home_news_edit() {
                             type="date"
                             id="outlined-disabled"
                             label="公告日期(起) YYYY-MM-DD"
-                            // onChange={handleChange}
-                            // value={isData.startDate.slice(0, 8) + (parseInt(isData.startDate.slice(8, 10))+1)}
-                            value={isData.startDate.slice(0, 8) + (parseInt(isData.startDate.slice(8, 10))+1)}
+                            value={isData.startDate}
                             onChange={(e) => {
+                                console.log(e.target.value)
                                 setData(prev => ({
                                     ...prev
-                                    , startDate: e.target.value
+                                    , startDate:e.target.value
                                 }))
                             }}
                         />
@@ -164,12 +160,12 @@ export default function Home_news_edit() {
                             id="outlined-disabled"
                             label="公告日期(迄) YYYY-MM-DD"
                             // onChange={handleChange}
-                            // value={isData.endDate.slice(0, 8) + (parseInt(isData.endDate.slice(8, 10))+1)}
-                            value={isData.endDate.slice(0, 8)+(parseInt(isData.endDate.slice(8, 10))+1)}
+                            value={isData.endDate}
                             onChange={(e) => {
+                                console.log(e.target.value)
                                 setData(prev => ({
                                     ...prev
-                                    , endDate: e.target.value
+                                    , endDate:e.target.value
                                 }))
                             }}
                         />

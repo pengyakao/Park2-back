@@ -114,7 +114,7 @@ const Home_act_edit = ({ add }) => {
                             label="活動日期"
                             defaultValue=' '
                             value={`${data.act_Sdate} ~ ${data.act_Edate}`}
-                        // value={`${data.act_Sdate.slice(0,10)} ~ ${data.act_Edate.slice(0,10)}`}
+                        
 
                         />
                         <TextField
@@ -123,7 +123,7 @@ const Home_act_edit = ({ add }) => {
                             label="活動時間"
                             defaultValue=" "
                             value={`${data.act_Stime} ~ ${data.act_Etime}`}
-                        // value={`${data.act_Stime.slice(0,5)} ~ ${data.act_Etime.slice(0,5)}`}
+                       
 
                         />
 
