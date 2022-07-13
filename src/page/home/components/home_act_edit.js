@@ -58,9 +58,6 @@ const Home_act_edit = ({ add }) => {
                     margeData[0].act_Stime = margeData2[0].act_Stime
                     margeData[0].act_Etime = margeData2[0].act_Etime
                     setData(margeData[0]);
-
-
-
                 });
             });
         }

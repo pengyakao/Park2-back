@@ -55,7 +55,7 @@ export default function Home_news_edit() {
             await setData(prev => ({
                 ...prev,
                 // img: test[id].home_news_img
-                img: 'test[0].home_news_img'
+                img: 'https://placem.at/things'
             }))
             await setData(prev => ({
                 ...prev,

@@ -81,8 +81,8 @@ const News_item = ({ key, home_news_id, home_news_title, home_news_sta, home_new
             title: home_news_title,
             isShow: home_news_sta,
             img: home_news_img,
-            startDate: home_news_Sdate.slice(0,10),
-            endDate: home_news_Edate.slice(0,10),
+            startDate: home_news_Sdate,
+            endDate: home_news_Edate,
             info: home_news_info,
             id: home_news_id
         }
