@@ -8,7 +8,7 @@ import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import UploadButtons from "./UploadButtons";
-import Select from "./Select";
+import SelectInput from "./Select";
 import UploadMore from "./UploadMore";
 
 import TextareaAutosize from "@mui/material/TextareaAutosize";
@@ -40,6 +40,7 @@ const style1 = {
 const Act_edit = () => {
   // 宣告變數
   const [data, setdata] = useState({});
+  const [act_img, setact_img] = useState();
   const [act_title, setact_title] = useState();
   const [act_class, setact_class] = useState();
   const [act_Sdate, setact_Sdate] = useState("");
@@ -51,31 +52,32 @@ const Act_edit = () => {
   const [acr_org, setacr_org] = useState();
   const [act_info, setact_info] = useState();
 
-  //抓網址來讀取資料
-  var i;
+  //抓網址尾端/後的參數來讀取資料
+  let i = "";
   const url = useLocation();
-  var arr = Array.from(url.pathname);
-  var urlSlice = arr.length - arr.lastIndexOf("/") - 1;
-
-  if (urlSlice === 1) {
-    i = Number(arr.slice(-urlSlice, arr.length)[0]);
-  } else if (urlSlice === 2) {
-    i = Number(
-      arr.slice(-urlSlice, arr.length)[0] + arr.slice(-urlSlice, arr.length)[1]
-    );
+  let arr = Array.from(url.pathname);
+  let urlLength = arr.length - arr.lastIndexOf("/") - 1;
+  for (let j = 0; j < urlLength; j++) {
+    i = i + arr.slice(-urlLength, arr.length)[j];
+    if (j === urlLength - 1) {
+      i = Number(i);
+    }
   }
 
   //   載入資料
   useEffect(() => {
-    getActivity(i).then((result) => {
-      setdata(result[0]);
+    getActivity().then((result) => {
+      console.log(result)
+      setdata(result[i-1]);
     });
   }, []);
 
   //   欄位初始化
   useEffect(() => {
     setact_title(data.act_title);
-    // setact_Sdate(data.act_Sdate)
+    setact_class(data.act_class);
+    setact_Sdate(data.act_Sdate);
+    setact_Edate(data.act_Edate);
     setact_Stime(data.act_Stime);
     setact_Etime(data.act_Etime);
     setact_location(data.act_location);
@@ -83,11 +85,11 @@ const Act_edit = () => {
     setacr_org(data.acr_org);
     setact_info(data.act_info);
 
-    console.log(data);
+    // console.log(data);
   }, [data]);
 
   //開發用
-  //   console.log(data.act_Sdate);
+  console.log(act_img);
 
   // One time slot every 30 minutes.
   const timeSlots = Array.from(new Array(24 * 2)).map(
@@ -111,8 +113,13 @@ const Act_edit = () => {
               autoComplete="off"
               direction="row"
             >
-              {/* <h3>活動封面圖</h3> */}
-              {/* <UploadButtons label="封面圖片" width={300}></UploadButtons> */}
+              <h3>活動封面圖</h3>
+              {/* <UploadButtons isimg={isimg} setImg={setImg} label="封面圖片" width={300}></UploadButtons> */}
+              <UploadButtons
+                setact_img={setact_img}
+                label="封面圖片"
+                width={300}
+              ></UploadButtons>
 
               <h3>活動資訊</h3>
               <TextField
@@ -124,27 +131,29 @@ const Act_edit = () => {
                 onChange={(e) => setact_title(e.target.value)}
               />
               {/* 活動類別 */}
-              <Select />
+              <SelectInput act_class={act_class} setact_class={setact_class} />
+              {/* 分隔線 */}
               <TextField
                 label="活動日期(起)"
                 id="act_Sdate"
                 type="date"
                 required="true"
-                defaultValue="2022-01-01"
-                // value={act_Sdate ?? ""}
-                // onChange={(e) => setact_Sdate(e.target.value)}
+                value={act_Sdate}
+                onChange={(e) => setact_Sdate(e.target.value)}
               />
               <TextField
                 label="活動日期(迄)"
                 id="act_Edate"
                 type="date"
                 required="true"
-                defaultValue="2022-01-01"
+                value={act_Edate}
+                onChange={(e) => setact_Edate(e.target.value)}
               />
               {/* 活動時間 */}
               <Autocomplete
                 id="act_Stime"
-                value={act_Stime ?? ""}
+                value={act_Stime}
+                onChange={(e) => setact_Stime(e.target.innerText)}
                 options={timeSlots}
                 getOptionDisabled={(option) =>
                   option === timeSlots[0] || option === timeSlots[2]
@@ -156,7 +165,8 @@ const Act_edit = () => {
               />
               <Autocomplete
                 id="act_Etime"
-                value={act_Etime ?? ""}
+                value={act_Etime}
+                onChange={(e) => setact_Etime(e.target.innerText)}
                 options={timeSlots}
                 getOptionDisabled={(option) =>
                   option === timeSlots[0] || option === timeSlots[2]
@@ -216,24 +226,28 @@ const Act_edit = () => {
                 <Button
                   color="neutral"
                   variant="contained"
-                  href="/activity/"
+                  // href="/activity/"
                   onClick={() => {
                     const formData = {
+                      id: i,
+                      file: act_img,
                       title: act_title,
-                      startDate: data.startDate,
-                      endDate: data.endDate,
-                      startTime:act_Stime,
-                      endTime:act_Etime,
-                      organizer:acr_org,
-                      organizerImg:"organizerImg",
-                      location:act_location,
-                      type:data.act_class,
-                      guests:act_guests,
-                      info:act_info,
-                      file:"file",
-                      isShow:"isShow",
-                      isSlider:"isSlider"
+                      type: act_class,
+                      startDate: act_Sdate,
+                      endDate: act_Edate,
+                      startTime: act_Stime,
+                      endTime: act_Etime,
+                      location: act_location,
+                      guests: act_guests,
+                      organizer: acr_org,
+                      info: act_info,
+                      organizerImg: data.acr_orgimg,
+                      
+                      isShow: "0",
+                      isSlider: data.act_is_slider ?? "0",
+                      delete: "url",
                     };
+                    console.log(formData);
                     putActivity(formData);
                     alert("編輯成功");
                   }}
