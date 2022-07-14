@@ -17,8 +17,8 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
 
 // api
-import { putActivity } from "../../../api/activity/putActivity";
 import { getActivity } from "../../../api/activity/getActivity";
+import { putActivity2 } from "../../../api/activity/putActivity";
 
 const theme = createTheme({
   palette: {
@@ -67,13 +67,13 @@ const Act_edit = () => {
   //   載入資料
   useEffect(() => {
     getActivity().then((result) => {
-      console.log(result)
-      setdata(result[i-1]);
+      setdata(result[i - 1]);
     });
   }, []);
 
   //   欄位初始化
   useEffect(() => {
+    setact_img(data.act_img);
     setact_title(data.act_title);
     setact_class(data.act_class);
     setact_Sdate(data.act_Sdate);
@@ -84,12 +84,10 @@ const Act_edit = () => {
     setact_guests(data.act_guests);
     setacr_org(data.acr_org);
     setact_info(data.act_info);
-
-    // console.log(data);
   }, [data]);
 
   //開發用
-  console.log(act_img);
+  // console.log(i);
 
   // One time slot every 30 minutes.
   const timeSlots = Array.from(new Array(24 * 2)).map(
@@ -114,8 +112,8 @@ const Act_edit = () => {
               direction="row"
             >
               <h3>活動封面圖</h3>
-              {/* <UploadButtons isimg={isimg} setImg={setImg} label="封面圖片" width={300}></UploadButtons> */}
               <UploadButtons
+                act_img={act_img}
                 setact_img={setact_img}
                 label="封面圖片"
                 width={300}
@@ -228,27 +226,25 @@ const Act_edit = () => {
                   variant="contained"
                   // href="/activity/"
                   onClick={() => {
-                    const formData = {
-                      id: i,
-                      file: act_img,
-                      title: act_title,
-                      type: act_class,
-                      startDate: act_Sdate,
-                      endDate: act_Edate,
-                      startTime: act_Stime,
-                      endTime: act_Etime,
-                      location: act_location,
-                      guests: act_guests,
-                      organizer: acr_org,
-                      info: act_info,
-                      organizerImg: data.acr_orgimg,
-                      
-                      isShow: "0",
-                      isSlider: data.act_is_slider ?? "0",
-                      delete: "url",
-                    };
-                    console.log(formData);
-                    putActivity(formData);
+                    const formData = new FormData();
+                    formData.append("id", i);
+                    formData.append("file", act_img);
+                    formData.append("title", act_title);
+                    formData.append("type", act_class);
+                    formData.append("startDate", act_Sdate);
+                    formData.append("endDate", act_Edate);
+                    formData.append("startTime", act_Stime);
+                    formData.append("endTime", act_Stime);
+                    formData.append("location", act_location);
+                    formData.append("guests", act_guests);
+                    formData.append("organizer", acr_org);
+                    formData.append("organizerImg", "organizerImg");
+                    formData.append("info", act_info);
+                    formData.append("isShow", 0);
+                    formData.append("isSlider", data.act_is_slider ?? 0);
+                    formData.append("delete", data.act_img);
+
+                    putActivity2(formData);
                     alert("編輯成功");
                   }}
                 >

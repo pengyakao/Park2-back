@@ -111,6 +111,7 @@ const Act_new = ({ add }) => {
                 value={act_Stime}
                 onChange={(e) => setact_Stime(e.target.innerText)}
                 options={timeSlots}
+                required="true"
                 // getOptionDisabled={(option) =>
                 //   option === timeSlots[0] || option === timeSlots[2]
                 // }
@@ -121,9 +122,10 @@ const Act_new = ({ add }) => {
               />
               <Autocomplete
                 id="act_Etime"
-                options={timeSlots}
                 value={act_Etime}
                 onChange={(e) => setact_Etime(e.target.innerText)}
+                options={timeSlots}
+                required="true"
                 // getOptionDisabled={(option) =>
                 //   option === timeSlots[0] || option === timeSlots[2]
                 // }
@@ -201,7 +203,7 @@ const Act_new = ({ add }) => {
                     formData.append("isSlider", 0);
                     formData.append("file", act_img);
 
-                    postActivity(formData);
+                    // postActivity(formData);
                     alert("新增成功");
                   }}
                 >
