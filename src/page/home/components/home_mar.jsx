@@ -59,7 +59,7 @@ export default function Home_mar() {
             <LayOut />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
-                    <h1>跑馬燈管理</h1>
+                    <h1>跑馬燈</h1>
                     <Box
                         component="form"
                         sx={{

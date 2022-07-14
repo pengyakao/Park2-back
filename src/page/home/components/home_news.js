@@ -68,7 +68,7 @@ export default function Home_news() {
         <div>
             <LayOutHome />
             <div className='bs_article'>
-                <h1>最新公告管理</h1>
+                <h1>官方公告</h1>
                 <div>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
                         <Fab size="small" color="black" aria-label="add" href="/home/news_new">

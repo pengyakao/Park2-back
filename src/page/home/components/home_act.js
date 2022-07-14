@@ -96,7 +96,7 @@ export default function Home_act() {
         <div>
             <LayOutHome />
             <div className='bs_article'>
-                <h1>輪播活動管理</h1>
+                <h1>活動輪播</h1>
                 <CardList listData={data} />
             </div>
         </div>

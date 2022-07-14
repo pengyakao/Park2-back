@@ -44,7 +44,7 @@ export default function Home_faq() {
         <div>
             <LayOutHome />
             <div className='bs_article'>
-                <h1>FAQ管理</h1>
+                <h1>FAQ</h1>
                 <div>
                     <Box sx={{ '& > :not(style)': { m: 1 } }}>
                         <Fab size="small" color="dark" aria-label="add" href="/home/faq_new">
