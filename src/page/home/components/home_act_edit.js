@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
+
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -72,7 +73,7 @@ const Home_act_edit = ({ add }) => {
 
     return <div>
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>編輯輪播活動</h1>

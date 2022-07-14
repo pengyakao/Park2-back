@@ -5,7 +5,8 @@ import Fab from '@mui/material/Fab';
 import AddIcon from '@mui/icons-material/Add';
 import { useState } from 'react';
 import FAQlist from './home_faq_list';
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
+
 
 import { getFaq } from '../../../api/home/getFaq';
 
@@ -41,7 +42,7 @@ export default function Home_faq() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <h1>FAQ管理</h1>
                 <div>

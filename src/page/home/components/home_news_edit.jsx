@@ -9,16 +9,17 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
 import ReactDOM from "react-dom";
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
 import { getNews } from '../../../api/home/getNews';
+import { putNewsFile } from '../../../api/home/putNewsFile'
 import { putNews } from '../../../api/home/putNews'
 import { useParams } from 'react-router-dom'
-import dayjs from "dayjs"
+import UploadButtons from './UploadButtons'
 
 
 export default function Home_news_edit() {
 
-
+    const [isimg, setImg] = useState([])
 
     const [isData, setData] = useState(
         {
@@ -54,8 +55,8 @@ export default function Home_news_edit() {
             }))
             await setData(prev => ({
                 ...prev,
-                // img: test[id].home_news_img
-                img: 'https://placem.at/things'
+                img: getDataItem[0].home_news_img
+                // img: 'https://placem.at/things'
             }))
             await setData(prev => ({
                 ...prev,
@@ -77,6 +78,7 @@ export default function Home_news_edit() {
                 ...prev,
                 id: getDataItem[0].home_news_id
             }))
+            setImg(getDataItem[0].home_news_img)
         }
         getData()
     }, [])
@@ -92,30 +94,10 @@ export default function Home_news_edit() {
             },
         },
     });
-   
-    // 圖片上傳
-
-    // const Input = styled('input')({
-    //     display: 'none',
-    // });
-
-    // const onChange = e => {
-    //     const file = e.target.files.item(0); // 取得選中檔案們的一個檔案
-    //     const fileReader = new FileReader(); // FileReader為瀏覽器內建類別，用途為讀取瀏覽器選中的檔案
-    //     fileReader.addEventListener("load", fileLoad);
-    //     fileReader.readAsDataURL(file); // 讀取完檔案後，變成URL
-    //     console.log("ok");
-    //   };
-
-    //   const fileLoad = e => {
-    //     setImg(e.target.result);
-    //     // 讀取到DataURL後，儲存在result裡面，指定為img
-    //   };
-
 
     return (
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>編輯最新公告</h1>
@@ -128,7 +110,7 @@ export default function Home_news_edit() {
                         autoComplete="off"
                     >
                         <TextField id="outlined-basic"
-                            label="公告標題"
+                            label="公告標題(限20字)"
                             variant="outlined"
                             required="true"
                             value={isData.title}
@@ -150,7 +132,7 @@ export default function Home_news_edit() {
                                 console.log(e.target.value)
                                 setData(prev => ({
                                     ...prev
-                                    , startDate:e.target.value
+                                    , startDate: e.target.value
                                 }))
                             }}
                         />
@@ -165,7 +147,7 @@ export default function Home_news_edit() {
                                 console.log(e.target.value)
                                 setData(prev => ({
                                     ...prev
-                                    , endDate:e.target.value
+                                    , endDate: e.target.value
                                 }))
                             }}
                         />
@@ -190,23 +172,15 @@ export default function Home_news_edit() {
                                 }))
                             }}
                         />
+                        <div id="newsImg" style={{ display: "flex", justifyContent: 'space-between', }} >
 
-
-                        {/* 圖片上傳 */}
-                        {/* <div>
-                            <Stack direction="row" alignItems="center" spacing={2}>
-                                <label htmlFor="contained-button-file">
-                                    <Input onChange={onChange} accept="image/*" id="contained-button-file" multiple type="file" />
-                                    <Button variant="outlined" component="span">
-                                        上傳圖片
-                                    </Button>
-                                </label>
-                                <Button variant="contained">上傳</Button>
-
-                            </Stack>
-                            <hr />
-                            <img width="300" src={isData.img} />
-                        </div> */}
+                            <div>
+                                <h4 style={{ color: "gray", fontWeight: 400 }}> 目前圖片 </h4>
+                                <h4 style={{ color: "gray", fontWeight: 400 }}> ＊若需修改圖片，請於右側重新上傳 </h4>
+                                <img src={isData.img} alt="" style={{ width: '280px', minHeight: '200px', borderRadius: '18px', }} />
+                            </div>
+                            <UploadButtons width={300} changeImg={setImg}></UploadButtons>
+                        </div>
                     </Box>
                     <ThemeProvider theme={theme}>
                         <Stack spacing={2} direction="row" style={{ display: 'flex', 'justify-content': 'flex-end' }}>
@@ -215,11 +189,27 @@ export default function Home_news_edit() {
                                 onClick={() => {
                                     if (window.confirm("是否確認修改") == true) {
                                         console.log(isData);
-                                        console.log("OK");
-                                        putNews(isData).then((result) => {
-                                            console.log(result)
-                                        })
-                                        window.location.href='/home/news'
+                                        console.log(isimg);
+                                        if (isimg == isData.img) {
+                                            // console.log(13678)
+                                            putNews(isData).then((result) => {
+                                                console.log(result)
+                                            })
+                                            window.location.href = '/home/news'
+                                        } else {
+                                            const formData = new FormData();
+                                            formData.append("title", isData.title);
+                                            formData.append("isShow", isData.isShow);
+                                            formData.append("file", isimg);
+                                            formData.append("startDate", isData.startDate);
+                                            formData.append("endDate", isData.endDate);
+                                            formData.append("info", isData.info);
+                                            formData.append("id", isData.id);
+                                            putNewsFile(formData).then((result) => {
+                                                console.log(result)
+                                            })
+                                            window.location.href = '/home/news'
+                                        }
                                     } else {
                                         console.log("NO");
                                     }

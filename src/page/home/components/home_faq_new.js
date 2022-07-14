@@ -6,7 +6,8 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
+
 import { postFaq } from '../../../api/home/postFaq';
 
 
@@ -33,7 +34,7 @@ export default function Home_faq_new() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>新增FAQ</h1>

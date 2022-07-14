@@ -4,7 +4,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import LayOut from '../../components/layout/LayOut';
+import LayOutStation from '../../components/layout/LayOut_stationed';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Table from '@mui/material/Table';
@@ -126,7 +126,7 @@ export default function Stationed_market_each() {
 
     return (
         <div>
-            <LayOut />
+            <LayOutStation />
             <div className='bs_article'>
                 <div style={{ width: "100%" }}>
                     <div className="title">

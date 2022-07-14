@@ -9,7 +9,7 @@ const LayOutUser = () => {
                 <li><a href="/home/act">首頁管理</a></li>
                 <li><a href="/activity">活動管理</a></li>
                 <li><a href="/store">店家管理</a></li>
-                <li><a href="/stationed">進駐管理</a></li>
+                <li><a href="/stationed_store">進駐管理</a></li>
                 <li><a href="/user" style={{ color: "#B3E24D" }}>帳號管理</a></li>
             </ul>
             <button className="btn_logout" onclick="">

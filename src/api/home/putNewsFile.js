@@ -25,8 +25,8 @@ function handleReq(e) {
 }
 
 // api function
-export function putNews(data) {
-	return handleReq(reqObj.put('/admin/home/proclamation/edit',data))
+export function putNewsFile(data) {
+	return handleReq(reqObj.put('/admin/home/proclamation/edit/file',data))
 }
 
 // 放到要get資料的頁面
