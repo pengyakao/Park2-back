@@ -50,10 +50,6 @@ export default function Home_mar() {
         getMar()
     }, [])
 
-
-
-
-
     return (
         <div>
             <LayOut />
