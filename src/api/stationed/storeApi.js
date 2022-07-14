@@ -20,3 +20,8 @@ function handleReq(e) {
 export function getStoreApply() {
 	return handleReq(reqObj.get('/admin/apply/store/get'))
 }
+
+// 編輯市集資料
+export function editStoreApply(data) {
+	return handleReq(reqObj.get('/admin/apply/store/edit', data))
+}

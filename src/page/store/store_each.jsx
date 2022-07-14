@@ -11,7 +11,7 @@ import TextareaAutosize from './TextareaAutosize'
 import Checkbox from '@mui/material/Checkbox'
 import UploadButtons from './UploadButtons'
 import ComboBox from './ComboBox'
-import UploadMore from './UploadMore'
+import UploadMore from './UploadMore.jsx'
 import TimeOption from './TimeOption'
 import Input_fb from './Input_fb'
 import Input_ig from './Input_ig'
@@ -161,7 +161,7 @@ const Store_each = () => {
                   onChange={(e) => setsto_tel(e.target.value)}
                 />
               </div>
-              {/* <div>
+              <div>
                 <div className="storeMoreImg">
                   <h3>
                     店家圖片
@@ -171,7 +171,7 @@ const Store_each = () => {
                   </h3>
                   <UploadMore></UploadMore>
                 </div>
-              </div> */}
+              </div>
               <div className="storetime">
                 <h3>營業時間</h3>
                 <div className="storetime_container">

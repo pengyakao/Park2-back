@@ -16,17 +16,17 @@ function handleReq(e) {
 	})
 }
 
-// 取得市集申請資料
-export function getMarketApply() {
-	return handleReq(reqObj.get('/admin/apply/market/get'))
+// 取得活動圖片
+export function getStoreImgs(id) {
+	return handleReq(reqObj.get('/test/get', {
+        params: {
+            id
+        }
+    }))
 }
 
-// 取得市集資料
-export function getMarketList() {
-	return handleReq(reqObj.get('/admin/apply/market/list/get'))
+// 修改活動圖片
+export function editStoreImgs(formData) {
+	return handleReq(reqObj.put('/test/edit', formData))
 }
 
-// 編輯市集申請資料
-export function editMarketApply(data) {
-	return handleReq(reqObj.get('/admin/apply/market/edit', data))
-}
