@@ -1,16 +1,18 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
+import * as React from "react";
+import Box from "@mui/material/Box";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormControl from "@mui/material/FormControl";
+import Select from "@mui/material/Select";
 
-export default function BasicSelect() {
-  const [type, setType] = React.useState('');
-
+const SelectInput = ({ act_class, setact_class }) => {
   const handleChange = (event) => {
-    setType(event.target.value);
+    setact_class(event.target.value);
   };
+
+  React.useEffect(() => {
+    setact_class(act_class);
+  }, []);
 
   return (
     <Box sx={{ minWidth: 120 }}>
@@ -19,10 +21,10 @@ export default function BasicSelect() {
         <Select
           labelId="act_class"
           id="demo-simple-select"
-          value={type}
           label="活動類別"
-          onChange={handleChange}
           required="true"
+          value={act_class ?? ""}
+          onChange={handleChange}
         >
           <MenuItem value={1}>現場LIVE</MenuItem>
           <MenuItem value={2}>快閃活動</MenuItem>
@@ -33,4 +35,6 @@ export default function BasicSelect() {
       </FormControl>
     </Box>
   );
-}
+};
+
+export default SelectInput;
