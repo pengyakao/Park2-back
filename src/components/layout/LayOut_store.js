@@ -9,8 +9,7 @@ const LayOutStore = () => {
                 <li><a href="/home/act">首頁管理</a></li>
                 <li><a href="/activity">活動管理</a></li>
                 <li><a href="/store" style={{ color: "#B3E24D" }}>店家管理</a></li>
-                <li><a href="/stationed_store">店家進駐</a></li>
-                <li><a href="/stationed_market">攤位進駐</a></li>
+                <li><a href="/stationed_store">進駐管理</a></li>
                 <li><a href="/user">帳號管理</a></li>
             </ul>
             <button className="btn_logout" onclick="">

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
+
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -58,9 +59,6 @@ const Home_act_edit = ({ add }) => {
                     margeData[0].act_Stime = margeData2[0].act_Stime
                     margeData[0].act_Etime = margeData2[0].act_Etime
                     setData(margeData[0]);
-
-
-
                 });
             });
         }
@@ -75,7 +73,7 @@ const Home_act_edit = ({ add }) => {
 
     return <div>
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>編輯輪播活動</h1>
@@ -114,7 +112,7 @@ const Home_act_edit = ({ add }) => {
                             label="活動日期"
                             defaultValue=' '
                             value={`${data.act_Sdate} ~ ${data.act_Edate}`}
-                        // value={`${data.act_Sdate.slice(0,10)} ~ ${data.act_Edate.slice(0,10)}`}
+                        
 
                         />
                         <TextField
@@ -123,7 +121,7 @@ const Home_act_edit = ({ add }) => {
                             label="活動時間"
                             defaultValue=" "
                             value={`${data.act_Stime} ~ ${data.act_Etime}`}
-                        // value={`${data.act_Stime.slice(0,5)} ~ ${data.act_Etime.slice(0,5)}`}
+                       
 
                         />
 

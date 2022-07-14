@@ -29,7 +29,7 @@ const Newslist = ({ listData }) => {
                                 home_news_id = {home_news_id}
                                 home_news_title = {home_news_title}
                                 home_news_sta = {home_news_sta}
-                                hidhome_news_imgden = {home_news_img}
+                                home_news_img = {home_news_img}
                                 home_news_Sdate = {home_news_Sdate}
                                 home_news_Edate = {home_news_Edate}
                                 home_news_info = {home_news_info}

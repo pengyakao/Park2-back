@@ -6,8 +6,9 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
 import { postNews } from '../../../api/home/postNews';
+import UploadButtons from './UploadButtons'
 
 
 const theme = createTheme({
@@ -21,6 +22,8 @@ const theme = createTheme({
 
 export default function Home_news_new() {
 
+    const [isimg, setImg] = useState([])
+
     const [isData, setData] = useState(
         {
             title: '公告標題',
@@ -33,7 +36,7 @@ export default function Home_news_new() {
     )
     return (
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>新增最新公告</h1>
@@ -101,6 +104,10 @@ export default function Home_news_new() {
                                 }))
                             }}
                         />
+                        <div id="newsImg">
+                            {/* <h4>公告圖片上傳</h4> */}
+                            <UploadButtons width={300} changeImg={setImg}></UploadButtons>
+                        </div>
                     </Box>
                     <ThemeProvider theme={theme}>
                         <Stack spacing={2} direction="row" style={{ display: 'flex', 'justify-content': 'flex-end' }}>
@@ -109,10 +116,19 @@ export default function Home_news_new() {
                                 onClick={() => {
                                     if (window.confirm("是否確認新增") == true) {
                                         console.log(isData);
-                                        postNews(isData).then((result) => {
+                                        console.log(isimg);
+                                        const formData = new FormData();
+                                        formData.append("title", isData.title);
+                                        formData.append("isShow", isData.isShow);
+                                        formData.append("file", isimg)
+                                        formData.append("startDate", isData.startDate);
+                                        formData.append("endDate", isData.endDate);
+                                        formData.append("info", isData.info);
+                                        
+                                        postNews(formData).then((result) => {
                                             console.log(result)
                                         })
-                                        window.location.href="/home/news"
+                                        window.location.href = "/home/news"
                                     } else {
                                         console.log("NO");
                                     }

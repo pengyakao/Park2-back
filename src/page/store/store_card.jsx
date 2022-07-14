@@ -139,12 +139,12 @@ const StoreCard = ({ name, type, img, tel, location, pay1, pay2, pay3, pay4, pay
                 <div>
                     <ThemeProvider theme={theme}>
                         <CardActions style={{ display: 'flex', 'justify-content': 'space-around' }}>
-                            <Button onClick={Edit} size="small" variant="outlined" color="neutral">
+                            <Button onClick={Edit} style={{"min-width": "128px"}} size="small" variant="outlined" color="neutral">
                                 編輯
                             </Button>
-                            <Button onClick={Delete} size="small" variant="outlined" color="error">
+                            {/* <Button onClick={Delete} size="small" variant="outlined" color="error">
                                 刪除
-                            </Button>
+                            </Button> */}
                             <FormGroup style={{ margin: '3px' }}>
                                 <Stack onClick={() => {
                                     if (window.confirm("是否確認修改顯示狀態") == true) {

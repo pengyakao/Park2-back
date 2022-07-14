@@ -7,7 +7,7 @@ import TextField from '@mui/material/TextField';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
 import { getFaq } from '../../../api/home/getFaq';
 import { putFaq } from '../../../api/home/putFaq';
 
@@ -73,7 +73,7 @@ export default function Home_faq_edit(props) {
 
     return (
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>編輯FAQ</h1>

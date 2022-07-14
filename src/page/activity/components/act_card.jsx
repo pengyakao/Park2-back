@@ -120,7 +120,7 @@ const ActCard = ({ key, title, startDate, endDate, startTime, endTime, organizer
         <Card sx={{ maxWidth: 252, minHeight: 223 }}>
             <CardMedia component="img" alt="store-img" height="140" image={data.mainImg} />
             <div style={{ "display": "flex", "justify-content": "space-around", "align-items": "center" }}>
-                <Typography gutterBottom fontSize="14" margin="5px" component="div">
+                <Typography gutterBottom fontSize="14" margin="5px" component="div" style={{"min-height":"50px" , "display": "flex", "align-items": "center"}}>
                     {data.title}
                 </Typography>
             </div>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import LayOut from '../../../components/layout/LayOut';
+import LayOutHome from '../../../components/layout/LayOut_home';
+
 import { useState, useEffect } from 'react';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -102,7 +103,7 @@ export default function Home_act_new() {
 
     return <div>
         <div>
-            <LayOut />
+            <LayOutHome />
             <div className='bs_article'>
                 <div style={{ width: "80%" }}>
                     <h1>新增輪播活動</h1>

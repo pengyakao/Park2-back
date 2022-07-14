@@ -30,47 +30,16 @@ const theme = createTheme({
 //   "font-size": "20px",
 // };
 
-// const data = [
-//   {
-//     label: "活動名稱A",
-//     act_Sdate: "05/06",
-//     act_Edate: "05/21",
-//     act_Stime: "21:00",
-//     act_Etime: "21:30",
-//   },
-//   {
-//     label: "活動名稱B",
-//     act_Sdate: "05/01",
-//     act_Edate: "05/02",
-//     act_Stime: "20:00",
-//     act_Etime: "20:30",
-//   },
-//   {
-//     label: "活動名稱C",
-//     act_Sdate: "04/28",
-//     act_Edate: "04/29",
-//     act_Stime: "09:00",
-//     act_Etime: "09:30",
-//   },
-//   {
-//     label: "活動名稱D",
-//     act_Sdate: "05/16",
-//     act_Edate: "05/17",
-//     act_Stime: "21:00",
-//     act_Etime: "21:30",
-//   },
-// ];
-
 // One time slot every 30 minutes.
 const timeSlots = Array.from(new Array(24 * 2)).map(
   (_, index) =>
     `${index < 20 ? 0 : ""}${Math.floor(index / 2)}:${
-      index % 2 === 0  ? '00' : '30'
+      index % 2 === 0 ? "00" : "30"
     }`
 );
 
 const Act_new = ({ add }) => {
-  // 宣告變數
+  const [act_img, setact_img] = useState();
   const [act_title, setact_title] = useState();
   const [act_class, setact_class] = useState();
   const [act_Sdate, setact_Sdate] = useState("");
@@ -82,7 +51,7 @@ const Act_new = ({ add }) => {
   const [acr_org, setacr_org] = useState();
   const [act_info, setact_info] = useState();
 
-  console.log(act_Stime);
+  // console.log(act_class);
 
   return (
     <div>
@@ -100,7 +69,11 @@ const Act_new = ({ add }) => {
               autoComplete="off"
             >
               <h3>活動封面圖</h3>
-              <UploadButtons label="封面圖片" width={300}></UploadButtons>
+              <UploadButtons
+                setact_img={setact_img}
+                label="封面圖片"
+                width={300}
+              ></UploadButtons>
 
               <h3>活動資訊</h3>
               <TextField
@@ -112,13 +85,15 @@ const Act_new = ({ add }) => {
                 onChange={(e) => setact_title(e.target.value)}
               />
               {/* 活動類別 */}
-              <Select />
+              <Select act_class={act_class} setact_class={setact_class} />
+              {/* 分隔線 */}
               <TextField
                 label="活動日期(起)"
                 id="act_Sdate"
                 type="date"
                 required="true"
-                defaultValue="2022-01-01"
+                // defaultValue="2022-01-01"
+                value={act_Sdate}
                 onChange={(e) => setact_Sdate(e.target.value)}
               />
               <TextField
@@ -126,12 +101,15 @@ const Act_new = ({ add }) => {
                 id="act_Edate"
                 type="date"
                 required="true"
-                defaultValue="2022-01-01"
+                // defaultValue="2022-01-01"
+                value={act_Edate}
                 onChange={(e) => setact_Edate(e.target.value)}
               />
               {/* 活動時間 */}
               <Autocomplete
                 id="act_Stime"
+                value={act_Stime}
+                onChange={(e) => setact_Stime(e.target.innerText)}
                 options={timeSlots}
                 // getOptionDisabled={(option) =>
                 //   option === timeSlots[0] || option === timeSlots[2]
@@ -140,12 +118,12 @@ const Act_new = ({ add }) => {
                 renderInput={(params) => (
                   <TextField {...params} label="活動時間(起)" />
                 )}
-                value={act_Stime}
-                onChange={(e) => setact_Stime(e.target.value)}
               />
               <Autocomplete
                 id="act_Etime"
                 options={timeSlots}
+                value={act_Etime}
+                onChange={(e) => setact_Etime(e.target.innerText)}
                 // getOptionDisabled={(option) =>
                 //   option === timeSlots[0] || option === timeSlots[2]
                 // }
@@ -204,25 +182,27 @@ const Act_new = ({ add }) => {
                 <Button
                   color="neutral"
                   variant="contained"
-                  href="/activity/"
+                  // href="/activity/"
                   onClick={() => {
-                    const formData = new FormData();
+                    // 宣告並新增物件內容
+                    let formData = new FormData();
                     formData.append("title", act_title);
+                    formData.append("type", act_class);
                     formData.append("startDate", act_Sdate);
                     formData.append("endDate", act_Edate);
                     formData.append("startTime", act_Stime);
                     formData.append("endTime", act_Etime);
-                    formData.append("organizer", acr_org);
-                    formData.append("organizerImg", "organizerImg");
                     formData.append("location", act_location);
-                    formData.append("type", 3);
                     formData.append("guests", act_guests);
+                    formData.append("organizer", acr_org);
                     formData.append("info", act_info);
-                    formData.append("file", "file");
-                    formData.append("isShow", "isShow");
-                    formData.append("isSlider", "isSlider");
+                    formData.append("organizerImg", "temp");
+                    formData.append("isShow", 0);
+                    formData.append("isSlider", 0);
+                    formData.append("file", act_img);
+
                     postActivity(formData);
-                    alert("送出");
+                    alert("新增成功");
                   }}
                 >
                   送出
