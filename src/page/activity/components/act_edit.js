@@ -9,12 +9,6 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import UploadButtons from "./UploadButtons";
 import SelectInput from "./Select";
-import UploadMore from "./UploadMore";
-
-import TextareaAutosize from "@mui/material/TextareaAutosize";
-import FormGroup from "@mui/material/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
 
 // api
 import { getActivity } from "../../../api/activity/getActivity";
@@ -209,8 +203,6 @@ const Act_edit = () => {
                 value={act_info ?? ""}
                 onChange={(e) => setact_info(e.target.value)}
               />
-              {/* <h3>活動照片</h3>
-              <UploadMore /> */}
             </Box>
             <ThemeProvider theme={theme}>
               <Stack

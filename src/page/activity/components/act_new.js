@@ -8,7 +8,6 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import UploadButtons from "./UploadButtons";
 import Select from "./Select";
-import UploadMore from "./UploadMore";
 
 // api
 import { postActivity } from "../../../api/activity/postActivity";
@@ -40,6 +39,7 @@ const timeSlots = Array.from(new Array(24 * 2)).map(
 
 const Act_new = ({ add }) => {
   const [act_img, setact_img] = useState();
+
   const [act_title, setact_title] = useState();
   const [act_class, setact_class] = useState();
   const [act_Sdate, setact_Sdate] = useState("");
@@ -87,23 +87,26 @@ const Act_new = ({ add }) => {
               {/* 活動類別 */}
               <Select act_class={act_class} setact_class={setact_class} />
               {/* 分隔線 */}
+
               <TextField
                 label="活動日期(起)"
                 id="act_Sdate"
                 type="date"
                 required="true"
-                // defaultValue="2022-01-01"
-                value={act_Sdate}
+                defaultValue="2022-01-01"
+                value={act_Sdate || "2022-01-01"}
                 onChange={(e) => setact_Sdate(e.target.value)}
               />
+
               <TextField
                 label="活動日期(迄)"
                 id="act_Edate"
                 type="date"
                 required="true"
-                // defaultValue="2022-01-01"
-                value={act_Edate}
+                defaultValue=""
+                value={act_Edate || "2022-01-01"}
                 onChange={(e) => setact_Edate(e.target.value)}
+                renderInput={(params) => <TextField {...params} />}
               />
               {/* 活動時間 */}
               <Autocomplete
@@ -169,8 +172,7 @@ const Act_new = ({ add }) => {
                 value={act_info ?? ""}
                 onChange={(e) => setact_info(e.target.value)}
               />
-              {/* <h3>活動照片</h3>
-              <UploadMore /> */}
+            
             </Box>
             <ThemeProvider theme={theme}>
               <Stack
@@ -203,7 +205,7 @@ const Act_new = ({ add }) => {
                     formData.append("isSlider", 0);
                     formData.append("file", act_img);
 
-                    // postActivity(formData);
+                    postActivity(formData);
                     alert("新增成功");
                   }}
                 >
