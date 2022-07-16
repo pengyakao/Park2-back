@@ -8,21 +8,20 @@ const Input = styled("input")({
 });
 
 export default function UploadButtons({ act_img, setact_img }) {
-  const [isimg, setImg] = React.useState();
+  const [isImg, setImg] = React.useState();
+  
   const onChange = (e) => {
     const file = e.target.files.item(0); // 取得選中檔案們的一個檔案
     const fileReader = new FileReader(); // FileReader為瀏覽器內建類別，用途為讀取瀏覽器選中的檔案
     fileReader.addEventListener("load", fileLoad);
     fileReader.readAsDataURL(file); // 讀取完檔案後，變成URL
     setact_img(file);
-    console.log(file);
     console.log("ok");
   };
   const fileLoad = (e) => {
     setImg(e.target.result);
     // 讀取到DataURL後，儲存在result裡面，指定為img
   };
-  // console.log(isimg);
 
   return (
     <div
@@ -42,7 +41,7 @@ export default function UploadButtons({ act_img, setact_img }) {
           overflow: "hidden",
         }}
       >
-        <img height={300} src={isimg ?? act_img} alt="" />
+        <img height={300} src={isImg ?? act_img} alt="" />
       </div>
       <Stack
         direction="row"
