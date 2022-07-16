@@ -34,3 +34,13 @@ export function editStoreApply(data) {
 export function postMail(data) {
 	return handleReq(reqObj.post('/mail/contract/post', data))
 }
+
+// 寄送帳密
+export function postAccount(data) {
+	return handleReq(reqObj.post('/mail/login/post', data))
+}
+
+// 新增
+// export function postAccount(data) {
+// 	return handleReq(reqObj.post('/mail/login/post', data))
+// }
