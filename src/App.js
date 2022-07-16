@@ -11,7 +11,7 @@ import Stationed_market from './page/stationed/stationed_market';
 import Stationed_market_each from './page/stationed/stationed_market_each';
 import User from './page/user/user';
 import User_edit from './page/user/user_edit';
-import Login from './page/login/logon';
+import Login from './page/login/login';
 
 // import Ally from './page/ally_compontents';
 

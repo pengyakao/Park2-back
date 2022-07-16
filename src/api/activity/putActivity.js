@@ -6,9 +6,10 @@ import axios from "axios"
 // 設定 baseUrl
 const reqObj = axios.create({
   // baseURL 設定的是自己測試的 IP位址:server埠號 (ex. http://192.168.0.112:3000)
-	baseURL: 'http://10.0.102.245:3001',
+	// baseURL: 'http://10.0.102.245:3001',
 	// baseURL: 'http://192.168.0.101:3001',
 	// baseURL: 'http://192.168.0.7:3001',
+	baseURL: 'http://10.0.101.137:3001',
 	header: {
 		'Content-Type': 'application/json'
 	}
@@ -26,6 +27,11 @@ function handleReq(e) {
 // api function
 export function putActivity(data) {
 	return handleReq(reqObj.put('/admin/activity/edit',data))
+}
+
+
+export function putActivity2(data) {
+	return handleReq(reqObj.put('/admin/activity/edit/file',data))
 }
 
 // 放到要get資料的頁面
