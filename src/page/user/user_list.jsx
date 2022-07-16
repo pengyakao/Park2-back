@@ -32,14 +32,6 @@ const theme = createTheme({
 
 
 const Userlist = ({ listData }) => {
-
-
-
-    // useEffect (()=>{
-    //     getActivities().then((result)=>{
-    //         console.log(result)
-    //     })
-    // })
     
 
     return (
@@ -51,7 +43,7 @@ const Userlist = ({ listData }) => {
                             <TableCell>帳號名稱</TableCell>
                             <TableCell>使用者帳號</TableCell>
                             <TableCell align="center">帳號權限</TableCell>
-                            <TableCell align="center">進駐狀態</TableCell>
+                            <TableCell align="center"></TableCell>
                             <TableCell></TableCell>
                         </TableRow>
                     </TableHead>
