@@ -18,6 +18,7 @@ import "./store_each.css";
 import { getStore } from "../../api/store/storeApi";
 import { putStore, putStoreWithoutFile } from "../../api/store/storeApi";
 import { getStoreImgs, editStoreImgs } from "../../api/test/uploadImgApi";
+import { checkLogin } from '../../api/login/isLogin'
 
 const theme = createTheme({
   palette: {

@@ -122,6 +122,7 @@ const Login = () => {
                 loginUser(info).then((result)=>{
                   if(result.token){
                     localStorage.setItem('Token', result.token);
+                    localStorage.setItem('UserInfo', result.user);
                     window.location.href="/home/act"
                   }else{
                     window.alert('帳號密碼錯誤！')

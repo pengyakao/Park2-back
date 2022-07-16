@@ -16,7 +16,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { getStoreApply, editStoreApply, postMail } from '../../api/stationed/storeApi';
+import { getStoreApply, editStoreApply, postMail, postAccount } from '../../api/stationed/storeApi';
 import { checkLogin } from '../../api/login/isLogin'
 import ReplyIcon from '@mui/icons-material/Reply';
 
@@ -165,7 +165,7 @@ export default function Stationed_store_each() {
         <div>
             <LayOutStation />
             <div className='bs_article'>
-                <a style={{ textDecoration: 'none', color: '#000', fontSize: '15px', display: 'inline-flex', alignItems: 'center', marginTop: '10px'}} href='/stationed_market/'>
+                <a style={{ textDecoration: 'none', color: '#000', fontSize: '15px', display: 'inline-flex', alignItems: 'center', marginTop: '10px'}} href='/stationed_store/'>
                     <div className="icon" style={{ border: 'solid 2px #000', padding: '0px 3px', borderRadius: '3px'}}>
                         <ReplyIcon sx={{fontSize: '20px'}}></ReplyIcon>
                     </div>
@@ -274,6 +274,19 @@ export default function Stationed_store_each() {
                                                             content: '您好，您的店家進駐申請已通過，請詳讀合約內容並完成公司用印後回傳至 park2Taichung@gmail.com'
                                                         }
                                                         postMail(mail).then((result)=>{
+                                                            console.log(result)
+                                                        })
+                                                    }else if(nextState == 3){
+                                                        const mail={
+                                                            target: 'j951j951@gmail.com',
+                                                            title: `${data[0].sto_apply_brand}您好，您的Park2店家後台已建立！`,
+                                                            content: `
+                                                                您好，您的店家後台帳號已建立，請前往後台 http://localhost:3000/login 登入並管理店家資訊！
+                                                                帳號：${data[0].sto_apply_mail}
+                                                                密碼：'0000'
+                                                            `
+                                                        }
+                                                        postAccount(mail).then((result)=>{
                                                             console.log(result)
                                                         })
                                                     }
