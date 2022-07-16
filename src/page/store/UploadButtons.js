@@ -11,14 +11,15 @@ const Input = styled('input')({
     display: 'none',
 })
 
-export default function UploadButtons() {
-    const [sto_img, setImg] = useState([])
+export default function UploadButtons({sto_img, setsto_img}) {
+    const [isImg, setImg] = useState()
 
     const onChange = (e) => {
         const file = e.target.files.item(0) // 取得選中檔案們的一個檔案
         const fileReader = new FileReader() // FileReader為瀏覽器內建類別，用途為讀取瀏覽器選中的檔案
         fileReader.addEventListener('load', fileLoad)
         fileReader.readAsDataURL(file) // 讀取完檔案後，變成URL
+        setsto_img(file)
         console.log('ok')
     }
 
@@ -45,7 +46,7 @@ export default function UploadButtons() {
                     overflow: 'hidden',
                 }}
             >
-                <img height={300} src={sto_img} />
+                <img height={300} src={isImg?? sto_img} />
             </div>
             <Stack direction="row" alignItems="center" justifyContent="center" margin={2} spacing={2}>
                 <label htmlFor="contained-button-file">

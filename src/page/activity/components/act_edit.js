@@ -33,8 +33,8 @@ const style1 = {
 
 const Act_edit = () => {
   // 宣告變數
-  const [data, setdata] = useState({});
-  const [act_img, setact_img] = useState();
+  const [data, setdata] = useState([]);
+  const [act_img, setact_img] = useState([]);
   const [act_title, setact_title] = useState();
   const [act_class, setact_class] = useState();
   const [act_Sdate, setact_Sdate] = useState("");
@@ -67,17 +67,20 @@ const Act_edit = () => {
 
   //   欄位初始化
   useEffect(() => {
-    setact_img(data.act_img);
-    setact_title(data.act_title);
-    setact_class(data.act_class);
-    setact_Sdate(data.act_Sdate);
-    setact_Edate(data.act_Edate);
-    setact_Stime(data.act_Stime);
-    setact_Etime(data.act_Etime);
-    setact_location(data.act_location);
-    setact_guests(data.act_guests);
-    setacr_org(data.acr_org);
-    setact_info(data.act_info);
+    if(data){
+      setact_img(data.act_img);
+      setact_title(data.act_title);
+      setact_class(data.act_class);
+      setact_Sdate(data.act_Sdate);
+      setact_Edate(data.act_Edate);
+      setact_Stime(data.act_Stime);
+      setact_Etime(data.act_Etime);
+      setact_location(data.act_location);
+      setact_guests(data.act_guests);
+      setacr_org(data.acr_org);
+      setact_info(data.act_info);
+    }
+    
   }, [data]);
 
   //開發用
@@ -216,7 +219,7 @@ const Act_edit = () => {
                 <Button
                   color="neutral"
                   variant="contained"
-                  // href="/activity/"
+                  href="/activity/"
                   onClick={() => {
                     const formData = new FormData();
                     formData.append("id", i);
@@ -235,6 +238,7 @@ const Act_edit = () => {
                     formData.append("isShow", 0);
                     formData.append("isSlider", data.act_is_slider ?? 0);
                     formData.append("delete", data.act_img);
+
 
                     putActivity2(formData);
                     alert("編輯成功");
