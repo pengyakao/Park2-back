@@ -1,5 +1,5 @@
 import React, { Component, useEffect, useState } from "react";
-import LayOut from "../../../components/layout/LayOut";
+import LayOutAct from "../../../components/layout/LayOut_activity";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -56,7 +56,7 @@ const Act_new = ({ add }) => {
   return (
     <div>
       <div>
-        <LayOut />
+        <LayOutAct />
         <div className="bs_article">
           <div style={{ width: "80%", paddingBottom: "50px" }}>
             <h1>新增活動</h1>
