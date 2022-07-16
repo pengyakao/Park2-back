@@ -3,21 +3,13 @@ import { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 
-export default function DisabledOptions(data) {
-  var time = data.data;
+export default function DisabledOptions({data, setdata}) {
 
-
-  // useEffect(()=>{
-  //   setsto_weekdayStart(time);
-  //   setsto_weekdayEnd(time)
-  //   setsto_holidayStart(time)
-  //   setsto_holidayEnd(time)
-  // },[data])
 
   return (
     <Autocomplete
-      value={time}
-      // onChange={(e) => setsto_weekdayStart(e.target.value)}
+      value={data ?? ''}
+      onChange={(e)=>{setdata(e.target.innerText)}}
       id="disabled-options-demo"
       options={timeSlots}
       // getOptionDisabled={(option) => option === timeSlots[0] || option === timeSlots[2]}

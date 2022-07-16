@@ -38,8 +38,7 @@ const timeSlots = Array.from(new Array(24 * 2)).map(
 );
 
 const Act_new = ({ add }) => {
-  const [act_img, setact_img] = useState();
-
+  const [act_img, setact_img] = useState([]);
   const [act_title, setact_title] = useState();
   const [act_class, setact_class] = useState();
   const [act_Sdate, setact_Sdate] = useState("");
@@ -186,7 +185,7 @@ const Act_new = ({ add }) => {
                 <Button
                   color="neutral"
                   variant="contained"
-                  // href="/activity/"
+                  href="/activity/"
                   onClick={() => {
                     // 宣告並新增物件內容
                     let formData = new FormData();
@@ -205,7 +204,9 @@ const Act_new = ({ add }) => {
                     formData.append("isSlider", 0);
                     formData.append("file", act_img);
 
-                    postActivity(formData);
+                    postActivity(formData).then((result)=>{
+                      console.log(result)
+                    })
                     alert("新增成功");
                   }}
                 >

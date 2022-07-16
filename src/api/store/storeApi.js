@@ -7,7 +7,7 @@ const reqObj = axios.create({
     // baseURL 設定的是自己測試的 IP位址:server埠號 (ex. http://192.168.0.112:3000)
     // baseURL: 'http://192.168.100.11:3001',
 	// baseURL: 'http://192.168.0.7:3001',
-	baseURL: url,
+	baseURL: 'http://192.168.100.11:3001',
 
 
     header: {
@@ -35,7 +35,13 @@ export function getStore(id) {
     }))
 }
 
-
 export function putStore(data) {
-    return handleReq(reqObj.put('/self/store/edit', data))
+    return handleReq(reqObj.put('/admin/store/edit/file', data))
 }
+
+
+export function putStoreWithoutFile(data) {
+	return handleReq(reqObj.put('/admin/store/edit',data))
+}
+
+

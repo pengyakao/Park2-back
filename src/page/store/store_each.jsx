@@ -1,28 +1,23 @@
-import React, { Component } from 'react'
+import React from "react";
 import { useLocation } from "react-router-dom";
-import LayOutStore from '../../components/layout/LayOut_store'
-import { useState, useEffect } from 'react'
-import { createTheme, ThemeProvider } from '@mui/material/styles'
-import Stack from '@mui/material/Stack'
-import Button from '@mui/material/Button'
-import Box from '@mui/material/Box'
-import TextField from '@mui/material/TextField'
-import TextareaAutosize from './TextareaAutosize'
-import Checkbox from '@mui/material/Checkbox'
-import UploadButtons from './UploadButtons'
-import ComboBox from './ComboBox'
-import UploadMore from './UploadMore.jsx'
-import TimeOption from './TimeOption'
-import Input_fb from './Input_fb'
-import Input_ig from './Input_ig'
-import Input_line from './Input_line'
-import './store_each.css'
-import { useParams } from 'react-router-dom'
+import LayOutStore from "../../components/layout/LayOut_store";
+import { useState, useEffect } from "react";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
+import Box from "@mui/material/Box";
+import TextField from "@mui/material/TextField";
+import Checkbox from "@mui/material/Checkbox";
+import UploadButtons from "./UploadButtons";
+import UploadMore from "./UploadMore.jsx";
+import TimeOption from "./TimeOption";
+import "./store_each.css";
+
 
 // api
-import { getStore } from '../../api/store/storeApi'
-import { putStore } from '../../api/store/storeApi'
-import { checkLogin } from '../../api/login/isLogin'
+import { getStore } from "../../api/store/storeApi";
+import { putStore, putStoreWithoutFile } from "../../api/store/storeApi";
+import { getStoreImgs, editStoreImgs } from "../../api/test/uploadImgApi";
 
 const theme = createTheme({
   palette: {
@@ -37,6 +32,8 @@ const Store_each = () => {
   // 宣告變數
   const [data, setData] = useState({});
   const [sto_name, setsto_name] = useState();
+  const [sto_img, setsto_img] = useState();
+  const [sto_moreImgFormData, setmoreImgFormData] = useState(new FormData());
   const [sto_location, setsto_location] = useState();
   const [sto_tel, setsto_tel] = useState();
   const [sto_weekdayStart, setsto_weekdayStart] = useState("");
@@ -56,17 +53,15 @@ const Store_each = () => {
   const [sto_info, setsto_info] = useState();
 
   //抓網址來讀取資料
-  var i;
+  let i = "";
   const url = useLocation();
-  var arr = Array.from(url.pathname);
-  var urlSlice = arr.length - arr.lastIndexOf("/") - 1;
-
-  if (urlSlice === 1) {
-    i = Number(arr.slice(-urlSlice, arr.length)[0]);
-  } else if (urlSlice === 2) {
-    i = Number(
-      arr.slice(-urlSlice, arr.length)[0] + arr.slice(-urlSlice, arr.length)[1]
-    );
+  let arr = Array.from(url.pathname);
+  let urlLength = arr.length - arr.lastIndexOf("/") - 1;
+  for (let j = 0; j < urlLength; j++) {
+    i = i + arr.slice(-urlLength, arr.length)[j];
+    if (j === urlLength - 1) {
+      i = Number(i);
+    }
   }
 
   //   載入資料
@@ -81,6 +76,7 @@ const Store_each = () => {
 
   //   input初始化
   useEffect(() => {
+    setsto_img(data.sto_first_img);
     setsto_name(data.sto_name);
     setsto_location(data.sto_location);
     setsto_tel(data.sto_tel);
@@ -104,11 +100,10 @@ const Store_each = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   // 開發用
-  // console.log(data.sto_thu);
+  // console.log(data);
   // console.log(data.sto_fri);
   // console.log(data.sto_sat);
   // console.log(data.sto_sun);
-  // console.log(sto_img);
   // console.log(document.getElementById('contained-button-file'));
 
   return (
@@ -127,9 +122,13 @@ const Store_each = () => {
               autoComplete="off"
               direction="row"
             >
-              <div className="storeMainImg">
+              <div className="reMainImg">
                 <h3>封面圖片</h3>
-                <UploadButtons width={300}></UploadButtons>
+                <UploadButtons
+                  sto_img={sto_img}
+                  setsto_img={setsto_img}
+                  width={300}
+                ></UploadButtons>
               </div>
               <div className="storeName">
                 <h3>店家名稱</h3>
@@ -173,7 +172,11 @@ const Store_each = () => {
                       （至少五張，最多八張）
                     </span>
                   </h3>
-                  <UploadMore></UploadMore>
+                  <UploadMore
+                    i={i}
+                    sto_moreImgFormData={sto_moreImgFormData}
+                    setmoreImgFormData={setmoreImgFormData}
+                  ></UploadMore>
                 </div>
               </div>
               <div className="storetime">
@@ -182,17 +185,26 @@ const Store_each = () => {
                   <div>
                     <div>平日：</div>
                     <TimeOption
-                      data={sto_weekdayStart ?? ""}
-                      id={'sto_weekdayStart'}
+                      data={sto_weekdayStart}
+                      setdata={setsto_weekdayStart}
                     ></TimeOption>
                     <div>～</div>
-                    <TimeOption data={sto_weekdayEnd ?? ""}></TimeOption>
+                    <TimeOption
+                      data={sto_weekdayEnd}
+                      setdata={setsto_weekdayEnd}
+                    ></TimeOption>
                   </div>
                   <div>
                     <div>假日：</div>
-                    <TimeOption data={sto_holidayStart ?? ""}></TimeOption>
+                    <TimeOption
+                      data={sto_holidayStart}
+                      setdata={setsto_holidayStart}
+                    ></TimeOption>
                     <div>～</div>
-                    <TimeOption data={sto_holidayEnd ?? ""}></TimeOption>
+                    <TimeOption
+                      data={sto_holidayEnd}
+                      setdata={setsto_holidayEnd}
+                    ></TimeOption>
                   </div>
                 </div>
               </div>
@@ -349,37 +361,52 @@ const Store_each = () => {
                   <Button
                     color="neutral"
                     variant="contained"
-                    href="/store"
+                    // href="/store"
                     onClick={() => {
                       alert("資料已上傳");
-                      var myData = {
-                        img: "sto_img",
-                        tel: sto_tel,
-                        location: data.sto_location,
-                        pay1: data.sto_pay1,
-                        pay2: data.sto_pay2,
-                        pay3: data.sto_pay3,
-                        pay4: data.sto_pay4,
-                        pay5: data.sto_pay5,
-                        pay6: data.sto_pay6,
-                        pay7: data.sto_pay7,
-                        mon: data.sto_mon,
-                        tue: data.sto_tue,
-                        wed: data.sto_wed,
-                        thu: sto_weekdayStart,
-                        fri: sto_weekdayEnd,
-                        sat: sto_holidayStart,
-                        sun: sto_holidayEnd,
-                        fb: sto_fb,
-                        ig: sto_ins,
-                        line: sto_line,
-                        info: sto_info,
-                        state: data.sto_sta,
-                        isMain: data.sto_main,
-                        id: data.sto_id,
-                      };
-                      putStore(myData);
-                      console.log("資料已上傳");
+
+                      const formData = new FormData();
+                      formData.append("id", i);
+                      formData.append("name", sto_name);
+                      formData.append("location", sto_location);
+                      formData.append("tel", sto_tel);
+                      formData.append("type", data.sto_class);
+                      formData.append("thu", sto_weekdayStart);
+                      formData.append("fri", sto_weekdayEnd);
+                      formData.append("sat", sto_holidayStart);
+                      formData.append("sun", sto_holidayEnd);
+                      formData.append("pay1", sto_pay1);
+                      formData.append("pay2", sto_pay2);
+                      formData.append("pay3", sto_pay3);
+                      formData.append("pay4", sto_pay4);
+                      formData.append("pay5", sto_pay5);
+                      formData.append("pay6", sto_pay6);
+                      formData.append("pay7", sto_pay7);
+                      formData.append("fb", sto_fb);
+                      formData.append("ig", sto_ins);
+                      formData.append("line", sto_line);
+                      formData.append("info", sto_info);
+                      formData.append("state", data.sto_sta);
+                      formData.append("isMain", data.sto_main);
+
+                      // if (data.sto_first_img && sto_img !== data.sto_first_img) {
+                      //   console.log(1)
+                      //   formData.append("file", sto_img);
+                      //   formData.append("logo", "img");
+                      //   formData.append("delete", data.sto_first_img);
+                      //   putStore(formData).then((result) => {
+                      //     console.log(result);
+                      //   });
+                      // } else {
+                      //   putStoreWithoutFile(formData).then((result) => {
+                      //     console.log(result);
+                      //   });
+                      // }
+                      // console.log(sto_moreImgFormData)
+                      editStoreImgs(sto_moreImgFormData).then((result) => {
+                        console.log(result);
+                      });
+        
                     }}
                   >
                     送出
