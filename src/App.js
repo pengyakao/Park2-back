@@ -13,34 +13,36 @@ import User from './page/user/user';
 import User_edit from './page/user/user_edit';
 import Login from './page/login/login';
 
+import { useState } from 'react';
+
 // import Ally from './page/ally_compontents';
 
 import './App.css';
 
-class App extends Component {
-  render() {
-    return (
-      <React.Fragment>
-        <BrowserRouter>
-          <Switch>
-            <Route path="/" component={Login} exact />
-            <Route path="/home" component={Home} />
-            <Route path="/activity" component={Activity}/>
-            <Route path="/store" component={Store} exact/>
-            <Route path="/store/:storeId" component={Store_each} />
-            <Route path="/stationed_store" component={Stationed_store} exact/>
-            <Route path="/stationed_store/:applyId" component={Stationed_store_each} />
-            <Route path="/stationed_market" component={Stationed_market} exact/>
-            <Route path="/stationed_market/:applyId" component={Stationed_market_each} />
-            <Route path="/user" component={User} exact/>
-            <Route path="/user/:userId" component={User_edit} />
-            {/* login */}
-            {/* <Route path="/ally" component={Ally} /> */}
-          </Switch>
-        </BrowserRouter>
-      </React.Fragment>
-    );
-  }
+const App = () => {
+  return (
+    <React.Fragment>
+      <BrowserRouter>
+        <Switch>
+          {/* <Route path="/" component={Login} exact /> */}
+          <Route path="/" component={Home} exact/>
+          <Route path="/home" component={Home} />
+          <Route path="/activity" component={Activity}/>
+          <Route path="/store" component={Store} exact/>
+          <Route path="/store/:storeId" component={Store_each} />
+          <Route path="/stationed_store" component={Stationed_store} exact/>
+          <Route path="/stationed_store/:applyId" component={Stationed_store_each} />
+          <Route path="/stationed_market" component={Stationed_market} exact/>
+          <Route path="/stationed_market/:applyId" component={Stationed_market_each} />
+          <Route path="/user" component={User} exact/>
+          <Route path="/user/:userId" component={User_edit} />
+          <Route path="/login" component={Login} />
+          {/* login */}
+          {/* <Route path="/ally" component={Ally} /> */}
+        </Switch>
+      </BrowserRouter>
+    </React.Fragment>
+  );
 }
 
 export default App;

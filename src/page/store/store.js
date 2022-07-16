@@ -4,6 +4,7 @@ import StoreCard from './store_card'
 import CardList from './cardList'
 import { useState , useEffect } from 'react'
 import { getStore } from '../../api/store/getStore'
+import { checkLogin } from '../../api/login/isLogin'
 
 
 export default function Store() {
@@ -14,6 +15,9 @@ export default function Store() {
     );
 
     useEffect(() => {
+        checkLogin().then(result=>{
+            console.log(result)
+        })
         async function getData() {
             let faqList = await getStore().then((result) => {
                 setData(result)

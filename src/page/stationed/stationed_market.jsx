@@ -7,12 +7,16 @@ import AddIcon from '@mui/icons-material/Add';
 import LayOutStation from '../../components/layout/LayOut_stationed';
 import Stationed_market_list from './stationed_market_list';
 import { getMarketApply, getMarketList } from '../../api/stationed/marketApi'
+import { checkLogin } from '../../api/login/isLogin'
 
 export default function Stationed_market() {
     const [data, setData] = useState([]);
     const [market, setMarket] = useState([]);
 
     useEffect(()=>{
+        checkLogin().then((result)=>{
+            console.log(result)
+        })
         getMarketApply().then((result)=>{
             setData(result)
         })

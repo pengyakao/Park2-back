@@ -1,4 +1,5 @@
 import axios from "axios"
+import {url}  from '../url.js'
 
 // 引入 Axios
 {/* <script src="https://unpkg.com/axios/dist/axios.min.js"></script> */}
@@ -9,7 +10,7 @@ const reqObj = axios.create({
 	// baseURL: 'http://10.0.102.245:3001',
 	// baseURL: 'http://192.168.0.101:3001',
 	// baseURL: 'http://192.168.0.7:3001',
-	baseURL: 'http://10.0.101.137:3001',
+	baseURL: url,
 	header: {
 		'Content-Type': 'application/json'
 	}

@@ -16,21 +16,14 @@ function handleReq(e) {
 	return new Promise((resolve, reject) => {
 		e
 			.then((res) => resolve(res.data))
-			.catch((err) => reject(err))
+			.catch((err) => {
+                window.alert('帳號密碼錯誤！')
+                reject(err)
+            })
 	})
 }
 
-// 取得市集資料
-export function getStoreApply() {
-	return handleReq(reqObj.get('/admin/apply/store/get'))
-}
-
-// 編輯市集資料
-export function editStoreApply(data) {
-	return handleReq(reqObj.put('/admin/apply/store/edit', data))
-}
-
-// 寄送合約
-export function postMail(data) {
-	return handleReq(reqObj.post('/mail/contract/post', data))
+// 登入
+export function loginUser(data) {
+	return handleReq(reqObj.post('/admin/login/user', data))
 }

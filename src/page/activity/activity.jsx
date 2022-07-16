@@ -5,6 +5,8 @@ import Act from './components/act';
 import Act_edit from './components/act_edit';
 import Act_new from './components/act_new';
 
+import { checkLogin } from '../../api/login/isLogin'
+
 class Activity extends Component {
   state = {}
   render() {
@@ -17,6 +19,11 @@ class Activity extends Component {
         </Switch>
       </BrowserRouter>
     );
+  }
+  componentDidMount = () => {
+    checkLogin().then(result=>{
+      console.log(result)
+    })
   }
 }
 

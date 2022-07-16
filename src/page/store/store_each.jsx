@@ -22,6 +22,7 @@ import { useParams } from 'react-router-dom'
 // api
 import { getStore } from '../../api/store/storeApi'
 import { putStore } from '../../api/store/storeApi'
+import { checkLogin } from '../../api/login/isLogin'
 
 const theme = createTheme({
   palette: {
@@ -70,6 +71,9 @@ const Store_each = () => {
 
   //   載入資料
   useEffect(() => {
+    checkLogin().then((result)=>{
+      console.log(result)
+    })
     getStore(i).then((result) => {
       setData(result[0]);
     });

@@ -12,7 +12,10 @@ const LayOutAct = () => {
                 <li><a href="/stationed_store">進駐管理</a></li>
                 <li><a href="/user">帳號管理</a></li>
             </ul>
-            <button className="btn_logout" onclick="">
+            <button className="btn_logout" onClick={()=>{
+                localStorage.removeItem('Token');
+                window.location.href = '/login'
+            }}>
                 <img src="/img/LogOut.svg" alt="log_out" />登出
             </button>
         </div>

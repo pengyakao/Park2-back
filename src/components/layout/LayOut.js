@@ -10,7 +10,7 @@ const LayOut = () => {
         home: [
             { title: "活動輪播", url: "/home/act" },
             { title: "官方公告", url: "/home/news" },
-            { title: "FQA", url: "/home/faq" },
+            { title: "FAQ", url: "/home/faq" },
             { title: "跑馬燈", url: "/home/mar" }
         ],
         activity: [

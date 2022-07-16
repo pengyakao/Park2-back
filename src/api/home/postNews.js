@@ -1,5 +1,5 @@
 import axios from "axios"
-import { url } from './url.js'
+import { url } from '../url.js'
 
 // 引入 Axios
 {/* <script src="https://unpkg.com/axios/dist/axios.min.js"></script> */ }

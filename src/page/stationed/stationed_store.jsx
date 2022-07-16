@@ -7,11 +7,15 @@ import AddIcon from '@mui/icons-material/Add';
 import LayOutStation from '../../components/layout/LayOut_stationed';
 import Stationed_store_list from './stationed_store_list';
 import { getStoreApply } from '../../api/stationed/storeApi'
+import { checkLogin } from '../../api/login/isLogin'
 
 export default function Stationed_store() {
     const [data, setData] = useState([]);
 
     useEffect(()=>{
+        checkLogin().then((result)=>{
+            console.log(result)
+        })
         getStoreApply().then((result)=>{
             setData(result)
         })

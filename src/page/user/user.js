@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import LayOutUser from '../../components/layout/LayOut_user';
 import Userlist from './user_list';
+import { useEffect } from 'react';
+
+import { checkLogin } from '../../api/login/isLogin'
 
 
 // api
@@ -14,6 +17,12 @@ export default function User() {
     var myData = data
     var myToken = token
     var listData = myData;
+
+    useEffect(()=>{
+        checkLogin().then((result)=>{
+            console.log(result)
+        })
+    },[])
 
     // 
         // var listData;

@@ -17,6 +17,7 @@ import Paper from '@mui/material/Paper';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
 import { getMarketApply, getMarketList, editMarketApply } from '../../api/stationed/marketApi';
+import { checkLogin } from '../../api/login/isLogin'
 import ReplyIcon from '@mui/icons-material/Reply';
 
 const style = {
@@ -210,6 +211,9 @@ export default function Stationed_market_each() {
     }
 
     useEffect(()=>{
+        checkLogin().then(result=>{
+            console.log(result)
+        })
         initData()
     },[])
 

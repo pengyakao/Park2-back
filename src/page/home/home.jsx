@@ -12,6 +12,8 @@ import Home_news_edit from './components/home_news_edit';
 import Home_news_new from './components/home_news_new';
 import Home_mar from './components/home_mar';
 
+import { checkLogin } from '../../api/login/isLogin'
+
 class Home extends Component {
   state = {}
   render() {
@@ -31,6 +33,11 @@ class Home extends Component {
         </Switch>
       </BrowserRouter>
     );
+  }
+  componentDidMount = () => {
+    checkLogin().then((result)=>{
+      console.log(result)
+    })
   }
 }
 
