@@ -12,7 +12,12 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { addMarket } from '../../api/stationed/marketApi'
 
 import Autocomplete from '@mui/material/Autocomplete';
 import TextField from '@mui/material/TextField';
@@ -26,11 +31,33 @@ const theme = createTheme({
     },
 });
 
+const popup = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    display: 'flex',
+    flexDirection: 'column',
+    border: '4px solid #eee',
+    borderRadius: 5,
+    boxShadow: 24,
+    backgroundColor: '#fff',
+    padding: '30px',
+    minWidth: '400px',
+    minHeight: '200px'
+};
+
 
 const Stationed_market_list = ({ listData, marketData }) => {
     const [transfer, setTransfer] = useState([])
     const [inputValue, setInputValue] = useState('')
     const [marketValue, setMarketValue] = useState('')
+    const [market, setMarket] = useState({
+        title: '',
+        start: '',
+        end: '',
+        count: ''
+    })
 
     let standard = {
         '1': '審核中',
@@ -38,9 +65,8 @@ const Stationed_market_list = ({ listData, marketData }) => {
         '3': '匯款中',
         '4': '待查帳',
         '5': '已完成',
-        '6': '已取消',
-        '7': '待退款',
-        '8': '已退款'
+        '6': '待退款',
+        '7': '已取消'
     }
     
     const transferState = (data) => {
@@ -70,6 +96,10 @@ const Stationed_market_list = ({ listData, marketData }) => {
         })
         return transferDate
     }
+
+    const [open, setOpen] = React.useState(false);
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
     
     useEffect(()=>{
         console.log('test',marketData)
@@ -131,9 +161,18 @@ const Stationed_market_list = ({ listData, marketData }) => {
     ]
 
     return (
-        <div>
+        <ThemeProvider theme={theme}>
+            <div style={{marginBottom: '25px'}}>
+                <Button variant="outlined" color="neutral" onClick={handleOpen} >
+                    <AddCircleOutlineIcon sx={{marginRight: '5px'}} color="neutral"/>
+                    新增市集活動
+                </Button>
+            </div>
+
+            <div style={{fontWeight: '700', marginBottom: '10px'}}>市集申請</div>
             <div className='wrapper' style={{display: 'flex', marginBottom: '25px'}}>
                 <Autocomplete
+                    color="neutral"
                     id="size-small-outlined"
                     size="small"
                     options={marketData}
@@ -151,6 +190,7 @@ const Stationed_market_list = ({ listData, marketData }) => {
                     )}
                 />
                 <Autocomplete
+                    color="neutral"
                     id="size-small-outlined"
                     size="small"
                     options={stateOptions}
@@ -194,19 +234,75 @@ const Stationed_market_list = ({ listData, marketData }) => {
                                 <TableCell >{row.mar_apply_count}</TableCell>
                                 <TableCell >{row.mar_apply_sta}</TableCell>
                                 <TableCell >
-                                    <ThemeProvider theme={theme}>
+                                    {/* <ThemeProvider theme={theme}> */}
                                         <Stack spacing={2} direction="row">
                                             <Button variant="outlined" color="neutral" href={`/stationed_market/${row.mar_apply_id}`}>查看資料</Button>
                                         </Stack>
-                                    </ThemeProvider>
+                                    {/* </ThemeProvider> */}
                                 </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
-
                 </Table>
             </TableContainer>
-        </div >
+            <Modal
+                open={open}
+                onClose={handleClose}
+                aria-labelledby="modal-modal-title"
+                aria-describedby="modal-modal-description"
+                sx={{
+                    backgroundColor: 'rgba(0, 0, 0, .3)'
+                }}
+            >
+                <div style={popup}>
+                    <TextField id="market-name" label="新增市集" variant="outlined" sx={{marginBottom: '20px'}} size="small" value={market.title} onChange={(e)=>{
+                        setMarket({...market, 
+                            title: e.target.value
+                        })
+                    }}/>
+                    <TextField id="market-count" label="攤位數量" variant="outlined" sx={{marginBottom: '20px'}} size="small" value={market.count} onChange={(e)=>{
+                        setMarket({...market, 
+                            count: e.target.value
+                        })
+                    }}/>
+                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                        <TextField id="start-time" label="開始日期" type="date" variant="outlined" sx={{marginBottom: '20px', flex: '1', marginRight: '15px'}} size="small" InputLabelProps={{ shrink: true }} value={market.start} onChange={(e)=>{
+                            setMarket({...market, 
+                                start: e.target.value
+                            })
+                            console.log(market.start)
+                        }}/>
+                        <TextField id="end-time" label="結束日期" type="date" variant="outlined" sx={{marginBottom: '20px', flex: '1'}} size="small" InputLabelProps={{ shrink: true }} value={market.end} onChange={(e)=>{
+                            setMarket({...market, 
+                                end: e.target.value
+                            })
+                        }}/>
+                    </div>
+                    <div style={{display: 'flex'}}>
+                        <Button variant="outlined" color="neutral" style={{marginRight: '15px'}} onClick={handleClose}>
+                            <DeleteForeverIcon sx={{marginRight: '5px'}} color="neutral"/>
+                            取消
+                        </Button>
+                        <Button variant="outlined" color="neutral" onClick={()=>{
+                            let start = dayjs(market.start).format('M/DD')
+                            let end = dayjs(market.end).format('DD')
+                            const concatTitle = start + '-' + end + ' ' + market.title
+
+                            const data = {
+                                title: concatTitle,
+                                count: market.data
+                            }
+                            addMarket(data).then((result)=>{
+                                console.log(result)
+                            })
+                        }}>
+                            <AddCircleOutlineIcon sx={{marginRight: '5px'}} color="neutral"/>
+                            新增
+                        </Button>
+                    </div>
+                </div>
+            </Modal>
+        </ThemeProvider>
     );
 }
 

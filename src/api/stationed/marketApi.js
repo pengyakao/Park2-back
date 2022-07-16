@@ -1,7 +1,9 @@
 import axios from 'axios';
 const reqObj = axios.create({
-    baseURL: 'http://10.0.102.59:3001',
+    // baseURL: 'http://10.0.102.59:3001',
+	// baseURL: 'http://10.0.0.188:3001',
 	// baseURL: 'http://192.168.0.161:3001',
+	baseURL: 'http://192.168.31.124:3001',
     header: {
         'Content-Type': 'application/json'
 		// 'Content-Type': 'multipart/form-data'
@@ -28,5 +30,12 @@ export function getMarketList() {
 
 // 編輯市集申請資料
 export function editMarketApply(data) {
-	return handleReq(reqObj.get('/admin/apply/market/edit', data))
+	return handleReq(reqObj.put('/admin/apply/market/edit', data))
 }
+
+// 新增市集
+export function addMarket(data) {
+	return handleReq(reqObj.post('/admin/apply/market/add', data))
+}
+
+

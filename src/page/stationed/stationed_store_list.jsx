@@ -45,9 +45,10 @@ const Stationed_store_list = ({ listData }) => {
 
     let standard = {
         '1': '申請中',
-        '2': '進駐中',
-        '3': '已退租',
-        '4': '已取消'
+        '2': '簽約中',
+        '3': '進駐中',
+        '4': '已退租',
+        '5': '已取消'
     }
     
     const transferState = (data) => {
@@ -92,16 +93,20 @@ const Stationed_store_list = ({ listData }) => {
             value: 1
         },
         {
-            step: '進駐中',
+            step: '簽約中',
             value: 2
         },
         {
-            step: '已退租',
+            step: '進駐中',
             value: 3
         },
         {
-            step: '已取消',
+            step: '已退租',
             value: 4
+        },
+        {
+            step: '已取消',
+            value: 5
         }
     ]
 

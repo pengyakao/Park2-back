@@ -16,7 +16,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { getMarketApply, getMarketList } from '../../api/stationed/marketApi';
+import { getMarketApply, getMarketList, editMarketApply } from '../../api/stationed/marketApi';
 import ReplyIcon from '@mui/icons-material/Reply';
 
 const style = {
@@ -91,6 +91,7 @@ export default function Stationed_market_each() {
 
     const [btn, setBtn] = useState([])
     const [nextTo, setNextTo] = useState([])
+    const [nextState, setNextState] = useState([])
 
     const buttonList = {
         1: [
@@ -236,7 +237,7 @@ export default function Stationed_market_each() {
                             <TableHead sx={{backgroundColor: '#f4f4f4'}}>
                                 <TableRow>
                                     <TableCell sx={{padding: '13px 16px', backgroundColor: '#f4f4f4', minWidth: '170px', borderRight: 'solid 2px #eee'}}>品牌/店家名稱</TableCell>
-                                    <TableCell sx={{padding: '13px 16px', backgroundColor: '#f4f4f4', minWidth: '500px'}}>DEREX 噴漆藝術家</TableCell>
+                                    <TableCell sx={{padding: '13px 16px', backgroundColor: '#f4f4f4', minWidth: '500px'}}>{data[0].mar_apply_brand}</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -274,7 +275,7 @@ export default function Stationed_market_each() {
                                 </TableRow>
                                 <TableRow>
                                     <TableCell component="th" scope="row" sx={{borderRight: 'solid 2px #f4f4f4'}}>匯款帳號 (後五碼)</TableCell>
-                                    <TableCell >{data[0].mar_apply_feeinfo}</TableCell>
+                                    <TableCell >{data[0].mar_apply_feeinfo ? data[0].mar_apply_feeinfo : '尚無資料'}</TableCell>
                                 </TableRow>
                                 <TableRow>
                                     <TableCell component="th" scope="row" sx={{borderRight: 'solid 2px #f4f4f4'}}>活動企劃書</TableCell>
@@ -314,6 +315,9 @@ export default function Stationed_market_each() {
                                     setNextTo(
                                         btnState
                                     )
+                                    setNextState(
+                                        e.stateTo
+                                    )
                                 }}>{e.btn}</Button>
                             ))}
                             <Modal
@@ -334,6 +338,14 @@ export default function Stationed_market_each() {
                                         <Button color="neutral" variant="contained" onClick={
                                             () => {
                                             setOpen(false);
+                                            const inputData = {
+                                                id: data[0].mar_apply_id,
+                                                state: nextState
+                                            }
+                                            console.log(inputData)
+                                            editMarketApply(inputData).then((result)=>{
+                                                console.log(result)
+                                            })
                                             alert("修改成功");
                                             window.location.href = '/stationed_market'
                                         }}>確定修改
