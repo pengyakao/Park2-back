@@ -63,7 +63,7 @@ export default function Home_act_new() {
         async function getData() {
             await getActivities().then((result) => {
                 let data = result.filter(e => e.act_sta == 1)
-                data = result.filter(e => e.act_is_slider == 0)
+                data = data.filter(e => e.act_is_slider == 0)
                 //加label=>下拉要用的
                 data.forEach(addLabel);
                 console.log(data);
