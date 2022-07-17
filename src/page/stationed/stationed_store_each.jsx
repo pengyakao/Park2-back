@@ -16,9 +16,10 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useState, useEffect } from 'react';
 import { useParams } from "react-router-dom";
-import { getStoreApply, editStoreApply, postMail, postAccount } from '../../api/stationed/storeApi';
+import { getStoreApply, editStoreApply, postMail, postAccount, addStore, addAccount, getStoreList } from '../../api/stationed/storeApi';
 import { checkLogin } from '../../api/login/isLogin'
 import ReplyIcon from '@mui/icons-material/Reply';
+import { Password } from '@mui/icons-material';
 
 const style = {
     position: 'absolute',
@@ -286,13 +287,39 @@ export default function Stationed_store_each() {
                                                                 密碼：'0000'
                                                             `
                                                         }
+                                                        const storeInfo={
+                                                            id: data[0].sto_apply_id,
+                                                            brand: data[0].sto_apply_brand,
+                                                            location: data[0].sto_apply_location,
+                                                            type: data[0].sto_apply_class,
+                                                            tel: data[0].sto_apply_tel,
+                                                            state: '1',
+                                                            floor: data[0].sto_apply_location.includes('B') ? 'b1' : '1f'
+                                                        }
+
                                                         postAccount(mail).then((result)=>{
                                                             console.log(result)
+                                                        })
+                                                        addStore(storeInfo).then((result)=>{
+                                                            console.log('addStore',result)
+                                                            getStoreList(data[0].sto_apply_id).then((result)=>{
+                                                                let target = result[result.length-1]
+                                                                const userInfo={
+                                                                    id: target.sto_id,
+                                                                    account: data[0].sto_apply_mail,
+                                                                    password: '0000',
+                                                                    name: data[0].sto_apply_brand,
+                                                                    level: '1'
+                                                                }
+                                                                addAccount(userInfo).then(result=>{
+                                                                    console.log('addAccount',result)
+                                                                })
+                                                            })
                                                         })
                                                     }
                                                 })
                                                 alert("修改成功");
-                                                window.location.href = '/stationed_store'
+                                                // window.location.href = '/stationed_store'
                                             }}>確定修改
                                         </Button>
                                     </Stack>

@@ -19,6 +19,7 @@ import { useParams } from "react-router-dom";
 import { getMarketApply, getMarketList, editMarketApply } from '../../api/stationed/marketApi';
 import { checkLogin } from '../../api/login/isLogin'
 import ReplyIcon from '@mui/icons-material/Reply';
+import dayjs from 'dayjs';
 
 const style = {
     position: 'absolute',
@@ -344,7 +345,8 @@ export default function Stationed_market_each() {
                                             setOpen(false);
                                             const inputData = {
                                                 id: data[0].mar_apply_id,
-                                                state: nextState
+                                                state: nextState,
+                                                deadline: nextState == 3 ? dayjs().add(7, 'day').format('YYYY/MM/DD') : null
                                             }
                                             console.log(inputData)
                                             editMarketApply(inputData).then((result)=>{

@@ -40,7 +40,20 @@ export function postAccount(data) {
 	return handleReq(reqObj.post('/mail/login/post', data))
 }
 
-// 新增
-// export function postAccount(data) {
-// 	return handleReq(reqObj.post('/mail/login/post', data))
-// }
+// 新增店家
+export function addStore(data) {
+	return handleReq(reqObj.post('/admin/apply/store/add', data))
+}
+
+// 新增帳號
+export function addAccount(data) {
+	return handleReq(reqObj.post('/admin/apply/account/add', data))
+}
+
+export function getStoreList(id){
+	return handleReq(reqObj.get('/admin/apply/store/list/get',{
+		params:{
+			id
+		}
+	}))
+}
