@@ -4,36 +4,31 @@ import LayOutUser from '../../components/layout/LayOut_user';
 import Userlist from './user_list';
 import { useEffect } from 'react';
 
-import { checkLogin } from '../../api/login/isLogin'
+
 
 
 // api
 import {token} from '../../api/user/token'
 import {data} from '../../api/user/data'
-
+import { getUser } from "../../api/user/userData";
+import { checkLogin } from '../../api/login/isLogin'
 
 export default function User() {
+    const [data, setData] = React.useState([]);
 
-    var myData = data
     var myToken = token
-    var listData = myData;
+    var listData = data;
 
     useEffect(()=>{
+        getUser().then((result)=>{
+            console.log(result)
+            setData(result)
+        })
+
         checkLogin().then((result)=>{
             console.log(result)
         })
     },[])
-
-    // 
-        // var listData;
-        // if (myToken.user_id == 1) {
-        //     listData = myData
-        // } else {
-        //     listData = [myData[myToken.user_id -1]] 
-        //     console.log(listData)
-        // }
-
-        // href={`/user/${row.user_id}`}
 
 
     // 判斷權限
