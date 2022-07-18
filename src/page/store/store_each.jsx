@@ -151,7 +151,7 @@ const Store_each = () => {
                 ></UploadButtons>
               </div>
 
-              {/* <div className="reMainImg">
+              <div className="reMainImg">
                 <h3>Logo圖片</h3>
                 <UploadButtons
                   sto_img={sto_logo}
@@ -159,7 +159,7 @@ const Store_each = () => {
                   id={"logo"}
                   width={300}
                 ></UploadButtons>
-              </div> */}
+              </div>
 
               <div className="storeName">
                 <h3>店家名稱</h3>
@@ -200,14 +200,13 @@ const Store_each = () => {
                   <h3>
                     店家圖片
                     <span style={{ fontSize: "12px", fontWeight: "400" }}>
-                      （至少五張，最多八張）
                     </span>
                   </h3>
-                  {/* <UploadMore
+                  <UploadMore
                     i={i}
                     sto_moreImgFormData={sto_moreImgFormData}
                     setmoreImgFormData={setmoreImgFormData}
-                  ></UploadMore> */}
+                  ></UploadMore>
                 </div>
               </div>
               <div className="storetime">
@@ -402,7 +401,9 @@ const Store_each = () => {
                       setsto_pay4(1);
                       setsto_pay5(1);
                       setsto_pay6(1);
-                      setsto_info("簡單點一杯 不簡單的咖啡\n _\n用喜歡風味探索0-6\n簡單選擇，滿足你不簡單的味蕾\n今天，PARA幾號？\n 1 淺焙 甜桃 柑橘 白花 檸檬紅茶\n 2 淺中焙 熟桃 香蕉 菊花 高山茶\n 3 中焙 李子 楓糖 茶梅 奶油\n 4 中深焙 巧克力 煙燻 焦糖 松木\n 5 中焙 百香果 熟橘 甜橙\n 6 中焙 烏梅 黑醋栗 果茶\n 0 歐蕾 冷萃與燕麥奶的交織平衡\n #paracoffee")
+                      setsto_info(
+                        "簡單點一杯 不簡單的咖啡\n _\n用喜歡風味探索0-6\n簡單選擇，滿足你不簡單的味蕾\n今天，PARA幾號？\n 1 淺焙 甜桃 柑橘 白花 檸檬紅茶\n 2 淺中焙 熟桃 香蕉 菊花 高山茶\n 3 中焙 李子 楓糖 茶梅 奶油\n 4 中深焙 巧克力 煙燻 焦糖 松木\n 5 中焙 百香果 熟橘 甜橙\n 6 中焙 烏梅 黑醋栗 果茶\n 0 歐蕾 冷萃與燕麥奶的交織平衡\n #paracoffee"
+                      );
                     }}
                   >
                     Demo Button
@@ -446,6 +447,11 @@ const Store_each = () => {
                       logoData.append("file", sto_logo);
                       console.log(sto_logo);
 
+                      // logo更新
+                      putLogo(logoData).then((result) => {
+                        console.log(result);
+                      });
+
                       // 根據是否有更新首圖來決定使用的api
                       if (sto_img !== data.sto_first_img) {
                         console.log(1);
@@ -461,16 +467,11 @@ const Store_each = () => {
                         });
                       }
 
-                      // logo更新
-                      // putLogo(data).then((result) => {
-                      //   console.log(result);
-                      // });
 
-                      // console.log(sto_moreImgFormData)
                       // 多圖更新
-                      // editStoreImgs(sto_moreImgFormData).then((result) => {
-                      //   console.log(result);
-                      // });
+                      editStoreImgs(sto_moreImgFormData).then((result) => {
+                        console.log(result);
+                      });
                     }}
                   >
                     送出
