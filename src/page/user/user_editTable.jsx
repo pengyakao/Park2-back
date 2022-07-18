@@ -154,24 +154,6 @@ const User_editTable = ({ listData }) => {
                         sx={{ mt: 2 }}
                         style={{ "background-color": "white" }}
                       >
-                        {/* <div>
-                          <div>
-                            <span>新密碼：</span>
-                            <TextField
-                              id="standard-basic"
-                              label=""
-                              variant="standard"
-                            />
-                          </div>
-                          <div>
-                            <span>確認新密碼：</span>
-                            <TextField
-                              id="standard-basic"
-                              label=""
-                              variant="standard"
-                            />
-                          </div>
-                        </div> */}
                       </Box>
                       <Stack spacing={2} direction="row">
                         <Button
@@ -194,11 +176,11 @@ const User_editTable = ({ listData }) => {
                               password: userPassword,
                             };
                             console.log(myData)
-                            // putUser(myData).then((result) => {
-                            //   console.log(result);
-                            // });
+                            putUser(myData).then((result) => {
+                              console.log(result);
+                            });
                             setOpen(false);
-                            alert("密碼已修改");
+                            // alert("密碼已修改");
                           }}
                         >
                           確定修改

@@ -168,73 +168,50 @@ const StoreCard = ({
     });
   }, [data.state]);
 
-  return (
-    <div style={{ margin: "15px" }}>
-      <Card sx={{ maxWidth: 252, minHeight: 223 }}>
-        <CardMedia
-          component="img"
-          alt="store-img"
-          height="140"
-          image={data.firstImg}
-        />
-        <div
-          style={{
-            display: "flex",
-            "justify-content": "space-around",
-            "align-items": "center",
-          }}
-        >
-          <Typography gutterBottom fontSize="14" margin="5px" component="div">
-            {data.name}
-          </Typography>
-        </div>
-        <div>
-          <ThemeProvider theme={theme}>
-            <CardActions
-              style={{ display: "flex", "justify-content": "space-around" }}
-            >
-              <Button
-                onClick={Edit}
-                style={{ "min-width": "128px" }}
-                size="small"
-                variant="outlined"
-                color="neutral"
-              >
-                編輯
-              </Button>
-              {/* <Button onClick={Delete} size="small" variant="outlined" color="error">
+    return (
+        <div style={{ margin: '15px' }}>
+            <Card sx={{ maxWidth: 252, minHeight: 223 }}>
+                <CardMedia component="img" alt="store-img" height="140" image={data.firstImg} />
+                <div style={{ display: 'flex', 'justify-content': 'space-around', 'align-items': 'center' }}>
+                    <Typography gutterBottom fontSize="14" margin="5px" component="div">
+                        {data.name}
+                    </Typography>
+                </div>
+                <div>
+                    <ThemeProvider theme={theme}>
+                        <CardActions style={{ display: 'flex', 'justify-content': 'space-around' }}>
+                            <Button onClick={Edit} style={{"min-width": "115px"}} size="small" variant="outlined" color="neutral">
+                                編輯
+                            </Button>
+                            <Button onClick={Delete} style={{"min-width": "115px"}} size="small" variant="outlined" color="error">
                                 刪除
-                            </Button> */}
-              <FormGroup style={{ margin: "3px" }}>
-                <Stack
-                  onClick={() => {
-                    if (window.confirm("是否確認修改顯示狀態") == true) {
-                      console.log("origin", data.state);
-                      setData((prevState) => ({
-                        ...prevState,
-                        state: !data.state,
-                      }));
-                      console.log("new", data.state);
-                    }
-                  }}
-                  direction="row"
-                  spacing={1}
-                  alignItems="center"
-                >
-                  <Typography style={{ "font-size": "10px" }}>OFF</Typography>
-                  <AntSwitch
-                    checked={data.state}
-                    inputProps={{ "aria-label": "ant design" }}
-                    size="small"
-                  />
-                  <Typography style={{ "font-size": "10px" }}>ON</Typography>
-                </Stack>
-              </FormGroup>
-            </CardActions>
-          </ThemeProvider>
+                            </Button>
+                            {/* <FormGroup style={{ margin: '3px' }}>
+                                <Stack onClick={() => {
+                                    if (window.confirm("是否確認修改顯示狀態") == true) {
+                                        console.log('origin', data.state)
+                                        setData(prevState => ({
+                                            ...prevState,
+                                            state: !data.state
+                                        }))
+                                        console.log('new', data.state)
+                                    }
+                                }}
+                                    direction="row" spacing={1} alignItems="center">
+                                    <Typography style={{ 'font-size': '10px' }}>OFF</Typography>
+                                    <AntSwitch
+                                        checked={data.state}
+                                        inputProps={{ 'aria-label': 'ant design' }}
+                                        size="small"
+                                    />
+                                    <Typography style={{ 'font-size': '10px' }}>ON</Typography>
+                                </Stack>
+                            </FormGroup> */}
+                        </CardActions>
+                    </ThemeProvider>
+                </div>
+            </Card>
         </div>
-      </Card>
-    </div>
   );
 };
 
