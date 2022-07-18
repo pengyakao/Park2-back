@@ -19,10 +19,13 @@ function handleReq(e) {
 }
 
 // api function
+
+// 取得所有店家
 export function getStores() {
     return handleReq(reqObj.get('/admin/store/get'))
 }
 
+// 取得指定店家
 export function getStore(id) {
     return handleReq(reqObj.get('/self/store/get', {
         params: {
@@ -31,13 +34,25 @@ export function getStore(id) {
     }))
 }
 
+
+// 新增(有改圖)
+export function postStore(data) {
+    return handleReq(reqObj.put('/admin/store/post', data))
+}
+
+
+// 編輯(有改圖)
 export function putStore(data) {
     return handleReq(reqObj.put('/admin/store/edit/file', data))
 }
 
-
+// 編輯(無改圖)
 export function putStoreWithoutFile(data) {
 	return handleReq(reqObj.put('/admin/store/edit',data))
 }
 
 
+// Logo圖片上傳
+export function putLogo(data) {
+	return handleReq(reqObj.put('/admin/store/logo/edit',data))
+}
