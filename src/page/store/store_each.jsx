@@ -44,7 +44,7 @@ const Store_each = () => {
   // 權限驗證
   const user_id = JSON.parse(localStorage.getItem("UserInfo")).user_id;
   function uShouldNotPass() {
-    window.location.href = `store/store_edit/${user_id - 1}`;
+    window.location.href = `/store/store_edit/${user_id - 1}`;
   }
 
   if (user_id !== 1 && user_id - 1 !== i) {
