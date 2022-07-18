@@ -76,8 +76,8 @@ const ActCard = ({ key, title, startDate, endDate, startTime, endTime, organizer
     const [data, setData] = useState(
         {
             title: title,
-            startDate: startDate.slice(0,10),
-            endDate: endDate.slice(0,10),
+            startDate: startDate.slice(0, 10),
+            endDate: endDate.slice(0, 10),
             startTime: startTime,
             endTime: endTime,
             organizer: organizer,
@@ -97,16 +97,22 @@ const ActCard = ({ key, title, startDate, endDate, startTime, endTime, organizer
         window.location.href = `/activity/act_edit/${id}`;
     }
     const actDelete = () => {
-          // window.confirm("是否確定刪除");
-          if (window.confirm("是否確認刪除") == true) {
-            deleteActivity(id).then((result) => {
-                console.log("已刪除")
-                console.log(result)
-            })
-            window.location.href = "/activity"
+        console.log(id)
+        if (isSlider == 1) {
+            alert("此活動為輪播活動，請先將活動於輪播列表中下架。")
         } else {
-            console.log("NO");
+            // window.confirm("是否確定刪除");
+            if (window.confirm("是否確認刪除") == true) {
+                deleteActivity(id).then((result) => {
+                    console.log("已刪除")
+                    console.log(result)
+                })
+                window.location.href = "/activity"
+            } else {
+                console.log("NO");
+            }
         }
+
     }
 
     // 監測data有異動就執行function
@@ -120,7 +126,7 @@ const ActCard = ({ key, title, startDate, endDate, startTime, endTime, organizer
         <Card sx={{ maxWidth: 252, minHeight: 223 }}>
             <CardMedia component="img" alt="store-img" height="140" image={data.mainImg} />
             <div style={{ "display": "flex", "justify-content": "space-around", "align-items": "center" }}>
-                <Typography gutterBottom fontSize="14" margin="5px" component="div" style={{"min-height":"50px" , "display": "flex", "align-items": "center"}}>
+                <Typography gutterBottom fontSize="14" margin="5px" component="div" style={{ "min-height": "50px", "display": "flex", "align-items": "center" }}>
                     {data.title}
                 </Typography>
             </div>

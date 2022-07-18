@@ -12,7 +12,6 @@ export default function User_edit() {
 
   useEffect(() => {
     getUser().then((result) => {
-      console.log(result);
       setData(result);
     });
 

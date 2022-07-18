@@ -65,7 +65,7 @@ export default function Home_act() {
     useEffect(() => {
         async function getData() {
             await getCarousel().then((result) => {
-                const listData = result
+                const listData = result.reverse()
                 getActivities().then((result2) => {
                     const listData2 = result2
                     const margeData = listData;

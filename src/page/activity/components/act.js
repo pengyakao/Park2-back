@@ -65,6 +65,7 @@ export default function Act() {
     useEffect(() => {
         function getData() {
             let faqList = getActivity().then((result) => {
+                result = result.reverse()
                 setData(result)
             })
         }

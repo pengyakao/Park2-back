@@ -13,12 +13,11 @@ import UploadMore from "./UploadMore.jsx";
 import TimeOption from "./TimeOption";
 import "./store_each.css";
 
-
 // api
 import { getStore } from "../../api/store/storeApi";
 import { putStore, putStoreWithoutFile } from "../../api/store/storeApi";
 import { getStoreImgs, editStoreImgs } from "../../api/test/uploadImgApi";
-import { checkLogin } from '../../api/login/isLogin'
+import { checkLogin } from "../../api/login/isLogin";
 
 const theme = createTheme({
   palette: {
@@ -30,6 +29,30 @@ const theme = createTheme({
 });
 
 const Store_each = () => {
+  //抓網址來讀取資料
+  let i = "";
+  const url = useLocation();
+  let arr = Array.from(url.pathname);
+  let urlLength = arr.length - arr.lastIndexOf("/") - 1;
+  for (let j = 0; j < urlLength; j++) {
+    i = i + arr.slice(-urlLength, arr.length)[j];
+    if (j === urlLength - 1) {
+      i = Number(i);
+    }
+  }
+
+  // 權限驗證
+  const user_id = JSON.parse(localStorage.getItem("UserInfo")).user_id;
+  function uShouldNotPass() {
+    window.location.href = `store/store_edit/${user_id - 1}`;
+  }
+
+  if (user_id !== 1 && user_id - 1 !== i) {
+    uShouldNotPass();
+  } else {
+    // console.log("Welcome!");
+  }
+
   // 宣告變數
   const [data, setData] = useState({});
   const [sto_name, setsto_name] = useState();
@@ -53,23 +76,11 @@ const Store_each = () => {
   const [sto_line, setsto_line] = useState();
   const [sto_info, setsto_info] = useState();
 
-  //抓網址來讀取資料
-  let i = "";
-  const url = useLocation();
-  let arr = Array.from(url.pathname);
-  let urlLength = arr.length - arr.lastIndexOf("/") - 1;
-  for (let j = 0; j < urlLength; j++) {
-    i = i + arr.slice(-urlLength, arr.length)[j];
-    if (j === urlLength - 1) {
-      i = Number(i);
-    }
-  }
-
   //   載入資料
   useEffect(() => {
-    checkLogin().then((result)=>{
-      console.log(result)
-    })
+    checkLogin().then((result) => {
+      console.log(result);
+    });
     getStore(i).then((result) => {
       setData(result[0]);
     });
@@ -173,11 +184,11 @@ const Store_each = () => {
                       （至少五張，最多八張）
                     </span>
                   </h3>
-                  <UploadMore
+                  {/* <UploadMore
                     i={i}
                     sto_moreImgFormData={sto_moreImgFormData}
                     setmoreImgFormData={setmoreImgFormData}
-                  ></UploadMore>
+                  ></UploadMore> */}
                 </div>
               </div>
               <div className="storetime">
@@ -407,7 +418,6 @@ const Store_each = () => {
                       editStoreImgs(sto_moreImgFormData).then((result) => {
                         console.log(result);
                       });
-        
                     }}
                   >
                     送出
