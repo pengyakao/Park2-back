@@ -116,7 +116,6 @@ export default function Home_act_new() {
                         autoComplete="off"
                     >
                         <Autocomplete
-
                             onChange={dateChange}
                             disablePortal
                             id="combo-box-demo"
@@ -124,7 +123,7 @@ export default function Home_act_new() {
                             renderInput={(params) => <TextField {...params} label="選擇活動" />}
                         />
                         <TextField
-                            id="outlined-basic"
+                            id="title_text"
                             label="首頁輪播標題(限11字)"
                             variant="outlined"
                             required="true"
@@ -157,18 +156,22 @@ export default function Home_act_new() {
                             <Button color="neutral" variant="outlined" href='/home/act'>取消</Button>
                             <Button color="neutral" variant="contained"
                                 onClick={() => {
-                                    if (window.confirm("是否確認新增") == true) {
-                                        console.log(isData1);
-                                        console.log(putActData)
-                                        postCarousel(isData1).then((result) => {
-                                            console.log(result)
-                                        })
-                                        putActivity(putActData).then((result) => {
-                                            console.log(result)
-                                        })
-                                        window.location.href="/home/act"
+                                    if (isData1.title.length > 11) {
+                                        alert("標題請勿超過11個字")
                                     } else {
-                                        console.log("NO");
+                                        if (window.confirm("是否確認新增") == true) {
+                                            console.log(isData1);
+                                            console.log(putActData)
+                                            postCarousel(isData1).then((result) => {
+                                                console.log(result)
+                                            })
+                                            putActivity(putActData).then((result) => {
+                                                console.log(result)
+                                            })
+                                            window.location.href = "/home/act"
+                                        } else {
+                                            console.log("NO");
+                                        }
                                     }
                                 }}
                             >送出</Button>
