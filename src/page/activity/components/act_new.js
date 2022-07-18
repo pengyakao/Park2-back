@@ -179,6 +179,20 @@ const Act_new = ({ add }) => {
                 direction="row"
                 style={{ display: "flex", "justify-content": "flex-end" }}
               >
+                <Button color="neutral" variant="outlined" onClick={() => {
+                  setact_title("迷幻太空 ✦ 主題派對");
+                  setact_class("2")
+                  setact_Sdate("2022-07-15");
+                  setact_Edate("2022-07-15");
+                  setact_Stime("19:00");
+                  setact_Etime("21:00");
+                  setact_location("PARK 1F");
+                  setact_guests("PARA Coffee");
+                  setacr_org("PARK2");
+                  setact_info("一杯咖啡要等多久?! \n 一種直覺式選擇方式! \n 『新品牌降落PARK2』 \n #PARA Coffee 來了 ! ! ! \n PARA 源自希臘字根，代表「超越」， \n 超越想像的限制、超越現實的認知。 \n 108 秒的時間，搭配 iDrip AiOT技術， \n 從淺培到深培共6種品項選擇所喜好的風味口感， \n 讓選擇障礙不復存在， \n 以輕鬆低門檻的方式享受一杯簡單卻不妥協品質的好咖啡。")
+                }}>
+                  Demo
+                </Button>
                 <Button color="neutral" variant="outlined" href="/activity/">
                   取消
                 </Button>
