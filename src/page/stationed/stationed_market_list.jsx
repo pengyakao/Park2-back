@@ -150,14 +150,13 @@ const Stationed_market_list = ({ listData, marketData }) => {
             value: 5
         },
         {
-            step: '已取消',
-            value: 4
+            step: '待退款',
+            value: 6
         },
         {
-            step: '待退款',
-            value: 5
-        },
-
+            step: '已取消',
+            value: 7
+        }
     ]
 
     return (
@@ -290,10 +289,11 @@ const Stationed_market_list = ({ listData, marketData }) => {
 
                             const data = {
                                 title: concatTitle,
-                                count: market.data
+                                count: market.count
                             }
                             addMarket(data).then((result)=>{
                                 console.log(result)
+                                handleClose()
                             })
                         }}>
                             <AddCircleOutlineIcon sx={{marginRight: '5px'}} color="neutral"/>

@@ -69,9 +69,14 @@ const Stationed_store_list = ({ listData }) => {
     }
     
     useEffect(()=>{
-        console.log(listData)
         let result = transferState(listData)
-        setTransfer(result)
+        let sortDate = result.sort((x, y)=>{
+            let first = new Date(x.sto_apply_date)
+            let second = new Date(y.sto_apply_date)
+            return first > second ? -1 : 1
+        })
+        setTransfer(sortDate)
+        // console.log(sortDate)
     }, [listData])
 
     useEffect(()=>{

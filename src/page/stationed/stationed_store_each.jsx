@@ -277,6 +277,7 @@ export default function Stationed_store_each() {
                                                         postMail(mail).then((result)=>{
                                                             console.log(result)
                                                         })
+                                                        window.location.href = '/stationed_store'
                                                     }else if(nextState == 3){
                                                         const mail={
                                                             target: 'j951j951@gmail.com',
@@ -300,6 +301,7 @@ export default function Stationed_store_each() {
                                                         postAccount(mail).then((result)=>{
                                                             console.log(result)
                                                         })
+                                                        // window.location.href = '/stationed_store'
                                                         addStore(storeInfo).then((result)=>{
                                                             console.log('addStore',result)
                                                             getStoreList(data[0].sto_apply_id).then((result)=>{
@@ -313,13 +315,16 @@ export default function Stationed_store_each() {
                                                                 }
                                                                 addAccount(userInfo).then(result=>{
                                                                     console.log('addAccount',result)
+                                                                    window.location.href = '/stationed_store'
                                                                 })
                                                             })
                                                         })
+                                                        
+                                                    }else{
+                                                        window.location.href = '/stationed_store'
                                                     }
                                                 })
-                                                alert("修改成功");
-                                                // window.location.href = '/stationed_store'
+                                                
                                             }}>確定修改
                                         </Button>
                                     </Stack>
@@ -336,7 +341,7 @@ export default function Stationed_store_each() {
                             >
                                 <Box id="pdfBox" sx={pdfBox}>
                                     <Box id="pdfBox-content" sx={{marginBottom: '20px'}}>
-                                        <iframe src={data[0].mar_apply_file+'#view=FitW'} style={{width: '100%', height: '460px'}}></iframe>
+                                        <iframe src={data[0].sto_apply_file+'#view=FitW'} style={{width: '100%', height: '460px'}}></iframe>
                                     </Box>
                                     <Stack spacing={2} direction="row">
                                         <Button color="neutral" variant="outlined" onClick={() => { setPdfOpen(false); }}>關閉</Button>
