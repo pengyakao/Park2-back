@@ -167,7 +167,7 @@ const StoreCard = ({
       console.log(data)
       console.log(result)
     });
-  }, [data]);
+  }, [data.isMain]);
 
     return (
         <div style={{ margin: '15px' }}>
@@ -189,7 +189,7 @@ const StoreCard = ({
                             </Button>
                             <FormGroup style={{ margin: '3px' }}>
                                 <Stack onClick={() => {
-                                    if (window.confirm("是否確認修改顯示狀態") == true) {
+                                    if (window.confirm("是否確認修改主打狀態") == true) {
                                         console.log('origin', data.isMain)
                                         setData(prevState => ({
                                             ...prevState,
