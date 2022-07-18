@@ -14,8 +14,13 @@ import TimeOption from "./TimeOption";
 import "./store_each.css";
 
 // api
-import { getStore } from "../../api/store/storeApi";
-import { putStore, putStoreWithoutFile } from "../../api/store/storeApi";
+import {
+  getStore,
+  postStore,
+  putStore,
+  putStoreWithoutFile,
+} from "../../api/store/storeApi";
+import { putLogo } from "../../api/store/storeApi";
 import { getStoreImgs, editStoreImgs } from "../../api/test/uploadImgApi";
 import { checkLogin } from "../../api/login/isLogin";
 
@@ -57,6 +62,7 @@ const Store_each = () => {
   const [data, setData] = useState({});
   const [sto_name, setsto_name] = useState();
   const [sto_img, setsto_img] = useState();
+  const [sto_logo, setsto_logo] = useState();
   const [sto_moreImgFormData, setmoreImgFormData] = useState(new FormData());
   const [sto_location, setsto_location] = useState();
   const [sto_tel, setsto_tel] = useState();
@@ -90,6 +96,7 @@ const Store_each = () => {
   useEffect(() => {
     setsto_img(data.sto_first_img);
     setsto_name(data.sto_name);
+    setsto_logo(data.sto_img);
     setsto_location(data.sto_location);
     setsto_tel(data.sto_tel);
     setsto_weekdayStart(data.sto_thu);
@@ -139,9 +146,21 @@ const Store_each = () => {
                 <UploadButtons
                   sto_img={sto_img}
                   setsto_img={setsto_img}
+                  id={"firstImg"}
                   width={300}
                 ></UploadButtons>
               </div>
+
+              {/* <div className="reMainImg">
+                <h3>Logo圖片</h3>
+                <UploadButtons
+                  sto_img={sto_logo}
+                  setsto_img={setsto_logo}
+                  id={"logo"}
+                  width={300}
+                ></UploadButtons>
+              </div> */}
+
               <div className="storeName">
                 <h3>店家名稱</h3>
                 <TextField
@@ -367,6 +386,27 @@ const Store_each = () => {
                   direction="row"
                   style={{ display: "flex", justifyContent: "flex-end" }}
                 >
+                  <Button
+                    color="neutral"
+                    variant="contained"
+                    onClick={() => {
+                      setsto_weekdayStart("11:00");
+                      setsto_weekdayEnd("20:00");
+                      setsto_holidayStart("11:00");
+                      setsto_holidayEnd("20:00");
+                      setsto_ins("http://www.facebook.com/para.coffee");
+                      setsto_fb("http://www.instagram.com/para_coffee");
+                      setsto_pay1(1);
+                      setsto_pay2(1);
+                      setsto_pay3(1);
+                      setsto_pay4(1);
+                      setsto_pay5(1);
+                      setsto_pay6(1);
+                      setsto_info("簡單點一杯 不簡單的咖啡\n _\n用喜歡風味探索0-6\n簡單選擇，滿足你不簡單的味蕾\n今天，PARA幾號？\n 1 淺焙 甜桃 柑橘 白花 檸檬紅茶\n 2 淺中焙 熟桃 香蕉 菊花 高山茶\n 3 中焙 李子 楓糖 茶梅 奶油\n 4 中深焙 巧克力 煙燻 焦糖 松木\n 5 中焙 百香果 熟橘 甜橙\n 6 中焙 烏梅 黑醋栗 果茶\n 0 歐蕾 冷萃與燕麥奶的交織平衡\n #paracoffee")
+                    }}
+                  >
+                    Demo Button
+                  </Button>
                   <Button color="neutral" variant="outlined" href="/store">
                     取消
                   </Button>
@@ -375,8 +415,7 @@ const Store_each = () => {
                     variant="contained"
                     // href="/store"
                     onClick={() => {
-                      alert("資料已上傳");
-
+                      // 資料更新物件
                       const formData = new FormData();
                       formData.append("id", i);
                       formData.append("name", sto_name);
@@ -401,23 +440,37 @@ const Store_each = () => {
                       formData.append("state", data.sto_sta);
                       formData.append("isMain", data.sto_main);
 
-                      // if (data.sto_first_img && sto_img !== data.sto_first_img) {
-                      //   console.log(1)
-                      //   formData.append("file", sto_img);
-                      //   formData.append("logo", "img");
-                      //   formData.append("delete", data.sto_first_img);
-                      //   putStore(formData).then((result) => {
-                      //     console.log(result);
-                      //   });
-                      // } else {
-                      //   putStoreWithoutFile(formData).then((result) => {
-                      //     console.log(result);
-                      //   });
-                      // }
+                      // logo更新物件
+                      const logoData = new FormData();
+                      logoData.append("id", i);
+                      logoData.append("file", sto_logo);
+                      console.log(sto_logo);
+
+                      // 根據是否有更新首圖來決定使用的api
+                      if (sto_img !== data.sto_first_img) {
+                        console.log(1);
+                        formData.append("file", sto_img);
+                        formData.append("logo", data.sto_img);
+                        formData.append("delete", data.sto_first_img);
+                        putStore(formData).then((result) => {
+                          console.log(result);
+                        });
+                      } else {
+                        putStoreWithoutFile(formData).then((result) => {
+                          console.log(result);
+                        });
+                      }
+
+                      // logo更新
+                      // putLogo(data).then((result) => {
+                      //   console.log(result);
+                      // });
+
                       // console.log(sto_moreImgFormData)
-                      editStoreImgs(sto_moreImgFormData).then((result) => {
-                        console.log(result);
-                      });
+                      // 多圖更新
+                      // editStoreImgs(sto_moreImgFormData).then((result) => {
+                      //   console.log(result);
+                      // });
                     }}
                   >
                     送出
