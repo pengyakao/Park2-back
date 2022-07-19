@@ -34,20 +34,6 @@ const theme = createTheme({
 });
 
 const User_editTable = ({ listData }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const [userAccount, setUserAccount] = React.useState();
-  const [userPassword, setUserPassword] = React.useState();
-
-  React.useEffect(() => {
-    if (listData[0]) {
-      setUserAccount(listData[i].user_account);
-      setUserPassword(listData[i].user_password);
-    }
-  }, [listData]);
-
   //抓取網址來讀取資料
   let i = "";
   const url = useLocation();
@@ -61,18 +47,46 @@ const User_editTable = ({ listData }) => {
   }
 
   // 權限驗證
-  const user_id = JSON.parse(localStorage.getItem("UserInfo")).user_id;
+  const sto_id = JSON.parse(localStorage.getItem("UserInfo")).sto_id;
   function uShouldNotPass() {
-    window.location.href = `/user/${user_id - 1}`;
+    window.location.href = `/user/${sto_id}`;
   }
 
-  if (user_id !== 1 && user_id - 1 !== i) {
+  if (sto_id !== 0 && sto_id !== i) {
     uShouldNotPass();
   } else {
     // console.log("Welcome!");
   }
 
-  if (listData[i]) {
+  const [open, setOpen] = React.useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const [userName, setuserName] = React.useState([]);
+  const [userLevel, setuserLevel] = React.useState([]);
+  const [userAccount, setUserAccount] = React.useState([]);
+  const [userPassword, setUserPassword] = React.useState([]);
+  var myData
+
+  React.useEffect(() => {
+    if (listData[0]) {
+
+      let arr = listData.filter((e)=>e.sto_id == i)
+      myData = arr[0]
+      console.log(myData)
+      setuserName(myData.user_name)
+      setuserLevel(myData.user_level)
+      setUserAccount(myData.user_account);
+      setUserPassword(myData.user_password);
+
+
+    }
+  }, [listData]);
+
+  console.log(listData);
+  console.log(userAccount)
+
+  // if (myData[0] != undefined) {
     return (
       <div>
         <div className="bs_article">
@@ -92,7 +106,9 @@ const User_editTable = ({ listData }) => {
                 label="店家名稱"
                 variant="outlined"
                 required="true"
-                defaultValue={listData[i].user_name}
+                // defaultValue={lis}
+                value={userName ?? ""}
+                onChange={(e) => setuserName(e.target.value)}
               />
               <TextField
                 id="outlined-basic"
@@ -117,7 +133,9 @@ const User_editTable = ({ listData }) => {
                 label="帳號權限(請至店家管理頁修改)"
                 variant="outlined"
                 required="true"
-                defaultValue={listData[i].user_level}
+                // defaultValue={myData.user_level}
+                value={userLevel ?? ""}
+                onChange={(e) => setuserLevel(e.target.value)}
               />
               {/* <TextField
                 id="outlined-basic"
@@ -160,8 +178,7 @@ const User_editTable = ({ listData }) => {
                         id="modelBox-content"
                         sx={{ mt: 2 }}
                         style={{ "background-color": "white" }}
-                      >
-                      </Box>
+                      ></Box>
                       <Stack spacing={2} direction="row">
                         <Button
                           color="neutral"
@@ -178,11 +195,11 @@ const User_editTable = ({ listData }) => {
                           // href="/user"
                           onClick={() => {
                             const myData = {
-                              id: i+1,
+                              id: i + 1,
                               account: userAccount,
                               password: userPassword,
                             };
-                            console.log(myData)
+                            console.log(myData);
                             putUser(myData).then((result) => {
                               console.log(result);
                             });
@@ -202,6 +219,6 @@ const User_editTable = ({ listData }) => {
         </div>
       </div>
     );
-  }
+  // }
 };
 export { User_editTable };

@@ -30,12 +30,12 @@ const theme = createTheme({
 
 const Userlist = ({ listData }) => {
   // 權限驗證
-  const user_id = JSON.parse(localStorage.getItem("UserInfo")).user_id;
+  const sto_id = JSON.parse(localStorage.getItem("UserInfo")).sto_id;
   function uShouldNotPass() {
-    window.location.href = `/user/${user_id - 1}`;
+    window.location.href = `/user/${sto_id}`;
   }
 
-  if (user_id !== 1) {
+  if (sto_id != 0) {
     uShouldNotPass();
   } else {
     console.log("Welcome!");
@@ -57,7 +57,7 @@ const Userlist = ({ listData }) => {
           <TableBody>
             {listData.map((row) => (
               <TableRow
-                key={row.user_id}
+                key={row.sto_id}
                 sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
               >
                 <TableCell component="th" scope="row">
@@ -72,7 +72,7 @@ const Userlist = ({ listData }) => {
                       <Button
                         variant="outlined"
                         color="neutral"
-                        href={`/user/${row.user_id - 1}`}
+                        href={`/user/${row.sto_id}`}
                       >
                         修改資料
                       </Button>
