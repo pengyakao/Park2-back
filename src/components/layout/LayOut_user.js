@@ -4,16 +4,16 @@ import React from "react";
 const LayOutUser = () => {
   // 權限驗證
   const [style, setStyle] = React.useState();
-  const user_id = JSON.parse(localStorage.getItem("UserInfo")).user_id;
+  const sto_id = JSON.parse(localStorage.getItem("UserInfo")).sto_id;
 
   React.useEffect(() => {
-    if (user_id !== 1) {
+    if (sto_id != 0) {
       setStyle("none");
-    } else if (user_id == 1) {
+    } else if (sto_id == 0) {
       console.log("Welcome!");
       setStyle("block");
     }
-  }, [user_id]);
+  }, [sto_id]);
 
   return (
     <div>

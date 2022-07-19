@@ -98,12 +98,12 @@ const StoreCard = ({
 }) => {
 
   // 權限驗證
-  const user_id = JSON.parse(localStorage.getItem("UserInfo")).user_id;
+  const sto_id = JSON.parse(localStorage.getItem("UserInfo")).sto_id;
   function uShouldNotPass() {
-    window.location.href = `store/store_edit/${user_id - 1}`;
+    window.location.href = `store/store_edit/${sto_id}`;
   }
 
-  if (user_id !== 1) {
+  if (sto_id !== 0) {
     uShouldNotPass();
   } else {
     console.log("Welcome!");
