@@ -164,9 +164,10 @@ const StoreCard = ({
   // 監測data有異動就執行function
   useEffect(() => {
     putStore(data).then((result) => {
+      console.log(data)
       console.log(result)
     });
-  }, [data.state]);
+  }, [data.isMain]);
 
     return (
         <div style={{ margin: '15px' }}>
@@ -180,33 +181,33 @@ const StoreCard = ({
                 <div>
                     <ThemeProvider theme={theme}>
                         <CardActions style={{ display: 'flex', 'justify-content': 'space-around' }}>
-                            <Button onClick={Edit} style={{"min-width": "115px"}} size="small" variant="outlined" color="neutral">
+                            <Button onClick={Edit} style={{"min-width": "60px"}} size="small" variant="outlined" color="neutral">
                                 編輯
                             </Button>
-                            <Button onClick={Delete} style={{"min-width": "115px"}} size="small" variant="outlined" color="error">
+                            <Button onClick={Delete} style={{"min-width": "60px"}} size="small" variant="outlined" color="error">
                                 刪除
                             </Button>
-                            {/* <FormGroup style={{ margin: '3px' }}>
+                            <FormGroup style={{ margin: '3px' }}>
                                 <Stack onClick={() => {
-                                    if (window.confirm("是否確認修改顯示狀態") == true) {
-                                        console.log('origin', data.state)
+                                    if (window.confirm("是否確認修改主打狀態") == true) {
+                                        console.log('origin', data.isMain)
                                         setData(prevState => ({
                                             ...prevState,
-                                            state: !data.state
+                                            isMain: !data.isMain
                                         }))
-                                        console.log('new', data.state)
+                                        console.log('new', data.isMain)
                                     }
                                 }}
                                     direction="row" spacing={1} alignItems="center">
-                                    <Typography style={{ 'font-size': '10px' }}>OFF</Typography>
+                                    <Typography style={{ 'font-size': '10px' }}></Typography>
                                     <AntSwitch
-                                        checked={data.state}
+                                        checked={data.isMain}
                                         inputProps={{ 'aria-label': 'ant design' }}
                                         size="small"
                                     />
-                                    <Typography style={{ 'font-size': '10px' }}>ON</Typography>
+                                    <Typography style={{ 'font-size': '10px' }}>主打店家</Typography>
                                 </Stack>
-                            </FormGroup> */}
+                            </FormGroup>
                         </CardActions>
                     </ThemeProvider>
                 </div>

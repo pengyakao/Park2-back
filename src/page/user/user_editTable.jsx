@@ -61,9 +61,16 @@ const User_editTable = ({ listData }) => {
   }
 
   // 權限驗證
-  // if (token.user_id !== i || token.user_id !== 1) {
-  //   return <Redirect to={`/user/${token.user_id}`} />;
-  // }
+  const user_id = JSON.parse(localStorage.getItem("UserInfo")).user_id;
+  function uShouldNotPass() {
+    window.location.href = `/user/${user_id - 1}`;
+  }
+
+  if (user_id !== 1 && user_id - 1 !== i) {
+    uShouldNotPass();
+  } else {
+    // console.log("Welcome!");
+  }
 
   if (listData[i]) {
     return (
