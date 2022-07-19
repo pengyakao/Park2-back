@@ -141,7 +141,7 @@ class UploadMore extends React.Component {
             {/* <Button variant="contained">上傳</Button> */}
           </Stack>
         </label>
-        <div
+        {/* <div
           style={{
             border: "solid 2px #000",
             display: "inline-block",
@@ -154,7 +154,7 @@ class UploadMore extends React.Component {
           }}
         >
           Test
-        </div>
+        </div> */}
       </div>
     );
   }
