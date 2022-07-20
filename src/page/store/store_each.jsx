@@ -333,7 +333,6 @@ const Store_each = () => {
                       label="Facebook"
                       placeholder="https://www.facebook.com/cmppark2/"
                       variant="outlined"
-                      required="true"
                       value={sto_fb ?? ""}
                       onChange={(e) => setsto_fb(e.target.value)}
                     />
@@ -344,7 +343,6 @@ const Store_each = () => {
                       label="Instargam"
                       placeholder="https://www.Instargam.com/cmppark2/"
                       variant="outlined"
-                      required="true"
                       value={sto_ins ?? ""}
                       onChange={(e) => setsto_ins(e.target.value)}
                     />
@@ -355,7 +353,6 @@ const Store_each = () => {
                       label="Line"
                       placeholder="https://line.me/ti/p/~@Park2"
                       variant="outlined"
-                      required="true"
                       value={sto_line ?? ""}
                       onChange={(e) => setsto_line(e.target.value)}
                     />
@@ -393,8 +390,8 @@ const Store_each = () => {
                       setsto_weekdayEnd("20:00");
                       setsto_holidayStart("11:00");
                       setsto_holidayEnd("20:00");
-                      setsto_ins("http://www.facebook.com/para.coffee");
-                      setsto_fb("http://www.instagram.com/para_coffee");
+                      setsto_fb("http://www.facebook.com/para.coffee");
+                      setsto_ins("http://www.instagram.com/para_coffee");
                       setsto_pay1(1);
                       setsto_pay2(1);
                       setsto_pay3(1);
