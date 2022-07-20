@@ -61,8 +61,10 @@ const Act_edit = () => {
   //   載入資料
   useEffect(() => {
     getActivity().then((result) => {
-      console.log(result)
-      setdata(result[i - 1]);
+      let myAct = result.filter((e)=>{
+        return e.act_id == i
+      })
+      setdata(myAct[0]);
     });
   }, []);
 
