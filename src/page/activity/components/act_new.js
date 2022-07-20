@@ -180,7 +180,7 @@ const Act_new = ({ add }) => {
                 style={{ display: "flex", "justify-content": "flex-end" }}
               >
                 <Button color="neutral" variant="outlined" onClick={() => {
-                  setact_title("迷幻太空 ✦ 主題派對");
+                  setact_title("PARA✦開幕主題派對");
                   setact_class("2")
                   setact_Sdate("2022-07-15");
                   setact_Edate("2022-07-15");
