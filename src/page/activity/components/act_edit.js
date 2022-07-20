@@ -61,6 +61,7 @@ const Act_edit = () => {
   //   載入資料
   useEffect(() => {
     getActivity().then((result) => {
+      console.log(result)
       setdata(result[i - 1]);
     });
   }, []);

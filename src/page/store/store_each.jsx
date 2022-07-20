@@ -456,7 +456,7 @@ const Store_each = () => {
                       if (sto_img !== data.sto_first_img) {
                         console.log(1);
                         formData.append("file", sto_img);
-                        formData.append("logo", data.sto_img);
+                        // formData.append("logo", data.sto_img);
                         formData.append("delete", data.sto_first_img);
                         putStore(formData).then((result) => {
                           console.log(result);
