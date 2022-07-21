@@ -83,7 +83,7 @@ class UploadMore extends React.Component {
               ],
             },
             () => {
-              console.log(this.state.files);
+              console.log('files', this.state.files);
             //   呼叫函式組成所需陣列
               this.handleSubmit();
             }
@@ -102,6 +102,8 @@ class UploadMore extends React.Component {
     console.log(id);
     this.setState({
       files: [...this.state.files.filter((obj) => obj.id != id)],
+    }, ()=>{
+      this.handleSubmit();
     });
     this.inputRef.current.value = "";
   };
@@ -130,7 +132,8 @@ class UploadMore extends React.Component {
             <div>
               <Input
                 type="file"
-                onChange={this.uploadItem}
+                onChange={
+                  this.uploadItem}
                 ref={this.inputRef}
                 accept="image/*"
               />
@@ -175,6 +178,8 @@ class UploadMore extends React.Component {
 
         that.setState({
           files: imgs,
+        }, ()=>{
+          this.handleSubmit();
         });
       }
     });

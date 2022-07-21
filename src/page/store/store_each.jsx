@@ -21,8 +21,9 @@ import {
   putStoreWithoutFile,
   putStoreNoDelete
 } from "../../api/store/storeApi";
+
 import { putLogo } from "../../api/store/storeApi";
-import { getStoreImgs, editStoreImgs } from "../../api/test/uploadImgApi";
+import { getStoreImgs, editStoreImgs, postStoreImgs } from "../../api/test/uploadImgApi";
 import { checkLogin } from "../../api/login/isLogin";
 
 const theme = createTheme({
@@ -126,6 +127,7 @@ const Store_each = () => {
   // console.log(data.sto_sun);
   // console.log(document.getElementById('contained-button-file'));
 
+
   return (
     <div>
       <div>
@@ -206,8 +208,9 @@ const Store_each = () => {
                   </h3>
                   <UploadMore
                     i={i}
-                    sto_moreImgFormData={sto_moreImgFormData}
+                    // sto_moreImgFormData={sto_moreImgFormData}
                     setmoreImgFormData={setmoreImgFormData}
+
                   ></UploadMore>
                 </div>
               </div>
@@ -514,10 +517,13 @@ const Store_each = () => {
                         });
                       }
 
+                      
                       // 多圖更新
-                      // editStoreImgs(sto_moreImgFormData).then((result) => {
-                      //   console.log(result);
-                      // });
+                      editStoreImgs(sto_moreImgFormData).then((result) => {
+                        console.log(result);
+                      });
+
+                      // postStoreImgs()
 
                       // 1秒後重新整理
                       // setTimeout(() => {
