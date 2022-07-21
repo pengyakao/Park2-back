@@ -351,9 +351,8 @@ export default function Stationed_market_each() {
                                             console.log(inputData)
                                             editMarketApply(inputData).then((result)=>{
                                                 console.log(result)
+                                                window.location.href = '/stationed_market'
                                             })
-                                            alert("修改成功");
-                                            window.location.href = '/stationed_market'
                                         }}>確定修改
                                         </Button>
                                     </Stack>
