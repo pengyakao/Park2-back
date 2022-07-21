@@ -52,7 +52,7 @@ const Store_each = () => {
     window.location.href = `/store/store_edit/${sto_id}`;
   }
 
-  if (sto_id !== 0 && sto_id  !== i) {
+  if (sto_id !== 0 && sto_id !== i) {
     uShouldNotPass();
   } else {
     // console.log("Welcome!");
@@ -85,7 +85,7 @@ const Store_each = () => {
   //   載入資料
   useEffect(() => {
     checkLogin().then((result) => {
-      console.log(result);
+      console.log("login", result);
     });
     getStore(i).then((result) => {
       setData(result[0]);
@@ -119,7 +119,7 @@ const Store_each = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
   // 開發用
-  // console.log(data);
+  console.log(data);
   // console.log(data.sto_fri);
   // console.log(data.sto_sat);
   // console.log(data.sto_sun);
@@ -199,8 +199,9 @@ const Store_each = () => {
                 <div className="storeMoreImg">
                   <h3>
                     店家圖片
-                    <span style={{ fontSize: "12px", fontWeight: "400" }}>
-                    </span>
+                    <span
+                      style={{ fontSize: "12px", fontWeight: "400" }}
+                    ></span>
                   </h3>
                   <UploadMore
                     i={i}
@@ -435,7 +436,7 @@ const Store_each = () => {
                       formData.append("ig", sto_ins);
                       formData.append("line", sto_line);
                       formData.append("info", sto_info);
-                      formData.append("state", data.sto_sta);
+                      formData.append("state", "1");
                       formData.append("isMain", data.sto_main);
 
                       // logo更新物件
@@ -464,11 +465,15 @@ const Store_each = () => {
                         });
                       }
 
-
                       // 多圖更新
                       editStoreImgs(sto_moreImgFormData).then((result) => {
                         console.log(result);
                       });
+
+                      // 1秒後重新整理
+                      setTimeout(() => {
+                        window.location.href = `/store/${data.sto_id}`;
+                      }, 1000);
                     }}
                   >
                     送出
