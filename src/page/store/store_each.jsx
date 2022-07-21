@@ -439,42 +439,90 @@ const Store_each = () => {
                       formData.append("info", sto_info);
                       formData.append("state", "1");
                       formData.append("isMain", data.sto_main);
-
+                      formData.append("file", sto_img);
                       // logo更新物件
                       const logoData = new FormData();
                       logoData.append("id", i);
                       logoData.append("file", sto_logo);
                       console.log(sto_logo);
 
-                      // logo更新
-                      putLogo(logoData).then((result) => {
-                        console.log(result);
-                      });
 
                       // 根據是否有更新首圖來決定使用的api
-                      if (sto_img !== data.sto_first_img) {
-                        console.log(1);
-                        formData.append("file", sto_img);
+                      console.log(data.sto_first_img)
+                      console.log(sto_img)
+                      
+                      if(sto_img == data.sto_first_img){
+                        // 不傳圖不刪圖
+                        let myData = {
+                          id: i,
+                          name: sto_name,
+                          tel: sto_tel,
+                          thu: sto_weekdayStart,
+                          fri: sto_weekdayEnd,
+                          sat: sto_holidayStart,
+                          sun: sto_holidayEnd,
+                          pay1: sto_pay1,
+                          pay2: sto_pay2,
+                          pay3: sto_pay3,
+                          pay4: sto_pay4,
+                          pay5: sto_pay5,
+                          pay6: sto_pay6,
+                          pay7: sto_pay7,
+                          fb: sto_fb,
+                          ig: sto_ins,
+                          line: sto_line,
+                          info: sto_info,
+                          state: 1
+                        }
+                        putStoreWithoutFile(myData).then((result) => {
+                          console.log(result);
+                          // logo更新
+                          if(sto_logo != data.sto_img){
+                            putLogo(logoData).then((result) => {
+                              console.log(result);
+                              window.location.href = `/store/${data.sto_id}`;
+                            });
+                          }
+                        });
+
+                      }else if (sto_img !== data.sto_first_img && data.sto_first_img == null) {
+                         // 傳圖不刪圖
+                        putStoreNoDelete(formData).then((result)=>{
+                          console.log(result);
+                          // logo更新
+                          if(sto_logo != data.sto_img){
+                            putLogo(logoData).then((result) => {
+                              console.log(result);
+                              window.location.href = `/store/${data.sto_id}`;
+                            });
+                          }
+                        })
+                        
+                      } else{
+                       // 傳圖也刪圖
                         // formData.append("logo", data.sto_img);
                         formData.append("delete", data.sto_first_img);
                         putStore(formData).then((result) => {
                           console.log(result);
-                        });
-                      } else {
-                        putStoreWithoutFile(formData).then((result) => {
-                          console.log(result);
+                          // logo更新
+                          if(sto_logo != data.sto_img){
+                            putLogo(logoData).then((result) => {
+                              console.log(result);
+                              window.location.href = `/store/${data.sto_id}`;
+                            });
+                          }
                         });
                       }
 
                       // 多圖更新
-                      editStoreImgs(sto_moreImgFormData).then((result) => {
-                        console.log(result);
-                      });
+                      // editStoreImgs(sto_moreImgFormData).then((result) => {
+                      //   console.log(result);
+                      // });
 
                       // 1秒後重新整理
-                      setTimeout(() => {
-                        window.location.href = `/store/${data.sto_id}`;
-                      }, 1000);
+                      // setTimeout(() => {
+                      //   window.location.href = `/store/${data.sto_id}`;
+                      // }, 1000);
                     }}
                   >
                     送出
