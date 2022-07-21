@@ -46,6 +46,11 @@ export function putStore(data) {
     return handleReq(reqObj.put('/admin/store/edit/file', data))
 }
 
+// 編輯(有改圖)(無刪除)
+export function putStoreNoDelete(data){
+    return handleReq(reqObj.put('/admin/store/edit/file/nodelete', data))
+}
+
 // 編輯(無改圖)
 export function putStoreWithoutFile(data) {
 	return handleReq(reqObj.put('/admin/store/edit',data))

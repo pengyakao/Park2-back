@@ -19,6 +19,7 @@ import {
   postStore,
   putStore,
   putStoreWithoutFile,
+  putStoreNoDelete
 } from "../../api/store/storeApi";
 import { putLogo } from "../../api/store/storeApi";
 import { getStoreImgs, editStoreImgs } from "../../api/test/uploadImgApi";
